@@ -14,7 +14,13 @@ ShinyPsych is an collection of psychology tasks (mostly decision making) written
 Here are the applications currently available (in one stage or another) in the ShinyPsych collection. The best way to see what the applications do is to play them yourself! To see the underlying code and accompanying tutorials, click the code link:
 
 
-| Name / Page Link | Example | Description |  Code and Guide | 
+| Name / Page Link | Example | Description |  Repository | 
 |-------------|-------------- | ---------------------------------- | -----------------------| --------------------- | 
 | ShinyBART| [Play ShinyBART](https://econpsychbasel.shinyapps.io/ShinyBART/) |  The Balloon Analogue Risk Task [@lejuez2002evaluation]  | [www.github.com/ndphillips/ShinyBART](http://www.github.com/ndphillips/ShinyBART) |
 | ShinyBandit| [Play ShinyBandit](https://econpsychbasel.shinyapps.io/ShinyBandit/) | An N-armed bandit task [@sutton1998reinforcement] | [www.github.com/ndphillips/ShinyBandit](http://www.github.com/ndphillips/ShinyBandit)
+
+Each ShinyPsych application is stored in a separate repository. ShinyPsych applications are stored as Shiny apps with the suffix `*_app.R`. Most apps also contain additional files such as images or supplementary R code. To run an app, you'll need to have all supplementary files located in the same folder as the main `*_app.R` file.
+
+### Issues and pull requests are welcome
+
+ShinyPsych is in the very early stages of development. We are grateful for pull and feature requests, and bug reports. For general comments on the ShinyPsych framework, please add an issue to this repository. For comments specific to apps, please post issues in their respective repositories.
