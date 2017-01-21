@@ -10,4 +10,4 @@ Here are the applications currently available (in one stage or another) in the S
 | Name / Page Link | Example | Description |  Code and Guide | 
 |-------------|-------------- | ---------------------------------- | -----------------------| --------------------- | 
 | [ShinyBART](ShinyBART.html)| [Play ShinyBART](https://econpsychbasel.shinyapps.io/ShinyBART/) |  The Balloon Analogue Risk Task [@lejuez2002evaluation]  | [www.github.com/ndphillips/ShinyBART](http://www.github.com/ndphillips/ShinyBART) |
-[ShinyBandit](ShinyBandit.html)| [Play ShinyBandit](https://econpsychbasel.shinyapps.io/ShinyBandit/) | An N-armed bandit task [@sutton1998reinforcement] | [www.github.com/ndphillips/ShinyBandit](http://www.github.com/ndphillips/ShinyBandit
+[ShinyBandit](ShinyBandit.html)| [Play ShinyBandit](https://econpsychbasel.shinyapps.io/ShinyBandit/) | An N-armed bandit task [@sutton1998reinforcement] | [www.github.com/ndphillips/ShinyBandit](http://www.github.com/ndphillips/ShinyBandit)
