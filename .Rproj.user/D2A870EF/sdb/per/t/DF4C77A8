@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\n\ncheckID <- function(input, output, session, id, location = \"local\", sep = \",\", header = TRUE, expContrDir = NULL,\n                    drfilename = NULL, droptoken = NULL, ids.vec = NULL){\n  # function to check whether a participant id is already in a given set\n  # set can either be given as a vector, from a local dataframe or from dropbox\n  \n  if (location == \"local\"){\n    # determine function to read in data\n    if (length(grep(\".rds\", fileName)) > 0){\n      ids.df <- readRDS(file.path(\"www\", fileName))\n    } else {\n      ids.df <- read.table(file.path(\"www\", fileName), header = header, sep = sep, \n                           stringsAsFactors = FALSE)\n    }\n    \n  } else if (location == \"dropbox\"){\n    \n    # create path; note that drfilename has to be a .csv file\n    expContrFilePath <- file.path(expContrDir, drfilename)         \n    ids.df <- rdrop2::drop_read_csv(expContrFilePath, dtoken = droptoken) # read file from dropbox\n    \n    \n  } else if (location == \"vector\"){\n    ids.vec <- as.character(ids.vec)\n    ids.df <- data.frame(\"ids\" = ids.vec)\n    \n  } else {\n    warning(\"No valid input file specified. Choose between local, dropbox or vector.\")\n  }\n  \n  # check id\n  if (gsub(\"[[:space:]]\", \"\", tolower(as.character(id))) %in% tolower(ids.df[, 1])){\n    check <- \"not allowed\"\n  } else {\n    check <- \"allowed\"\n  }\n  \n  check\n}",
+    "created" : 1500647004356.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1521668163",
+    "id" : "DF4C77A8",
+    "lastKnownWriteTime" : 1500299411,
+    "last_content_update" : 1500299411,
+    "path" : "C:/Users/Markus/switchdrive/shinyPsych/R/check_ID.R",
+    "project_path" : "R/check_ID.R",
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
