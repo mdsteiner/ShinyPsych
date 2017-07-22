@@ -1,0 +1,14 @@
+id	text	page	type	nResponseOptions	choices	choiceNames	reverse	questionIndex	describtion	placeholder	min	max	disabled
+NA	"Please answer the following questions truthfully!"	1	h2	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+NA	"To answer, please click on the scale."	0	p	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
+qu1	"I don't like to have to do a lot of thinking"	1	radioButtons	5	1,2,3,4,5	NA	1	1	"1 = Disagree, 5 = Agreee"	NA	NA	NA	1
+qu2	"I try to avoid situations that require thinking in depth about something"	2	radioButtons	5	1,2,3,4,5	eins,zwei,drei,vier,funf	1	2	"1 = Disagree, 5 = Agreee"	NA	NA	NA	1
+qu3	"I prefer to do something that challenges my thinking abilities rather than something that requires little thought"	3	radioButtons	5	1,2,3,4,5	NA	0	3	"1 = Disagree, 5 = Agreee"	NA	NA	NA	1
+qu4	"I prefer complex to simple problems"	4	radioButtons	5	1,2,3,4,5	Disagree,NA,NA,NA,Agree	0	4	"1 = Disagree, 5 = Agreee"	NA	NA	NA	1
+qu5	"Thinking hard and for a long time about something gives me little satisfaction"	5	radioButtons	5	1,2,3,4,5	NA	0	5	"1 = Disagree, 5 = Agreee"	NA	NA	NA	1
+qu6	"I trust my initial feelings about people"	6	radioButtons	5	1,2,3,4,5	NA	0	6	"1 = Disagree, 5 = Agreee"	NA	NA	NA	1
+qu7	"I believe in trusting my hunches"	7	radioButtons	5	1,2,3,4,5	NA	0	7	"1 = Disagree, 5 = Agreee"	NA	NA	NA	1
+qu8	"My initial impressions of people are almost always right"	8	radioButtons	5	1,2,3,4,5	NA	0	8	"1 = Disagree, 5 = Agreee"	NA	NA	NA	1
+qu9	"When it comes to trusting people, I can usually rely on my 'gut feelings'"	8	radioButtons	5	1,2,3,4,5	NA	0	9	"1 = Disagree, 5 = Agreee"	NA	NA	NA	1
+qu10	"I can usually feel when a person is right or wrong even if I can't explain how I know"	8	radioButtons	5	1,2,3,4,5	NA	0	10	"1 = Disagree, 5 = Agreee"	NA	NA	NA	1
+NA	"That's it, thanks!"	8	h3	NA	NA	NA	NA	NA	NA	NA	NA	NA	0
