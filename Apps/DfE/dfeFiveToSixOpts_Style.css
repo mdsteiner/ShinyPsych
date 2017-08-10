@@ -1,0 +1,69 @@
+
+/* Squares in the game appear in a slightly darker
+grey when you hover over them*/
+.decks:hover{
+	background-color: #F2F2F2;
+}
+
+/* sets the dimensions of the squares in the game
+and the background and border color. Ensures text
+is displayed both verticaly and horizontaly centered*/
+.decks {
+	width: 2.8em;
+	height: 2.8em;
+	margin: 0 auto;
+	background-color: #FAFAFA;
+	border:2px solid #666666;
+	text-align: center;
+	line-height: 2.8em;
+	/*font-weight: bold;*/
+	font-size: 200%;
+
+}
+
+/*an empty element that is displayed on the outer sides of 
+both squares in the game to move them closer (you could also
+do this by setting the margins for the squares different) */
+.emptySpace {
+	width: 1em;
+	height: 10em;
+	color: white;
+
+}
+
+/* This ensures, in several browsers, that you can not select
+the text on the game page */
+.decks, .emptySpace, .upperParams, 
+#clicksRemaining, #pointCounter, #goalvalue {
+	display: inline-block;	
+	-webkit-user-select: none; /* Chrome all / Safari all */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-khtml-user-select: none; /* Konqueror */
+	-moz-user-select: none; /* Firefox all */
+	-ms-user-select: none; /* IE 10+ */
+	user-select: none; /* Common (limited support) */
+}
+
+/* sets font size to a higher value and 
+maybe centers the context */
+.row {
+	align-content: center;
+	font-size: 140%;
+}
+
+/* sets the titles on the game page to italic */
+.upperParams {
+	font-style: italic;
+	font-size: 100%;
+}
+
+/* sets the font-size of the counters and 
+goal info on the game page to a higher value */
+#clicksRemaining, #pointCounter {
+	font-size: 160%;
+}
+
+
+#pEarned, #clicksText {
+	padding-left: 1em;
+}

@@ -1,0 +1,9 @@
+id	text	page	type	choices	choiceNames	reverse	questionIndex	describtion	placeholder	min	max	disabled	checkType	width	height	inline	randomize
+NA	"Thank you for your participation!"	1	h3	NA	NA	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Here is your study completion code. Please write it down as a confirmation of your participation"	1	p	NA	NA	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"completion.code"	1	h2	NA	NA	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"What was this research about?"	1	h3	NA	NA	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"The purpose of this research is to try and understand how people make decisions"	1	p	NA	NA	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"If you have any questions about this study, you may contact us at EconPsychBasel@gmail.com. If you do contact us, please include your study completion code."	1	p	NA	NA	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Once you have recorded your code, you may close this window"	1	p	NA	NA	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"thankyou.jpg"	1	img	NA	NA	NA	NA	NA	NA	NA	NA	0	NA	300px	NA	NA	0

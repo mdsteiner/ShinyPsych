@@ -1,0 +1,5 @@
+gamble	g1o1	g1p1	g1o2	g1p2	g1o3	g1p3	g1o4	g1p4	g2o1	g2p1	g2o2	g2p2	g2o3	g2p3	g2o4	g2p4
+1	1	0.2	1.2	0.4	-2	0.1	3	0.3	8	0.05	2	0.3	-6	0.1	0.5	0.55
+2	3	1	NA	NA	NA	NA	NA	NA	32	0.1	0	0.9	NA	NA	NA	NA
+1	-1	0.2	-1.2	0.4	2	0.1	-3	0.3	-8	0.05	-2	0.3	6	0.1	-0.5	0.55
+2	-3	1	NA	NA	NA	NA	NA	NA	-32	0.1	0	0.9	NA	NA	NA	NA

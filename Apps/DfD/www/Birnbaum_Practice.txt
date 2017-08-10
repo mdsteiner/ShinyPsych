@@ -1,0 +1,2 @@
+gamble	g1p1	g1o1	g1p2	g1o2	g1p3	g1o3	g1p4	g1o4	g1p5	g1o5	g2p1	g2o1	g2p2	g2o2	g2p3	g2o3	g2p4	g2o4	g2p5	g2o5	type
+p	0.8	80	0.1	55	0.1	50	0	0	0	0	0.8	80	0.1	85	0.1	4	0	0	0	0	Practice

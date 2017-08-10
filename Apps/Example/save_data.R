@@ -1,4 +1,4 @@
-library("shiny")
+# used libraries: shiny, digest
 source("helper.R")
 
 # save values module
@@ -6,7 +6,7 @@ source("helper.R")
 
 
 saveData <- function(data, location, partId, checkNull = TRUE, addNameList = NULL, suffix = "_s",
-                     outputDir = NULL, droptoken = NULL, asrds = FALSE){
+                     outputDir = NULL, droptoken = "droptoken.rds", asrds = FALSE){
 	# The function takes a list of data and a Location to store it to
 	# and creates a dataframe that will be stored.
     
@@ -17,7 +17,7 @@ saveData <- function(data, location, partId, checkNull = TRUE, addNameList = NUL
   
     # create data frame
   	data.df <- as.data.frame(data.new)
-  	
+
 	  if (!is.null(addNameList)) {
 	    # if column names should be changed replace old ones
 		  names(data.df) <- addNames
@@ -33,17 +33,19 @@ saveData <- function(data, location, partId, checkNull = TRUE, addNameList = NUL
   	                       suffix,
   	                       ".csv")
   	
-  	incProgress(.5)
+  	shiny::incProgress(.5)
   	
   	if(location == "dropbox") {
   	  
   	  DatafilePath <- file.path(tempdir(), DatafileName)
   	  write.csv(data.df, DatafilePath, row.names = FALSE, quote = TRUE)
   	  
+  	  dtoken <- readRDS(droptoken)
+  	  
   	  # Upload data to dropbox using 
   	  rdrop2::drop_upload(DatafilePath,   
   	                      dest = outputDir,     # File directory in dropbox
-  	                      dtoken = droptoken)   # Unique dropbox token
+  	                      dtoken = dtoken)   # Unique dropbox token
   	  
   	} else if (location == "local"){
   	  
@@ -63,6 +65,8 @@ saveData <- function(data, location, partId, checkNull = TRUE, addNameList = NUL
   	  
   	  # maybe sendmailR or mailR packages but it's probably tricky especially with lot's of mails being sent so the mail account might block further mails (especially gmail)
   	  warning("email is currently not working as saveDataLocation. No data has been stored. Use dropbox or local.")
+  	} else {
+  	  stop("No valid location entered. You entered", location, "as location. Location needs to be \"dropbox\" or \"local\".")
   	}
 
 }
