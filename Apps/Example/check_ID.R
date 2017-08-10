@@ -1,7 +1,7 @@
-library(shiny)
 
-checkID <- function(input, output, session, id, location = "local", sep = ",", header = TRUE, expContrDir = NULL,
-                    drfilename = NULL, droptoken = NULL, ids.vec = NULL){
+
+checkID <- function(id, cntrlVals, location = "local", sep = ",", header = TRUE, dropDir = NULL,
+                    fileName = NULL, droptoken = NULL, ids.vec = NULL){
   # function to check whether a participant id is already in a given set
   # set can either be given as a vector, from a local dataframe or from dropbox
   
@@ -16,9 +16,10 @@ checkID <- function(input, output, session, id, location = "local", sep = ",", h
     
   } else if (location == "dropbox"){
     
-    # create path; note that drfilename has to be a .csv file
-    expContrFilePath <- file.path(expContrDir, drfilename)         
-    ids.df <- rdrop2::drop_read_csv(expContrFilePath, dtoken = droptoken) # read file from dropbox
+    # create path: note that this is the path in dropbox
+    dropFilePath <- file.path(dropDir, fileName)         
+    ids.df <- rdrop2::drop_read_csv(dropFilePath, dtoken = droptoken,
+                                    sep = sep, stringsAsFactors = FALSE) # read file from dropbox
     
     
   } else if (location == "vector"){
@@ -26,7 +27,7 @@ checkID <- function(input, output, session, id, location = "local", sep = ",", h
     ids.df <- data.frame("ids" = ids.vec)
     
   } else {
-    warning("No valid input file specified. Choose between local, dropbox or vector.")
+    stop(paste("No valid input file specified. Your entered location was", location,  ". Choose between local, dropbox or vector."))
   }
   
   # check id
@@ -37,4 +38,5 @@ checkID <- function(input, output, session, id, location = "local", sep = ",", h
   }
   
   check
+  
 }

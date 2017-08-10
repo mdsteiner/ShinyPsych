@@ -1,23 +1,34 @@
-library("shiny")
 source("helper.R")
 
 
 preparePageList <- function(defaulttxt = TRUE, defaultName = "REI",
                             location = "local", txtPath = NULL,
-                            randomize = FALSE, globId = defaultName){
+                            randomize = FALSE, globId = defaultName,
+                            droptoken = "droptoken.rds"){
   
   if (isTRUE(defaulttxt)){
     
     dir <- list.files("www", pattern = defaultName)
     dir <- file.path("www", dir)
+    df <- read.table(dir, header = TRUE, sep = "\t",
+                     stringsAsFactors = FALSE)
     
-  } else {
+  } else if (location == "local"){
     
     dir <- txtPath
+    df <- read.table(dir, header = TRUE, sep = "\t",
+                     stringsAsFactors = FALSE)
     
+  } else if (location == "dropbox"){
+    dtoken <- readRDS(droptoken)
+    df <- rdrop2::drop_read_csv(txtPath, dtoken = dtoken,
+                                        sep = "\t", stringsAsFactors = FALSE)
+    
+  } else {
+    stop(paste(location), "is no valid location. If defaulttxt is FALSE location must either be \"local\" or \"dropbox\".")
   }
   
-  df <- read.table(dir, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
+  choicesList <- df$choices
   
   if (any(!is.na(df$choices))){
     choicesList <- strsplit(as.character(df$choices), split = ",", fixed = TRUE)
@@ -52,18 +63,19 @@ preparePageList <- function(defaulttxt = TRUE, defaultName = "REI",
     nmax <- max(qInd)
   } else {
       qInd <- nmax <- NA
-    }
+  }
+  
+  if (isTRUE(randomize)){
+    df$page[df$randomize == 1] <- sample(df$page[df$randomize == 1])
+  }
   
   textOrQuestionnaireList <- list(
     "questionIndex" = qInd,
     "text" = df$text,
     "reverse" = df$reverse,
-    "randomize" = randomize,
     "choices" = choicesList,
-    "n" = nmax,
     "description" = df$describtion,
     "page" = df$page,
-    "nResponseOptions" = df$nResponseOptions,
     "type" = df$type,
     "min" = df$min,
     "max" = df$max,
@@ -73,17 +85,15 @@ preparePageList <- function(defaulttxt = TRUE, defaultName = "REI",
     "disabled" = df$disabled,
     "width" = df$width,
     "height" = df$height,
-    "inline" = df$inline
+    "inline" = df$inline,
+    "checkType" = df$checkType
   )
   
-  # randomize pages or questions
-  # if(randomize == TRUE) {
-  #   
-  #   textOrQuestionnaireList.order <- sample(1:textOrQuestionnaireList$n,
-  #                                           size = textOrQuestionnaireList$n)
-  #   textOrQuestionnaireList$text <- rei.survey$text[textOrQuestionnaireList]
-  #   
-  # } else {textOrQuestionnaireList.order <- 1:textOrQuestionnaireList$n}
+  ind <- substr(textOrQuestionnaireList$id,
+                start = nchar(textOrQuestionnaireList$id) - 1,
+                stop = nchar(textOrQuestionnaireList$id)) != "NA"
+  
+  textOrQuestionnaireList$obIds <- textOrQuestionnaireList$id[ind]
   
   textOrQuestionnaireList
 }

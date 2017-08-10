@@ -1,0 +1,2 @@
+"gamble"	"g1p1"	"g1o1"	"g1p2"	"g1o2"	"g2p1"	"g2o1"	"g2p2"	"g2o2"	"g1_mean"	"g2_mean"	"g1_var"	"g2_var"	"g1_sd"	"g2_sd"	"HV_option"	"HM_option"
+p	0.3	68	0.7	58	0.3	33	0.7	71	61	59.6	21.02102	303.5435	4.584869	17.4225	"g2"	"g1"

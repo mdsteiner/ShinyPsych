@@ -1,0 +1,96 @@
+
+/* This sets the general font size to a higher
+value and should center the elements*/
+body {
+	font-size: 160%;
+	margin: auto;
+}
+
+/*prevent gray screen during Sys.sleep()*/
+.recalculating {
+	opacity: 1.0;
+}
+
+/* Squares in the game appear in a slightly darker
+grey when you hover over them*/
+.decks:hover{
+	background-color: #F2F2F2;
+}
+
+/* sets the dimensions of the squares in the game
+and the background and border color. Ensures text
+is displayed both verticaly and horizontaly centered*/
+.decks {
+	width: 3.5em;
+	height: 3.5em;
+	margin: 0 auto;
+	background-color: #FAFAFA;
+	border:2px solid #666666;
+	text-align: center;
+	line-height: 3.5em;
+	/*font-weight: bold;*/
+	font-size: 250%;
+
+}
+
+/*an empty element that is displayed on the outer sides of 
+both squares in the game to move them closer (you could also
+do this by setting the margins for the squares different) */
+.emptySpace {
+	width: 1em;
+	height: 10em;
+	color: white;
+
+}
+
+/* This ensures, in several browsers, that you can not select
+the text on the game page */
+.decks, .emptySpace, .upperParams, 
+#clicksRemaining, #pointCounter, #goalvalue {
+	display: inline-block;	
+	-webkit-user-select: none; /* Chrome all / Safari all */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-khtml-user-select: none; /* Konqueror */
+	-moz-user-select: none; /* Firefox all */
+	-ms-user-select: none; /* IE 10+ */
+	user-select: none; /* Common (limited support) */
+}
+
+#goalvalue {
+	margin-left: 0em;
+	padding-left: 0em;
+	font-size: 160%;
+}
+
+/* sets font size to a higher value and 
+maybe centers the context */
+.row {
+	align-content: center;
+	font-size: 140%;
+}
+
+/* sets the titles on the game page to italic */
+.upperParams {
+	font-style: italic;
+	font-size: 100%;
+}
+
+/* sets the font-size of the counters and 
+goal info on the game page to a higher value */
+#clicksRemaining, #pointCounter {
+	font-size: 160%;
+}
+
+/* sets the color of the point counter to red */
+#pointCounter {
+	color: #FF6A6A;
+}
+
+#pEarned, #clicksText {
+	padding-left: 1em;
+}
+
+#notEligible, #errorOcc {
+	font-size: 20px;
+	color: red;
+}
