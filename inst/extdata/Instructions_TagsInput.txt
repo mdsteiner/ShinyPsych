@@ -1,0 +1,4 @@
+id	text	page	type	choices	choiceNames	reverse	placeholder	min	max	disabled	checkType	width	height	inline	randomize
+NA	"Example to show you different input and tag formats."	1	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"This is a demo app to show a the possible types you can use to create a page with a page list."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Your responses will be anonymous and will not be published."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0

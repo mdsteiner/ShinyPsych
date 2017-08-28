@@ -1,0 +1,11 @@
+id	text	page	type	choices	choiceNames	reverse	placeholder	min	max	disabled	checkType	width	height	inline	randomize
+qu1	"I don't like to have to do a lot of thinking"	1	radioButtons	1,2,3,4,5	""1 - Disagree",2,3,4,"5 - Agree""	1	NA	NA	NA	1	is.null	500px	NA	1	1
+qu2	"I try to avoid situations that require thinking in depth about something"	2	radioButtons	1,2,3,4,5	""1 - Disagree",2,3,4,"5 - Agree""	1	NA	NA	NA	1	is.null	500px	NA	0	1
+qu3	"I prefer to do something that challenges my thinking abilities rather than something that requires little thought"	3	radioButtons	1,2,3,4,5	""1 - Disagree",2,3,4,"5 - Agree""	0	NA	NA	NA	1	is.null	500px	NA	0	1
+qu4	"I prefer complex to simple problems"	4	radioButtons	1,2,3,4,5	""1 - Disagree",2,3,4,"5 - Agree""	0	NA	NA	NA	1	is.null	500px	NA	1	1
+qu5	"Thinking hard and for a long time about something gives me little satisfaction"	5	radioButtons	1,2,3,4,5	""1 - Disagree",2,3,4,"5 - Agree""	0	NA	NA	NA	1	is.null	500px	NA	0	1
+qu6	"I trust my initial feelings about people"	6	radioButtons	1,2,3,4,5	""1 - Disagree",2,3,4,"5 - Agree""	0	NA	NA	NA	1	is.null	500px	NA	0	1
+qu7	"I believe in trusting my hunches"	7	radioButtons	1,2,3,4,5	""1 - Disagree",2,3,4,"5 - Agree""	0	NA	NA	NA	1	is.null	500px	NA	1	1
+qu8	"My initial impressions of people are almost always right"	8	radioButtons	1,2,3,4,5	""1 - Disagree",2,3,4,"5 - Agree""	0	NA	NA	NA	1	is.null	500px	NA	1	1
+qu9	"When it comes to trusting people, I can usually rely on my 'gut feelings'"	9	radioButtons	1,2,3,4,5	""1 - Disagree",2,3,4,"5 - Agree""	0	NA	NA	NA	1	is.null	500px	NA	0	1
+qu10	"I can usually feel when a person is right or wrong even if I can't explain how I know"	10	radioButtons	1,2,3,4,5	""1 - Disagree",2,3,4,"5 - Agree""	0	NA	NA	NA	1	is.null	500px	NA	1	1

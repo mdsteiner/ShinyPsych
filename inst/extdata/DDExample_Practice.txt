@@ -1,0 +1,2 @@
+trial	o1	time1	o2	time2
+p	25	"today"	25	"4 weeks"
