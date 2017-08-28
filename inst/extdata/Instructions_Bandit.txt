@@ -1,0 +1,12 @@
+id	text	page	type	choices	choiceNames	reverse	placeholder	min	max	disabled	checkType	width	height	inline	randomize
+NA	"Decision Making Task"	1	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"The purpose of this study is to show you a working example of a psychology study created in R with shiny and ShinyPsych."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"There are no health risks or personal identifying information associated with your participation."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"This study is a demo app to show the Bandit task created with the ShinyPsych package."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Your responses will be anonymous and will not be published."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"If you consent to participating in this study, please enter a unique ID that no one else would use and click Continue."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+workerid	"Please enter a unique ID that no one else would use"	1	textInput	NA	NA	NA	"e.g.; Cat57Door"	NA	NA	1	nchar	500px	NA	NA	0
+NA	"The Task"	2	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"In the task, several boxes will be displayed on the screen. When you click on a box, a point value will be drawn from that box, displayed to you and added to your point total. The value is then returned to the box, thus the distributions from which the values are drawn do not change over time. The boxes do not necessarily have the same charateristics and therefore one box might have higher returns or variability than others. Try to gain as many points as possible!"	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"If you want to proceed with the task please indicate your consent by clicking the checkbox below."	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+checkConsent	"I consent to participate."	2	checkboxInput	NA	NA	NA	NA	NA	NA	1	isTRUE	500px	NA	NA	0

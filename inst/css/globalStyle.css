@@ -1,0 +1,18 @@
+
+/* This sets the general font size to a higher
+value and should center the elements*/
+body {
+	font-size: 160%;
+	margin: auto;
+}
+
+/*prevent gray screen during Sys.sleep()*/
+.recalculating {
+	opacity: 1.0;
+}
+
+/* Set font size and color for checkID */
+#notEligible {
+	font-size: 20px;
+	color: red;
+}

@@ -1,0 +1,282 @@
+---
+title: "Implementing a Delay Discounting Task using ShinyPsych - A Tutorial"
+author: "Markus Steiner, Nathaniel Phillips"
+date: "23 August 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## What is this tutorial about
+
+This tutorial shows you how to implement the Delay Discounting Task (DD) in a shiny app using the ShinyPsych package. If you haven't already, download the package from CRAN by running this code:
+
+```{r, eval=FALSE}
+install.packages("ShinyPsych", dependencies = TRUE)
+```
+
+The delay discounting (DD) task  is designed to measure a persons impulsivity/ ability to delay rewards [(see Richards, Zhan, Mitchel & de Wit, 1999)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1284697/pdf/10220927.pdf "Link to pdf"). In DD a person is presented two outcomes, each of which he can receive after an indicated time period. The normal structure is that one is presented with a smaller outcome which he could get sooner, or a larger reward which he could get later. The person then has to indicate his preference by choosing one of the outcome-time pairs.
+
+In this tutorial, we will show you a DD implementation. Piece by piece we will go through the whole app code, with comments and explanations between the pieces. To see the app working, click [here](placeholder "DD App").
+
+If you have any questions about the package, just email us at Nathaniel.D.Phillips.is@gmail.com or markus.d.steiner@gmail.com. Ok let's get started with the app...
+
+## The Delay Discounting App
+
+We subdivided the script in eight sections:
+
+* Section 0: Load Libraries
+* Section A: Assign External Values
+* Section B: Define Overall Layout
+* Section C: Define Reactive Values
+* Section D: Page Layouts
+* Section F: Event (e.g. Button) Actions
+    + Section F1: Page Navigation Button
+    + Section F2: Event Control
+* Section G: Save Data
+* Section H: Create App
+
+
+### Section 0: Load Libraries
+
+```{r, eval=FALSE}
+library(shiny)
+library(shinyjs)
+library(ShinyPsych)
+```
+
+This DD app only relies on these three libraries (and their dependencies). The *shiny* library is, clue is in the name, the basis to create working shiny apps. It can be used to create html pages and dynamic interfaces, e.g. to display dynamic plots etc. *shinyjs* is a usefull tool to bring some javascript logic in the page, e.g. to control whether a button is disabled, i.e. nothing happens if you click it, and then to enable it, once e.g. a necessary input has been given. And *ShinyPsych* about which you'll learn more now...
+
+### Section A: Assign External Values
+
+```{r, eval=FALSE}
+# Dropbox directory to save data
+outputDir <- "msteiner/ShinyPsych/DD"
+
+# Vector with page ids used to later access objects
+idsVec <- c("Instructions", "Demographics", "Goodbye")
+
+# create page lists for the instructions and the last page
+instructions.list <- createPageList(fileName = "Instructions_Dd",
+                                    globId = "Instructions")
+demographics.list <- createPageList(fileName = "Demographics")
+goodbye.list <- createPageList(fileName = "Goodbye")
+
+# prepare a list with game parameters
+ddContainer <- createDdList(defaultList = TRUE, fileName = "DDExample",
+                            withPracticeTrial = FALSE, outcomeCurrency = "$")
+```
+
+We first define `outputDir`, which contains the path we use in the dropbox to later save the data. If you use dropbox you can also define such an opject or later directly give the string as an argument.  
+
+Next we define `idsVec`, which includes the names of three lists that create pages (such as displaying text or having survey questions on it), that we will use. You do not need to use these exact names, but whatever you call it here, has to match what you call it at different other places later.  
+
+The `createPageList()` function that is thrice called afterwards loads in .txt files, that are called fileName.txt, i.e. if `fileName = "Goodbye"`, R will then search for a file named *Goodbye.txt* in the current directory, if it is no default list (in this case it is a default list). So if you have not stored your file in the app directory but, e.g. in the *www* folder of your app, make sure to also enter the path, e.g. `fileName = "www/Goodbye"`. There are some default files, such as the three loaded in here. If you do **not** use a default list, make sure to set the *defaulttxt* argument of `createPageList()` to `FALSE`. Note that for the DD instructions list we had to add the argument `globId = "Instructions"` because the default is just the *fileName*, but this way it is easier to change tasks and so on. More on how to create these pages, see [here](placeholder "Create Page Tutorial").  
+
+The last function called in this section is `createDdList()`, which loads an indicated .txt file with the trial information. Since in this case a default list is used (indicated by `defaultList = TRUE`; set this to FALSE and give your filename with the correct ending, e.g. .txt, to *fileName*). We do not include a practice trial here and set the outcome currency, which is just a string displayed after the outcome values, to $.
+
+Now all the lists are prepared and we go on to start defining the actual app.
+
+
+### Section B: Define Overall Layout
+
+
+```{r, eval=FALSE}
+ui <- fixedPage(
+  
+  # App title
+  title = "ShinyDD",
+  uiOutput("MainAction"),
+  
+  # For Shinyjs functions
+  useShinyjs(),
+  
+  # include appropriate css and js scripts
+  includeScriptFiles(fileList = "dd")
+  
+)
+
+server <- function(input, output, session) {
+  
+  output$MainAction <- renderUI( {
+    PageLayouts()
+    
+  })  
+
+# The server function continues, which is why the curly brackets are not closed
+```
+
+The first part assigned to ui, is the usual shiny ui part (if that's news for you, we recommend on reading up on shiny apps first). The *title* will be displayed in the tab bar. `useShinyjs()` is needed to allow *shinyjs* functions to be used. `includeScriptFiles()` will include some css and javascript scripts we've written for the tasks. If you plan to include several tasks in one app, just give a vector with the task names to *fileList*. If not otherwise specified with `globalScript = FALSE`, a css script will be loaded that specifies some parameters such as the font size. If you have additional own css or js files to include, you can do this with shiny's `includeCSS()` and `includeScript()` functions. Note that all of our javascript scripts have two versions: a commented version that you can look at in the package directory to see what it's doing, and a compiled version (indicated through the *Comp.js* at the end of the filename), that was compiled by using [Google's closure compiler](http://closure-compiler.appspot.com) to make it less readable. This is done to make it a bit harder to check or change the variables in the console.  
+Please note the *session* in the server definition. You must have for the javascript communicatoin to work.
+
+
+### Section C: Define Reactive Values
+
+```{r, eval=FALSE}
+  # CurrentValues controls page setting such as which page to display
+  CurrentValues <- createCtrlList(firstPage = "instructions", # id of the first page
+                                  globIds = idsVec,           # ids of pages for createPage
+                                  complCode = TRUE,           # create a completion code
+                                  complName = "EP-DD",        # first element of completion code
+                                  task = "dd")                # the task(s) used in the app
+  
+  # GameData controls task settings and is used to store the task data
+  GameData <- createTaskCtrlList(task = "dd")
+```
+
+These two functions set up the lists of reactive values (again, if that's not a familiar term you should consider to read about shiny apps first) needed to control settings and store values. `createCtrlList()` is used to set up the general control list that navigates you through the experiment by containing the current page value and things like that. The *firstPage* argument indicates, yes, the id of the first page. This will be the first thing you see when you run the app. The *globIds* are the list ids defined earlier in section A as *idsVec*. *complCode* and *complName* control whether a completion code of the form "complName-XXX-XXX-XXX", where XXX is a random number between 100 and 999, should be generated. *task* takes a vector of names, indicating which tasks are used. This app only contains a DD task, so we set this to "dd".  
+`createTaskCtrlList` creates a task specific list of reactive values. This will be used to store data in. Note that if you have several tasks in one app, you must call this function several times, because only a list for one task will be created. If you give it a vector this will not work. This is because some tasks have objects with the same name.
+
+### Section D: Page Layouts
+
+```{r, eval=FALSE}
+
+  PageLayouts <- reactive({
+    
+    # insert created completion code that it can later be displayed
+    goodbye.list <- changePageVariable(pageList = goodbye.list, variable = "text",
+                                       oldLabel = "completion.code",
+                                       newLabel = CurrentValues$completion.code)
+    
+    # display instructions page
+    if (CurrentValues$page == "instructions") {
+      
+      return(
+        # create html logic of instructions page
+        createPage(pageList = instructions.list,
+                   pageNumber = CurrentValues$Instructions.num,
+                   globId = "Instructions", ctrlVals = CurrentValues)
+      )}
+    
+    # display task page
+    if (CurrentValues$page == "game") {
+      
+      return(
+        # create html logic of task page and handle client side communications
+        ddPage(ctrlVals = CurrentValues, container = ddContainer,
+               nTrials = ddContainer$nTrials)
+      )}
+    
+    
+    if (CurrentValues$page == "demographics"){
+      
+      return(
+        createPage(pageList = demographics.list, pageNumber = CurrentValues$Demographics.num,
+                   globId = "Demographics", ctrlVals = CurrentValues)
+      )}
+    
+    
+    # P5) Goodbye
+    if (CurrentValues$page == "goodbye") {
+      
+      return(
+        createPage(pageList = goodbye.list, pageNumber = CurrentValues$Goodbye.num,
+                   globId = "Goodbye", ctrlVals = CurrentValues, continueButton = FALSE)
+      )}
+    
+  })
+```
+
+
+*PageLayouts* is a reactive expression in which the page layouts are defined. First the goodbye.list is updated with the completion code. It has a placeholder in the list for the completion code that is inserted with `changePageVariable()`. The pages are then created using the `createPage()` function by giving it the, in section A created, page lists, the reactive control values created in section C and the global id, i.e. the respective id from *idsVec*. The *pageNumber* argument controls which page of the current list is to be displayed. You can see that all pages based on a previously created page list are set up in the same form with `createPage()`.  
+
+The task page is then set up by `ddPage()`. You just have to give it the dd list created in section A (i.e. *ddContainer* in this case), the control list created in section C (*CurrentValues*), the shiny sesson object and the number of trials. If you include a practice trial make sure to use `nTrials = ddContainer$nTrials - 1` because else the displayed maximum trial number in, e.g., *Trial 2 of 4* will be one too high. This is because in the practice trial the displayed title is *practice trial*. 
+
+
+### Section F: Event (e.g. Button) Actions
+
+This section is again subdivided in two subsections, one of which is controlling the navigation through the app (F1) and the other is controlling some events, such as enabling the continue buttons (F2).
+
+#### Section F1: Page Navigation Button
+
+```{r, eval=FALSE}
+  observeEvent(input[["Instructions_next"]],{
+    nextPage(pageId = "instructions", ctrlVals = CurrentValues, nextPageId = "game",
+             pageList = instructions.list, globId = "Instructions")
+  })
+  
+  observeEvent(input[["trialNr"]], {
+    appendDdValues(ctrlVals = CurrentValues, container = ddContainer,
+                   input = input, gameData = GameData, withPracticeTrial = FALSE,
+                   afterTrialPage = "game", afterLastTrialPage = "demographics")
+  })
+```
+
+
+The first block observes a button named the same as the strings in the double brackets (e.g. *Instructions_next*) and will, once it receives input from the observed button, call the function indicated in the curly brackets. The `nextPage()`function handles the flow through pages created with `createPage()` from an existing page list. Each time the button is clicked, it will increase the pagenumber of that page id by 1, until the maximum number of pages in that list is reached (for "Instructions" this maximum is 2) and will then go to the page indicated at *nextPageId*.  
+
+The `appendDdValues()` function is a general control function for the DD task and not only used for navigation but it also appends the given input to the task control list. Note that *trialNr* is observed here. You could theoretically observe any input received from javascript but the problem is, if the input does not change from one trial to the other it will not recognize that new input was given. So *trialNr* is save to use because this changes every trial...  
+
+
+#### Section F2: Event Control
+
+```{r, eval=FALSE}
+  # Make sure answers are selected
+  observeEvent(reactiveValuesToList(input),{
+    
+    onInputEnable(pageId = "instructions", ctrlVals = CurrentValues,
+                  pageList = instructions.list, globId = "Instructions",
+                  inputList = input, charNum = 4)
+    
+    onInputEnable(pageId = "demographics", ctrlVals = CurrentValues,
+                  pageList = demographics.list, globId = "Demographics",
+                  inputList = input)
+    
+  })
+```
+
+
+`onInputEnable()` checks for prespecified conditions to be met, an if TRUE, enables the continue button. This function is designed for use with a page list. The conditions are specified in the page list. Usually these conditions are that an input mustn't be NULL because in many input fields, if nothing has been given as input yet, it just yields NULL. However you may also include a minimum character check such as in `onInputEnable()` called for the Instructions page list. On the first page of the Instructions list, you have to enter an id. The check will only be ok if, in this case at least 4 (because of `charNum = 4`) characters are given as input. Only then will the button be enabled. Note that the observed input object is in this case `reactiveValuesToList(input)`, which basically means that every input object is observed. That's why `onInputEnable()` first does a check if you're currently on the correct page (e.g. *instructions* in the first call), before it does anything else. This might not be very efficient but it saves you from having to give every input variable to check to `observeEvent()` and is therefore particularly usefull if you have a larger number of checks, e.g. in a questionnaire with many items on the same page.  
+
+### Section G: Save Data
+
+
+```{r, eval=FALSE}
+  observeEvent(input[["Demographics_next"]], {(
+    
+    # Create progress message   
+    withProgress(message = "Saving data...", value = 0, {
+      
+      incProgress(.25)
+      
+      # Create a list to save data
+      data.list <- list(  "id" = input$Instructions_workerid, # participant id
+                          "time" = GameData$time, # response times
+                          "selected" = GameData$selected, # option chosen (stated preference)
+                          "completion.code" = CurrentValues$completion.code, # random generated code
+                          "trial.order" = GameData$trial.order, # trial id
+                          "trial" = 1:ddContainer$nTrials,  # trial order as presented
+                          "age" = input$Demographics_age, # stated age
+                          "sex" = input$Demographics_sex) # stated sex
+      
+      # save Data
+      saveData(data.list, location = "dropbox", outputDir = outputDir,
+               partId = data.list$id, suffix = "_g")
+      
+      CurrentValues$page <- "goodbye"
+      
+    })
+    
+  )})
+  
+}
+
+```
+
+The last `observeEvent()` block again tracks a continue button. Note that each page created with `createPage()` with the *continueButton* argument set to TRUE (default) has a continue button with the id *globId_next*, which is why here *Demographics_next* is observed. What this block then does is before it sets the current page variable to in this case *goodbye*, it prepares a data list containing all the data we want to be saved and then saving it by calling `saveData()`. Note that data list must either contain variables of length one, or of the same lengths, because in `saveData()` will call `as.data.frame(data.list)`. So if you have differing lengths it will throw an error. `saveData()` in this case writes the data to dropbox, which is why we need to give it the output directory for dropbox which we specified in Section A. The saved file will be of the form `paste0(partid, Sys.time(), digest::digest(data.list), suffix, ".csv")` to ensure no file will overwrite another one. Note that in order to save a file to dropbox you need to give your access tokens for dropbox to the function. You have to put them in an .rds file and give the name (if you have it in the *www* folder with the path so *www/droptoken.rds*) to the function. Default is `droptoken = "droptoken.rds"` which is also what my access token file is called, thus I didn't have to specify this here. You can, however, also save your files locally when you run the app on a local computer. Just use `location = "local"` and then specify where you want to have you file in *outputDir*. Note that the creation of the data list and the save data function are wrapped in `withProgress()` to which also `incProgress()` belongs. It displays a little panel indicating the progress to the user.
+
+
+### Section H: Create App
+
+```{r, eval=FALSE}
+# Create app!
+shinyApp(ui = ui, server = server)
+```
+
+The last step is to create the app.
+
+
+

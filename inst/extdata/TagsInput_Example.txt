@@ -1,0 +1,18 @@
+id	text	page	type	choices	choiceNames	reverse	placeholder	min	max	disabled	checkType	width	height	inline	randomize
+NA	"Largest Heading: h1"	1	h1	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Larger Heading: h2"	1	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Large Heading: h3"	1	h3	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Small Heading: h4"	1	h4	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Smaller Heading: h5"	1	h5	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Smallest Heading: h6"	1	h6	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Paragraph: p"	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+checkBox	"Single checkbox: checkboxInput"	2	checkboxInput	NA	NA	NA	NA	NA	NA	1	isTRUE	500px	NA	NA	0
+checkBoxGroup	"These are multiple checkboxes: checkboxGroupInput"	2	checkboxGroupInput	1,2,3,4	"First Box","Second Box","Third Box","Fourth Box"	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+nmrcInput	"Numeric Input: numericInput"	2	numericInput	18	NA	NA	NA	0	100	1	is.null	500px	NA	NA	0
+passInput	"Password input: passwordInput"	2	passwordInput	NA	NA	NA	"Enter Password (just enter anything longer than 4 characters)"	NA	NA	1	nchar	500px	NA	NA	0
+radioButton	"These are radio buttons: checkboxGroupInput"	2	radioButtons	1,2,3,4,5	"First Choice","Second Choice","Third Choice","Fourth Choice","Fifth Choice"	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+selInput	"This is how to use select input: selectInput"	2	selectInput	1,2,3,4,5	"First Choice","Second Choice","Third Choice","Fourth Choice","Fifth Choice"	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+slidInput	"Slider Input: sliderInput"	2	sliderInput	50	NA	NA	NA	0	100	1	is.null	500px	NA	NA	0
+txtInput	"This is text input: textInput"	2	textInput	NA	NA	NA	"Enter at least 4 characters"	NA	NA	1	nchar	500px	NA	NA	0
+NA	"<h2>This is added using the HTML() function.</h1><p>It provides the possibility to, e.g., manipulate <i>single</i> <strong>words</strong>.</p><p>It also allows you to use all the other html tags such as unordered lists</p><ul><li>Item 1</li><li>Item2</li></ul><br>"	3	HTML	NA	NA	NA	NA	NA	NA	0	NA	NA	NA	NA	0
+NA	"thankyou.jpg"	3	img	NA	NA	NA	NA	NA	NA	0	NA	300px	NA	NA	0

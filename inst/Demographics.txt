@@ -1,5 +1,0 @@
-id	text	page	type	nResponseOptions	choices	choiceNames	reverse	questionIndex	describtion	placeholder	min	max	disabled	checkType	width	height	inline
-NA	"Demographics"	1	h2	NA	NA	NA	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA
-NA	"Please answer the following demographic questions."	1	h3	NA	NA	NA	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA
-age	"What is your age?"	1	numericInput	NA	18	NA	NA	NA	NA	NA	0	100	1	is.null	500px	NA	NA
-sex	"What is your sex?"	1	radioButtons	NA	1,2,3	Male,Female,Other	NA	NA	NA	NA	NA	NA	1	is.null	500px	NA	NA

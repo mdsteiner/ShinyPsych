@@ -1,0 +1,4 @@
+trial	o1	time1	o2	time2
+1	25	"2 weeks"	30	"4 weeks"
+2	0.50	"1 week"	2	"6 weeks"
+3	6	"today"	12	"8 weeks"

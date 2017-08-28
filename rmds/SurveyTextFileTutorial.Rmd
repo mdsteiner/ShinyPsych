@@ -1,0 +1,252 @@
+---
+title: "How to Create a File with a Questionnaire for ShinyPsych"
+author: "Markus Steiner, Nathaniel Phillips"
+date: "24 August 2017"
+output:
+  html_document:
+    highlight: haddock
+    theme: lumen
+    toc: true
+    toc_float: true
+    css: tableStyle.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## About
+
+To display text and questionnaires you can simply have a text file containing the text and info on how to set things up and load this into the app with the functions provided by ShinyPsych. For this to work, the file must be in a specific form. This tutorial shows you the form the files must have. If you'd like a template just check out the ShinyPsych app in your R library. It contains a folder called *extdata* which contains different lists we included as defaults or examples. The *Instructions_Survey*, *Survey_Example* or *Demographics* are some of the files you can use as template. The first two are also the files we're showing you here in this tutorial. We show you to examples to have the chance to show you different input possibilities, such as radio buttons, checkboxes and textinput. At the end of this page, in section *Input Formats* you'll find a list of all possible input formats and what is necessary to create them, each with a code line to give you a template on how to use it.
+
+## Creating a File
+
+Ok let's read in the first file. Note that you can also execute this code to read in the file in your R session, given that you have installed ShinyPsych. [Here's the app in which these two lists are used](placeholder "Survey Example").
+
+```{r}
+# load library
+library(ShinyPsych)
+
+# get path to file
+fil <- system.file("extdata", "Instructions_Survey.txt",
+                   package = "ShinyPsych")
+
+# read in the file
+inst.df <- read.table(fil, header = TRUE, sep = "\t",
+                    stringsAsFactors = FALSE)
+
+# display the file
+knitr::kable(inst.df, align = rep("c", ncol(inst.df)), caption = "Instructions List")
+```
+
+
+```{r}
+# load library
+library(ShinyPsych)
+
+# get path to file
+fil <- system.file("extdata", "Survey_Example.txt",
+                   package = "ShinyPsych")
+
+# read in the file
+survey.df <- read.table(fil, header = TRUE, sep = "\t",
+                    stringsAsFactors = FALSE)
+
+# display the file
+knitr::kable(survey.df, align = rep("c", ncol(survey.df)), caption = "Survey List")
+```
+
+We had to scale down the font size to fit the table on one page, sorry for that. Hopefully you can still read it. We'll anyway go thrgough each of the variables.
+
+**id**. The first variable is *id*. It must only be specified, if the function you want to call is an input function, such as the one in row seven with the id *workerid*. These id variables will later be the identifier in shiny. You know that every input object in shiny must have a unique id in order to observe it and save its input. When you create the page in your app by calling `createPageList()`, the global id together with an underscore will be pasted in front of the id as specified in this file. For example if you have the global id *Instructions*, the *textInput* for *workerid* will be *Instructions_workerid*. This procedure ensures unique ids if you have, e.g., two lists of questionnaires that each contain the ids *qu1* and *qu2* for the first two questions. Let's assume these questionnaires were named *quest1* and *quest2*, the ids of the first questions would then be *quest1_qu1* and *quest2_qu1*, so there's no problem of identifying the input. Note that you *can* also give ids to text variables in order to then select and manipulate them with css. If you don't know any css just let us tell you that it is fairly easy (at least to do things like changing a font color). A full css tutorial is beyond the scope of this article but we'll give you a very short example: Let's assume you have a paragraph which you want to be displayed in a bold font. To do this, simply give it an id, e.g., *boldP*. If this paragraph is in the list you name *Instructions* the final id of the to be changed paragraph will be *Instructions_boldP*. Now you open a file in a text editor (e.g. notepad++ or RStudio also works), and enter the following css code and save it under yourStyleSheet.css:
+
+```{rcpp, eval=FALSE}
+#boldP {
+  font-weight: bold;
+}
+```
+
+With the octothorpe you select an element by its id. So this selects the specified element and set's its font to bold. For a nice tutorial and reference sheet [click here](https://www.w3schools.com/css/default.asp "w3 Schools Tutorial").
+
+**text**. The *text* variable takes the text to be displayed by an html tag or as, e.g. question or instruction to be displayed above a set of radio buttons. If you load an image, this specifies the image name (for details see section *Input Format*)
+
+**page**. On which page the element should be displayed. Enter integers starting at 1. All elements with *page* set to 1 will be displayed on the first page in the order you've put them in the file (except when you randomize the order but more on that below). If you have an element that should be displayed on every page, such as an instruction, just enter 0 (zero) as page number. This will display it on every page created with the respective list (for an example, see the second row of *Survey List Table*).
+
+**type**. The function to be called. All possible functions are listed in section *Input Format*, each with a copy'n'pasteable example on how to specify the arguments in the file. The spelling must match the spelling of the function, else this won't work because functions are called with `getExportedValue()`.
+
+**choices**. Defines the values to be saved when a choice is made. For example when you have a question with 5 possible answers as radio buttons and the middle button is clicked, the value 3 would be saved (given that you entered *1,2,3,4,5* as choices). These have to be integers, separated by commas. The number of integers defines the number of displayed radio buttons or checkboxes. If you don't need this (e.g. when you only display text) set this to NA.
+
+**choiceNames**. Defines the labels shown instead of the values defined at *choices*. Not mandatory. If you set it to NA but call, e.g., *radioButtons* the integers defined at *choices* will be displayed. If you specify labels, you must specify the same number of labels as choices. If you only want, say, the first and the last option to have a label other than *choices*, just specify the same values as in *choices*. For example if we have a *radioButtons* element with 5 possible answers and *choices* set to *1,2,3,4,5* And you only want the first and last to be changed, you could enter *"1 - Disagree",2,3,4,"5 - Agree"* to *choiceNames*. If you don't need this (e.g. when you only display text) set this to NA.
+
+**reverse**. Whether a question contains an item for which the scale has to be reversed. If so set it to 1. You can then, at the end of the app, call `getValues()` to receive a sum score in which the elements with reversed set to 1 are reversed before aggregating. If input items should not be reversed but you have others in the list that should, set this to 0, else set it to NA.
+
+**placeholder**. Defines what is to be displayed in a text input element as placeholder that will vanish once the user gives some input. If not needed (as in most of the elements), set this to NA.
+
+**min**. Minimum value of a numeric input or number slider (see shiny documentation for `numericInput()` or `numberSilder()` for details). If not needed, set this to NA.
+
+**max**. Maximum value of a numeric input or number slider (see shiny documentation for `numericInput()` or `numberSilder()` for details). If not needed, set this to NA.
+
+**disabled**. 0 or 1. Whether the continue button should be disabled (1) until this item receives an input. Only meaningfull if it's an input element. If it's a text element or the button should not be disabled, set it to 0.
+
+**checkType**. The type of check to be executed in case that *disabled* is set to 1. Can be one *isTRUE*, *is.null* or *nchar*, depending on the input expected. E.g. if you have a checkbox, the input if it's not yet checked yields FALSE, so here you need to use *isTRUE* (see *Instructions List Table*, last row). If you have radio buttons, when nothing is selected yet, it yields NULL, so here you need to use *is.null* as check (see *Survey List Table*, rows 3 to 6). If you want to observe a text input element and only enable the button if a minimum number of characters is entered, set this to *nchar* (see *Instructions List Table*, row 7). The actual number of characters to check for is then specified in the app. If not needed, set this to NA.
+
+**width**. Specifies the width of elements. After the specified widht, a line break is inserted, so set this to a higher value if you want your text etc. to be displayed over a wider part of the screen. If an image is loaded this specifies the width of the image.
+
+**height**. Only needed for images. Specifies the height of an image. If not needed, set this to NA.
+
+**inline**. logical. Needed for radio buttons and multiple checkboxes. If TRUE, the buttons and checkboxes are displayed in one horizontal line. If FALSE they are displayed in a list one under the other. If not needed, set this to NA.
+
+**randomize**. 0 or 1. The position of elements with 1 is randomized (see *Survey List Table*, rows 3 to 5). Elements with 0 have a fixed order.
+
+## Input Formats
+
+Here we list the different input formats that can be specified in the *type* variable. We first present a list just with the names and then provide an example row for every variable.
+
+### List of Input Formats
+
+The possible input types are:
+
+* Display Text:
+    + *h1*
+    + *h2*
+    + *h3*
+    + *h4*
+    + *h5*
+    + *h6*
+    + *p*
+* Get Input:
+    + *checkboxInput*
+    + *checkboxGroupInput*
+    + *numericInput*
+    + *passwordInput*
+    + *radioButtons*
+    + *selectInput*
+    + *sliderInput*
+    + *textInput*
+* Others:
+    + *HTML*
+    + *img*
+
+### Examples for Input Formats
+
+All examples are wrapped in code. You can use these examples as templates by just copying the respective row and then changing it.
+
+```{r, echo=FALSE}
+# load library
+library(ShinyPsych)
+
+# get path to file
+fil <- system.file("extdata", "TagsInput_Example.txt",
+                   package = "ShinyPsych")
+
+# read in the file
+tags.df <- read.table(fil, header = TRUE, sep = "\t",
+                    stringsAsFactors = FALSE)
+
+```
+
+
+**h1**. Largest header.
+
+```{r, echo=FALSE}
+temp.df <- tags.df[1,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**h2**. Larger header.
+
+```{r, echo=FALSE}
+temp.df <- tags.df[2,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**h3**. Large header.
+```{r, echo=FALSE}
+temp.df <- tags.df[3,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**h4**. Small header.
+```{r, echo=FALSE}
+temp.df <- tags.df[4,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**h5**. Smaller header.
+```{r, echo=FALSE}
+temp.df <- tags.df[5,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**h6**. Smallest header.
+```{r, echo=FALSE}
+temp.df <- tags.df[6,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**p**. Paragraph.
+```{r, echo=FALSE}
+temp.df <- tags.df[7,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**checkboxInput**. Single checkbox input. Yields FALSE if not checked and TRUE if checked.
+```{r, echo=FALSE}
+temp.df <- tags.df[8,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**checkboxGroupInput**. Multiple checkbox inputs. Yields a string with the checked values.
+```{r, echo=FALSE}
+temp.df <- tags.df[9,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**numericInput**. Numeric iput with arrows to change the number. But number can also be changed by direct entering numbers. Note the *18* in the *choices* column. In numericInput the value specified for *choices* is the default value displayed.
+```{r, echo=FALSE}
+temp.df <- tags.df[10,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**passwordInput**. Same as text input, but entered symbols are not shown.
+```{r, echo=FALSE}
+temp.df <- tags.df[11,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**radioButtons**. Radio buttons ensure that only one possibility can be chosen (as opposed to multiple checkboxes). Note the 0 in *inline*. If you set this to 1, the choice options are displayed horizontally.
+```{r, echo=FALSE}
+temp.df <- tags.df[12,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**selectInput**. A dropdown button to get input. Note the 0 in *inline*. This is (after transformation, 0 = FALSE, 1 = TRUE) given to the selectInput *multiple* argument.
+```{r, echo=FALSE}
+temp.df <- tags.df[13,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**sliderInput**. A number slider with minimum and maximum values. As in *numericInput*, the value in the *choices* column is the default position of the slider.
+```{r, echo=FALSE}
+temp.df <- tags.df[14,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**textInput**. Free user input. The value in the *placeholder* column will be displayed until the user clicks in the input field and starts typing.
+```{r, echo=FALSE}
+temp.df <- tags.df[15,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**HTML**. Enter HTML code. Note that we cannot display it properly here, because it would render if we would give it real html code here, but the *text* variable will pass HTML code to the shiny `HTML()` function. If you don't care about style you can enter a big amount of html code in one line here (see the working app of this list [here](placeholder)).
+```{r, echo=FALSE}
+temp.df <- tags.df[16,]
+temp.df$text <- "put your html code here! We can't show it since it would render in the markdown (also xmp doesn't really help)."
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**img**. Display an image. Put the image in the *www* folder of your app and enter the name of the image with file ending in the *text* column. With *width* you specify the width of the image. If you don't specify a height, it will display it with the same height as width.
+```{r, echo=FALSE}
+temp.df <- tags.df[17,]
+knitr::kable(temp.df, row.names = FALSE)
+```

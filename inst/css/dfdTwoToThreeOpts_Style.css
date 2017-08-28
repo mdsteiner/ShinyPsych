@@ -1,0 +1,93 @@
+
+html, body{
+	height: 100%;
+}
+
+/* Squares in the game appear in a slightly darker
+grey when you hover over them*/
+.gambles:hover{
+	background-color: #F2F2F2;
+}
+
+/* sets the dimensions of the squares in the game
+and the background and border color. Ensures text
+is displayed both verticaly and horizontaly centered*/
+.gambles {
+	background-color: #FAFAFA;
+	border:2px solid #666666;
+	font-size: 140%;
+	padding: 0.5em;
+	padding-top: 0.8em;
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	display: table-cell;
+	vertical-align: middle;
+
+}
+
+
+.emptyRow{
+	color: #F2F2F2; /* Fallback for older browsers */
+    color: rgba(0, 0, 0, 0);
+}
+
+.box{
+	position: relative;
+	width: 80%;
+}
+
+.box:before{
+	content: "";
+	display: block;
+	padding-top: 100%;
+}
+
+table{
+	margin: auto;
+}
+
+
+td, tr, table{
+	align-content: center;
+	text-align: center;
+	vertical-align: center;
+}
+
+td{
+	padding-left: 0.4em;
+	padding-right: 0.4em;
+	padding-bottom: 0em;
+	padding-top: 0em;
+}
+
+/*an empty element that is displayed on the outer sides of 
+both squares in the game to move them closer (you could also
+do this by setting the margins for the squares different) */
+.emptySpace {
+	width: 1em;
+	color: white;
+
+}
+
+/* This ensures, in several browsers, that you can not select
+the text on the game page */
+.gambles {
+	display: inline-block;	
+	-webkit-user-select: none; /* Chrome all / Safari all */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-khtml-user-select: none; /* Konqueror */
+	-moz-user-select: none; /* Firefox all */
+	-ms-user-select: none; /* IE 10+ */
+	user-select: none; /* Common (limited support) */
+}
+
+/* sets font size to a higher value and 
+maybe centers the context */
+.row {
+	align-content: center;
+	font-size: 140%;
+}
