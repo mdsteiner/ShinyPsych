@@ -1,0 +1,22 @@
+Package: ShinyPsych
+Type: Package
+Title: An easy way to program psychology experiments using Shiny
+Version: 0.1.0
+Authors@R: c(person("Markus", "Steiner", role = "aut", email = "markus.d.steiner@gmail.com"),
+             person("Nathaniel", "Phillips", role = c("aut", "cre"), email = "Nathaniel.D.Phillips.is@gmail.com"),
+             person("Kevin", "Trutmann", role = "aut", email = "k.trutmann@unibas.ch"))
+Author: Markus D. Steiner [aut],
+        Nathaniel D. Phillips [aut, cre],
+        Kevin Trutmann [aut]
+Maintainer: Nathaniel Phillips <Nathaniel.D.Phillips.is@gmail.com>
+Description: ShinyPsych is a package developped to simplify programming experiments in that can be run locally or online. It provides functions to create display and save data from questionnaires and a collection of experimental tasks often used in psychological research (currently n armed bandit task, balloon analogue risk task (BART), decisions from description (DfD), decisions from experience (DfE) and delay discounting (DD)).
+License: CC0
+Encoding: UTF-8
+LazyData: true
+Imports: shiny,
+    shinyjs,
+    retimes,
+    rdrop2,
+    digest
+RoxygenNote: 6.0.1
+Suggests: testthat

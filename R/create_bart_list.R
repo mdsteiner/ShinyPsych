@@ -34,8 +34,9 @@
 #' @param randomize logical. If TRUE balloon order is randomized.
 #' @param loadList logical. If TRUE (default is FALSE) the list specifying
 #'  the distribution will be loaded from a local file.
-#' @param fileName string. The name and path of the rds file with the
-#'  distribution info. Has to be specified if loadList is set to TRUE.
+#' @param fileName string. The name and path of the rds file(s) with the
+#'  distribution info. Has to be specified if loadList is set to TRUE. Can be
+#'  a vector of different files that will be read in and merged.
 #' @importFrom stats rbeta rexp rnorm runif
 #'
 #' @return A list containing a list of pop values, the balloon colors, the
@@ -44,28 +45,75 @@
 #'
 #' @examples
 #'
+#' ### Example with input list
 #' # create a list containing distribution info
 #' bartDistList <- list("diffBalloons" = 2,
 #'                      "balloonIds" = c(1, 2),
 #'                      "distributionType" = c("unif", "normal"),
-#'                      "min" = c(1, 1),
-#'                      "max" = c(10, 15),
-#'                      "mean" = c(12, 12),
-#'                      "sd" = c(3, 3),
+#'                      "min" = c(1, NA),
+#'                      "max" = c(10, NA),
+#'                      "mean" = c(NA, 12),
+#'                      "sd" = c(NA, 3),
 #'                      "nBalloons" = c(5, 5),
 #'                      "balloonColor" = c("blue", "grey"),
-#'                      "max.pop" = c(10, 15))
+#'                      "max.pop" = c(10, 15),
+#'                      "min.pop" = c(2, 2))
 #'
 #' # call createBartList to draw pop values from the distributions
 #' bartContainer <- createBartList(distList = bartDistList, randomize = TRUE)
 #'
 #' bartContainer
+#'
+#' rm(bartDistList)
+#' rm(bartContainer)
+#'
+#' ### Example with loaded lists
+#' # file directory of one file, containing mixed distributions for 2 balloons
+#' containerDir <- system.file("shiny-examples", "BART", "mixedPopVals.RDS",
+#'                             package = "ShinyPsych")
+#' newContainer <- createBartList(randomize = TRUE, fileName = containerDir,
+#'                                loadList = TRUE)
+#' newContainer
+#'
+#' # file directories of two files containing one balloon type each
+#' containerDirVec <- c(system.file("shiny-examples", "BART", "unifPopVals.RDS",
+#'                                  package = "ShinyPsych"),
+#'                      system.file("shiny-examples", "BART", "normalPopVals.RDS",
+#'                                  package = "ShinyPsych"))
+#'
+#' newContainer <- createBartList(randomize = TRUE, fileName = containerDirVec,
+#'                               loadList = TRUE)
+#' newContainer
+#'
+#' rm(containerDir)
+#' rm(containerDirVec)
+#' rm(newContainer)
 createBartList <- function(distList, randomize, loadList = FALSE,
                            fileName = NULL){
 
   if (isTRUE(loadList)){
 
-    balloonList <- readRDS(fileName)
+    if (length(fileName) > 1){
+      balloonList <- readRDS(fileName[1])
+
+      for (ii in 2:length(fileName)){
+        temp.list <- readRDS(fileName[ii])
+
+        balloonList$PopVals <- c(balloonList$PopVals, temp.list$PopVals)
+        balloonList$balloonColors <- c(balloonList$balloonColors,
+                                       temp.list$balloonColors)
+        balloonList$nBalloons <- c(balloonList$nBalloons, temp.list$nBalloons)
+        balloonList$max.pop <- c(balloonList$max.pop, temp.list$max.pop)
+        balloonList$balloonIds <- c(balloonList$balloonIds,
+                                    temp.list$balloonIds)
+      }
+
+      balloonList$nBalloons <- sum(balloonList$nBalloons)
+
+    } else {
+
+      balloonList <- readRDS(fileName)
+    }
 
     if (isTRUE(randomize)){
 

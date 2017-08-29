@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Controls What Happens After a Bart Trial\n#'\n#' Controls which variables are stored in case of different events such as a\n#' saved balloon or a popped balloon.\n#' @param id string. Controls what action should be executed (e.g. append values\n#'  or go to next page). Must be one of \"nextballoon\", \"next_page\", \"popped\" or\n#'  saveballoon.\n#' @param ctrlVals list of reactive values. Controls the flow through the\n#'  Experiment. Can be created with \\code{\\link{createCtrlList}}.\n#' @param inputList The input object from the shiny app.\n#' @param bartCtrlList list of reactive values. Used for task control. Create\n#'  with \\code{\\link{createTaskCtrlList}}.\n#' @param balloonList list. Output of \\code{\\link{createBartList}} containing the\n#'  game parameters.\n#' @param nextPageId string. Id of next page that should be displayed. Only\n#'  needed if id is \"next_page\".\n#'\n#' @return Updated ctrlVals and bartCtrlList. Doesn't need to be assigned, since\n#'  both are reactive values.\n#' @export\n#'\n#' @examples\nonBartAction <- function(id, ctrlVals, inputList, bartCtrlList,\n                         balloonList, nextPageId = NULL){\n\n  if (id == \"nextballoon\"){\n\n    ctrlVals$pumps <- 0\n    ctrlVals$pop <- 0\n    ctrlVals$balloon <- ctrlVals$balloon + ctrlVals$proceed\n    ctrlVals$proceed <- 0\n    ctrlVals$saveballoon <- 0\n\n  } else if (id == \"next_page\"){\n\n    if(ctrlVals$balloon > balloonList$nBalloons) {\n\n      ctrlVals$page <- nextPageId\n\n    }\n\n  } else if (id == \"popped\"){\n\n    if (inputList$popped == 1) {\n\n      ctrlVals$pop <- 1\n      ctrlVals$pumps <- inputList$pumps\n\n      bartCtrlList$balloon <- c(bartCtrlList$balloon, rep(ctrlVals$balloon,\n                                                        ctrlVals$pumps))\n      bartCtrlList$time <- c(bartCtrlList$time, inputList$actionTimes)\n      bartCtrlList$pumps <- c(bartCtrlList$pumps, 1:ctrlVals$pumps)\n      bartCtrlList$action <- c(bartCtrlList$action, rep(1, ctrlVals$pumps))\n      bartCtrlList$pop <- c(bartCtrlList$pop, rep(0, ctrlVals$pumps-1), 1)\n\n    }\n\n  } else if (id == \"saveballoon\"){\n\n    ctrlVals$pumps <- inputList$pumps\n\n    bartCtrlList$balloon <- c(bartCtrlList$balloon, rep(ctrlVals$balloon,\n                                                      ctrlVals$pumps+1))\n    bartCtrlList$time <- c(bartCtrlList$time, inputList$actionTimes)\n    bartCtrlList$pumps <- c(bartCtrlList$pumps, 1:ctrlVals$pumps, NA)\n    bartCtrlList$action <- c(bartCtrlList$action, rep(1, ctrlVals$pumps), 0)\n    bartCtrlList$pop <- c(bartCtrlList$pop, rep(0, ctrlVals$pumps+1))\n\n    # Add points for current balloon to point total\n    ctrlVals$points.cum <- ctrlVals$points.cum + ctrlVals$pumps\n    ctrlVals$saveballoon <- 1\n\n  } else {\n\n    stop(paste(id, \"is no valid input for id. Must be one of \\\"nextballoon\\\", \\\"next_page\\\", \\\"popped\\\" or \\\"saveballoon\\\"\"))\n\n  }\n\n\n}\n",
+    "created" : 1503486413805.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2266841379",
+    "id" : "E3743325",
+    "lastKnownWriteTime" : 1502970683,
+    "last_content_update" : 1502970683,
+    "path" : "C:/Users/Markus/switchdrive/packages/ShinyPsych/R/on_bart_action.R",
+    "project_path" : "R/on_bart_action.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

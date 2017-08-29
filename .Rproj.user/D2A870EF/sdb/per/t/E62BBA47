@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Run example app or open example app code\n#'\n#' Run the specified example app locally in the browser or open the code file\n#' to see the whole app code.\n#' @param appName string. The name of the example app. Must be one of \"Bandit\",\n#'  \"BART\", \"CheckId\", \"DD\", \"DfD\", \"DfE\", \"Survey\" or \"TagsInput\".\n#' @param action string. Valid inputs are \"run\" or \"show\". Whether the app\n#'  should be run or the code shown.\n#' @importFrom shiny runApp\n#' @importFrom utils file.edit\n#'\n#' @return Run a shiny app or show it's code.\n#' @export\n#'\n#' @examples\n#' \\dontrun{\n#' # run the survey app example\n#' callApp(\"Survey\", \"run\")\n#'\n#' # show code of the survey app example\n#' callApp(\"Survey\", \"show\")\n#' }\ncallApp <- function(appName, action){\n\n  # locate all the shiny app examples that exist\n  validExamples <- list.files(system.file(\"shiny-examples\",\n                                          package = \"ShinyPsych\"))\n\n  validExamplesMsg <-\n    paste0(\n      \"Valid appNames are: '\",\n      paste(validExamples, collapse = \"', '\"),\n      \"'\")\n\n  # if an invalid example is given, throw an error\n  if (missing(appName) || !nzchar(appName) ||\n      !appName %in% validExamples) {\n    stop(\n      'Please run `runExample()` with a valid example app as an argument.n',\n      validExamplesMsg,\n      call. = FALSE)\n  }\n\n  if (action == \"run\"){\n\n    # find and launch the app\n    appDir <- system.file(\"shiny-examples\", appName, package = \"ShinyPsych\")\n    shiny::runApp(appDir, display.mode = \"normal\")\n\n  } else if (action == \"show\"){\n\n    appDir <- system.file(\"shiny-examples\", appName, \"app.R\",\n                          package = \"ShinyPsych\")\n\n    utils::file.edit(appDir)\n\n  } else {\n    stop(paste(action, \"is no valid input for \\\"action\\\". Must be either \\\"run\\\" or \\\"show\\\".\"))\n  }\n}\n",
+    "created" : 1503998423168.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3185694204",
+    "id" : "E62BBA47",
+    "lastKnownWriteTime" : 1504006597,
+    "last_content_update" : 1504006597401,
+    "path" : "C:/Users/Markus/switchdrive/packages/ShinyPsych/R/call_app.R",
+    "project_path" : "R/call_app.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

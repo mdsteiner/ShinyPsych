@@ -34,7 +34,6 @@ appendDfeValues <- function(ctrlVals, input, gameData, container,
                             afterGamblePage = "endGame",
                             afterLastGamblePage = "lastEndGame"){
 
-
   index <- (length(input$trial) -
               (length(input$gambleNr[input$gambleNr == ctrlVals$dfeGamble]) - 1)) :
     length(input$trial)
@@ -69,6 +68,7 @@ appendDfeValues <- function(ctrlVals, input, gameData, container,
   gameData$gamble.order <- c(gameData$gamble.order,
                              rep(container$gamble.order[ctrlVals$dfeGamble],
                                  length(index)))
+
 
   # change page and gamble index variable
   if (isTRUE(withPracticeGamble)){

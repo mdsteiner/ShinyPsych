@@ -19,7 +19,7 @@
 #' @param afterTrialPage string. The name of the page to be shown
 #'  after the trials up to the second to last trial.
 #' @param afterLastTrialPage string. The name of the page to be shown
-#'  after the last trial.
+#'  after the last trial..
 #'
 #' @return The changed gameData list of reactive values and change current page
 #' value (note: does not have to be assigned when function is called).
@@ -27,10 +27,10 @@
 #'
 #' @examples
 appendDdValues <- function(ctrlVals, input, gameData, container,
-                            withPracticeTrial = TRUE,
-                            afterPracticePage = "postPractice",
-                            afterTrialPage = "endGame",
-                            afterLastTrialPage = "lastEndGame"){
+                          withPracticeTrial = TRUE,
+                          afterPracticePage = "postPractice",
+                          afterTrialPage = "endGame",
+                          afterLastTrialPage = "lastEndGame"){
 
   index <- ctrlVals$ddTrial
 

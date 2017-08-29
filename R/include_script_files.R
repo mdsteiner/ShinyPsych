@@ -19,7 +19,7 @@
 #' @export
 #'
 #' @examples
-includeScriptFiles <- function(fileList, globalScript = TRUE, nArms = 0,
+includeScriptFiles <- function(fileList = "", globalScript = TRUE, nArms = 0,
                                nOpts = 0){
 
   returnList <- list()
@@ -108,7 +108,7 @@ includeScriptFiles <- function(fileList, globalScript = TRUE, nArms = 0,
     filDdS <- system.file("css", "dd_Style.CSS",
                           package = "ShinyPsych")
     returnList[["ddStyle"]] <- shiny::includeCSS(filDdS)
-    filDdJs <- system.file("css", "dd_FunctionsComp.js",
+    filDdJs <- system.file("javascript", "dd_FunctionsComp.js",
                            package = "ShinyPsych")
     returnList[["ddFunctions"]] <- shiny::includeScript(filDdJs)
 
