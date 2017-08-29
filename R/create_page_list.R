@@ -30,8 +30,9 @@
 #' @export
 #'
 #' @examples
-#' rei.survey <- createPageList(fileName = "Example", randomize = TRUE)
-#' rei.survey
+#' example.survey <- createPageList(fileName = "Survey_Example", randomize = TRUE)
+#' example.survey
+#' rm(example.survey)
 createPageList <- function(defaulttxt = TRUE, location = "local",
                            fileName = "Example", randomize = TRUE,
                            globId = fileName, droptoken = "droptoken.rds"){
@@ -88,24 +89,18 @@ createPageList <- function(defaulttxt = TRUE, location = "local",
   df$inline[df$inline != 1] <- FALSE
   df$inline[df$inline == 1] <- TRUE
 
-
-  if(any(!is.na(df$questionIndex))){
-    qInd <- 1:max(df$questionIndex, na.rm = TRUE)
-    nmax <- max(qInd)
-  } else {
-      qInd <- nmax <- NA
-  }
-
   if (isTRUE(randomize)){
     df$page[df$randomize == 1] <- sample(df$page[df$randomize == 1])
+
   }
 
+  id.order <- df$id[order(df$page)]
+  id.order <- paste(id.order[!is.na(id.order)], collapse = ";")
+
   textOrQuestionnaireList <- list(
-    "questionIndex" = qInd,
     "text" = df$text,
     "reverse" = df$reverse,
     "choices" = choicesList,
-    "description" = df$describtion,
     "page" = df$page,
     "type" = df$type,
     "min" = df$min,
@@ -117,7 +112,9 @@ createPageList <- function(defaulttxt = TRUE, location = "local",
     "width" = df$width,
     "height" = df$height,
     "inline" = df$inline,
-    "checkType" = df$checkType
+    "checkType" = df$checkType,
+    "defaultList" = defaulttxt,
+    "id.order" = id.order
   )
 
   ind <- substr(textOrQuestionnaireList$id,

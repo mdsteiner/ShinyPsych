@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Append Input from Decisions from Description Task to Task Control List\n#'\n#' After a gamble in the decisions from describtion task is ended the data is\n#' appended to the task control list (gameData) which has to be a reactive value\n#' (see \\code{\\link[shiny]{reactiveValues}} or\n#' \\url{https://shiny.rstudio.com/reference/shiny/latest/reactiveValues.html}).\n#' @param ctrlVals list of reactive values. Controls the flow through the\n#'  Experiment. Can be created with \\code{\\link{createCtrlList}}.\n#' @param input The input object from a shiny app.\n#' @param gameData list of reactive values. Specifically for the bandit task.\n#'  Can be created with \\code{\\link{createTaskCtrlList}}.\n#' @param container list. Containing at least two objects named \"trial.order\"\n#' and \"gamle.order\". Usually this list is created with \\code{\\link{createDfdList}}.\n#' @param withPracticeGamble logical. If TRUE it is assumed that a practice\n#'  gamble was included. The page after that trial will be afterPracticePage.\n#' @param afterPracticePage string. The name of the page to be shown\n#'  after the practice trial. Only needs to be specified if withPracticeGamble\n#'  is set to TRUE.\n#' @param afterGamblePage string. The name of the page to be shown\n#'  after the trials up to the second to last trial.\n#' @param afterLastGamblePage string. The name of the page to be shown\n#'  after the last trial.\n#'\n#' @return changed gameData list of reactive values and change current page\n#' value (note: does not have to be assigned when function is called).\n#' @export\n#'\n#' @examples\nappendDfdValues <- function(ctrlVals, input, gameData, container,\n                            withPracticeGamble = TRUE,\n                            afterPracticePage = \"postPractice\",\n                            afterGamblePage = \"endGame\",\n                            afterLastGamblePage = \"lastEndGame\"){\n\n  index <- ctrlVals$dfdGamble\n\n  # append values to task control reactive list\n  gameData$time <- c(gameData$time, input$respTime[length(input$respTime)])\n\n  gameData$selected <- c(gameData$selected, input$selected[length(input$selected)])\n\n  gameData$option.order <- c(gameData$option.order,\n                             container$option.order[index])\n\n  gameData$gamble.order <- c(gameData$gamble.order,\n                             container$gamble.order[index])\n\n  # change page and gamble index variable\n  if (isTRUE(withPracticeGamble)){\n\n    if (ctrlVals$dfdGamble == 1){\n\n      ctrlVals$page <- afterPracticePage\n\n      ctrlVals$dfdGamble <- ctrlVals$dfdGamble + 1\n\n    } else if (any(c(2:(nrow(container$gamble.df) - 1)) == ctrlVals$dfdGamble)){\n\n      ctrlVals$page <- afterGamblePage\n\n      ctrlVals$dfdGamble <- ctrlVals$dfdGamble + 1\n\n    } else {\n\n      ctrlVals$page <- afterLastGamblePage\n\n      ctrlVals$dfdGamble <- ctrlVals$dfdGamble + 1\n    }\n  } else{\n\n    if (any(seq_len(nrow(container$gamble.df) - 1) == ctrlVals$dfdGamble)){\n\n      ctrlVals$page <- afterGamblePage\n\n      ctrlVals$dfdGamble <- ctrlVals$dfdGamble + 1\n    } else {\n\n      ctrlVals$page <- afterLastGamblePage\n\n      ctrlVals$dfdGamble <- ctrlVals$dfdGamble + 1\n\n    }\n  }\n}\n",
+    "created" : 1503932555934.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4023175809",
+    "id" : "2F2952CA",
+    "lastKnownWriteTime" : 1503988729,
+    "last_content_update" : 1503988729353,
+    "path" : "C:/Users/Markus/switchdrive/packages/ShinyPsych/R/append_dfd_values.R",
+    "project_path" : "R/append_dfd_values.R",
+    "properties" : {
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -18,28 +18,28 @@
 # helper for create_page
 .callTag <- function(index, pageList){
   # identify tag and call it with the appropriate arguments
-
   # define lists of possible inputs
-  tagList <- c("h1", "h2", "h3", "h4", "h5", "h6", "p", "emph", "i", "li",
-               "small", "strong")
+  tagList <- c("h1", "h2", "h3", "h4", "h5", "h6", "p")
   multiList <- c("checkboxGroupInput", "radioButtons")
   textList <- c("passwordInput", "textInput")
   nusliList <- c("sliderInput", "numericInput")
 
   # check which function is matched to ensure correct use of arguments
   if (any(tagList == pageList$type[index])){
+    if (substr(pageList$id[index], nchar(pageList$id[index]) - 1,
+               nchar(pageList$id[index])) == "NA"){
+      tempid <- NULL
+    } else {
+      tempid <- pageList$id[index]
+    }
+
     # prints text, such as headers and paragraphs
     getExportedValue("shiny", pageList$type[index])(pageList$text[index],
-                                                    width = pageList$width[index])
+                                                    width = pageList$width[index],
+                                                    id = tempid)
 
   } else if (any(multiList == pageList$type[index])){
     # creates input objects such as radio buttons and multi check boxes.
-    print(pageList$type[index])
-    print(pageList$id[index])
-    print(pageList$choices[[index]])
-    print(pageList$text[index])
-    print(pageList$width[index])
-    print(pageList$inline[index])
     getExportedValue("shiny", pageList$type[index])(inputId = pageList$id[index],
                                                     choices = pageList$choices[[index]],
                                                     label = pageList$text[index],
@@ -65,14 +65,24 @@
 
   } else if (pageList$type[index] == "img"){
     # post an image from a given source
+    if (isTRUE(pageList$defaultList)){
+      shiny::addResourcePath('pictures', system.file('extdata', package='ShinyPsych'))
+    }
+    if (substr(pageList$id[index], nchar(pageList$id[index]) - 1,
+               nchar(pageList$id[index])) == "NA"){
+      tempid <- NULL
+    } else {
+      tempid <- pageList$id[index]
+    }
     getExportedValue("shiny", pageList$type[index])(src = pageList$text[index],
                                                     width = pageList$width[index],
-                                                    height = pageList$height[index])
+                                                    height = pageList$height[index],
+                                                    id = tempid)
 
-  }else if (pageList$type[index] == "html"){
+  }else if (pageList$type[index] == "HTML"){
 
     # this is apropriate if the text is actually written html code
-    shiny::tags$html(pageList$text[index])
+    shiny::HTML(pageList$text[index])
 
   } else if (pageList$type[index] == "checkboxInput"){
     # creates a checkbox that yields FALSE if unchecked and TRUE if checked
@@ -312,6 +322,7 @@
                             positive = distributionList$positive[index]))
 
     tempVals[tempVals > distributionList$max.pop[index]] <- distributionList$max.pop[index]
+    tempVals[tempVals < distributionList$min.pop[index]] <- distributionList$min.pop[index]
 
   } else {
     stop(paste(distributionList$distributionType[index], "is no valid distribution type for this function. Must be one of \"normal\", \"exp\", \"unif\", \"beta\" or \"exgauss\""))

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Go to Next Page After a Game of the Bandit Task\n#'\n#' If a game of the bandit task is finished this function will (if properly set\n#' up, this has to be handled in the app) be called if the continue button is\n#' pressed.\n#' @param ctrlVals list of reactive values. Controls the flow through the\n#'  Experiment. Can be created with \\code{\\link{createCtrlList}}.\n#' @param distList list. The one used to create the outcome lists with\n#'  \\code{\\link{createBanditList}}.\n#' @param gameData list of reactive values. Used for task control. Created with\n#'  \\code{\\link{createTaskCtrlList}}\n#' @param withPracticeGame logical. If TRUE (default) the page after the first\n#'  game will be afterPracticePage, else it will be afterGamePage.\n#' @param afterPracticePage string. The name of the page to be shown\n#'  after the practice trial. Only needs to be specified if withPracticeGamble\n#'  is set to TRUE.\n#' @param afterGamePage string. The name of the page to be shown\n#'  after the trials up to the second to last trial.\n#' @param afterLastGamePage string. The name of the page to be shown\n#'  after the last trial.\n#'\n#' @return An updated version of ctrlVals. Does not have to be assigned, since\n#'  it is a reactive value.\n#' @export\n#'\n#' @examples\nnextBanditPage <- function(ctrlVals, distList, gameData,\n                           withPracticeGame = TRUE,\n                           afterPracticePage = \"postPractice\",\n                           afterGamePage = \"endGame\",\n                           afterLastGamePage = \"lastEndGame\"){\n\n  if (isTRUE(withPracticeGame)){\n\n    if (ctrlVals$banditGame == 1){\n\n      ctrlVals$page <- afterPracticePage\n\n      ctrlVals$banditGame <- unique(gameData$game)[length(unique(gameData$game))] + 1\n\n    } else if (any(c(2:(length(distList$nTrials) - 1)) == ctrlVals$banditGame)){\n\n      ctrlVals$page <- afterGamePage\n\n      ctrlVals$banditGame <- unique(gameData$game)[length(unique(gameData$game))] + 1\n    } else {\n\n      ctrlVals$page <- afterLastGamePage\n\n      ctrlVals$banditGame <- unique(gameData$game)[length(unique(gameData$game))] + 1\n    }\n  } else{\n\n    if (any(seq_len(length(distList$nTrials) - 1) == ctrlVals$banditGame)){\n\n      ctrlVals$page <- afterGamePage\n\n      ctrlVals$banditGame <- unique(gameData$game)[length(unique(gameData$game))] + 1\n    } else {\n\n      ctrlVals$page <- afterLastGamePage\n\n      ctrlVals$banditGame <- unique(gameData$game)[length(unique(gameData$game))] + 1\n\n    }\n  }\n}\n",
+    "created" : 1503933707982.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1622703052",
+    "id" : "2C28BA73",
+    "lastKnownWriteTime" : 1503988806,
+    "last_content_update" : 1503988806594,
+    "path" : "C:/Users/Markus/switchdrive/packages/ShinyPsych/R/next_bandit_page.R",
+    "project_path" : "R/next_bandit_page.R",
+    "properties" : {
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

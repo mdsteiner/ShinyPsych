@@ -44,6 +44,7 @@ be accessed in R Shiny through input$. */
 	Shiny.onInputChange("respTime", respTime);
 	Shiny.onInputChange("trial", trial);
 	Shiny.onInputChange("gambleNr", gambleNr);
+
 }
 
 

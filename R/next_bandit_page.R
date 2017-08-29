@@ -18,6 +18,7 @@
 #'  after the trials up to the second to last trial.
 #' @param afterLastGamePage string. The name of the page to be shown
 #'  after the last trial.
+#'
 #' @return An updated version of ctrlVals. Does not have to be assigned, since
 #'  it is a reactive value.
 #' @export
