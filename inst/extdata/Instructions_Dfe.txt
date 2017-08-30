@@ -2,7 +2,7 @@ id	text	page	type	choices	choiceNames	reverse	placeholder	min	max	disabled	check
 NA	"Decision Making Task"	1	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"The purpose of this study is to show you a working example of a psychology study created in R with shiny and ShinyPsych."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"There are no health risks or personal identifying information associated with your participation."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
-NA	"This study is a demo app to show the Bandit task created with the ShinyPsych package."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"This study is a demo app to show the Decisions from Experience task created with the ShinyPsych package."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"Your responses will be anonymous and will not be published."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"If you consent to participating in this study, please enter a unique ID that no one else would use and click Continue."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 workerid	"Please enter a unique ID that no one else would use"	1	textInput	NA	NA	NA	"e.g.; Cat57Door"	NA	NA	1	nchar	500px	NA	NA	0

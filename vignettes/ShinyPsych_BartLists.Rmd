@@ -1,0 +1,110 @@
+---
+title: "Create lists with trial information for the BART - a tutorial"
+author: "Markus Steiner, Nathaniel Phillips"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## About
+
+This tutorial shows you how to create files and load them for the Baloon Analogue Risk Task (BART) in a shiny app using the ShinyPsych package.
+
+In the [BART tutorial](ShinyPsych_Bart.html "BART Tutorial") we created the list of pop values (i.e. the maximum pump values in a trial) directly in the app. However maybe you want every participant to see the same values and therefore only create one list, which you then use for all participants. This tutorial shows several ways of creating and combining such lists.
+
+## Creating the Lists
+
+You can create the lists with the function provided by ShinyPsych or input values by hand.
+
+### Using ShinyPsych
+
+To create the lists with ShinyPsych you first create an object with the necessary parameters to create the list with the `createBartList()` function. The example shows both, how to create a single list with multiple balloons, possibly from different distributions, and how to create a separate list for each balloon type.
+
+The list structure is always the same: You specify the number of different balloons with *diffBalloons* and give an id to each balloon with *balloonIds*. The distribution(s) are specified with *distributionType* (valid inputs are *unif*, *normal*, *exp*, *beta* or *exgauss*) and the according distribution parameters must have the same name as the arguments in the functions to create the respective functions (funcitons used are, in same order as above, *runif*, *rnorm*, *rexp*, *rbeta* and *rexgauss* (from the retimes package)). Each distribution argument specified must have the same length as *distributionType*. If only some positions are used the rest can be filled with NAs as shown in the code below. *nBalloons* specifies the number of pop values to draw for each balloon, *balloonColor* the color for each balloon, *max.pop* the maximum possible pop value for each balloon (values drawn greater than this number will be set to max.pop) and *min.pop* the minimum possible pop value (values drawn smaller than this number will be set to min.pop).
+
+```{r, eval=FALSE}
+library(ShinyPsych)
+
+bartDistList1 <- list("diffBalloons" = 2,
+                      "balloonIds" = c(1, 2),
+                      "distributionType" = c("unif", "normal"),
+                      "min" = c(1, NA),
+                      "max" = c(10, NA),
+                      "mean" = c(NA, 12),
+                      "sd" = c(NA, 3),
+                      "nBalloons" = c(5, 5),
+                      "balloonColor" = c("blue", "grey"),
+                      "max.pop" = c(10, 15),
+                      "min.pop" = c(2, 2))
+
+bartDistList2 <- list("diffBalloons" = 1,
+                      "balloonIds" = 1,
+                      "distributionType" = "unif",
+                      "min" = 1,
+                      "max" = 10,
+                      "nBalloons" = 5,
+                      "balloonColor" = "blue",
+                      "max.pop" = 10,
+                      "min.pop" = 2)
+
+bartDistList3 <- list("diffBalloons" = 1,
+                      "balloonIds" = 2,
+                      "distributionType" = "normal",
+                      "mean" = 12,
+                      "sd" = 3,
+                      "nBalloons" = 5,
+                      "balloonColor" = "grey",
+                      "max.pop" = 15,
+                      "min.pop" = 2)
+```
+
+With these prepared lists you can then draw pop values from the specified distributions with the `createBartList()` function. We've set `randomize = FALSE` because when you reload the lists in the current app session, you can still do it, so every participant would see the same balloons, but in a different order.
+
+```{r, eval=FALSE}
+bartContainer1 <- createBartList(bartDistList1, randomize = FALSE)
+bartContainer2 <- createBartList(bartDistList2, randomize = FALSE)
+bartContainer3 <- createBartList(bartDistList3, randomize = FALSE)
+```
+
+You can then save the created list with `saveRDS()`. Note that you **must** use the rds format in order to read the lists in again. The advantage of the rds format is, that it allows you to have objects of different lengths in the object you save.
+```{r, eval=FALSE}
+saveRDS(bartContainer1, "mixedPopVals.RDS")
+saveRDS(bartContainer2, "unifPopVals.RDS")
+saveRDS(bartContainer3, "normalPopVals.RDS")
+```
+
+Now that we've created distribution files we could load them into our app. In the ShinyPsych package, three distribution files with the above specified names are included. You can get there directory by running the code specified below. The files can then be loaded with the `createBartList()` function, but this time with different arguments: you must set `loadList = TRUE`and give the file name (if not stored in the app directory with full path) to *fileName*.
+
+```{r, eval=FALSE}
+containerDir <- system.file("shiny-examples", "BART", "mixedPopVals.RDS",
+                            package = "ShinyPsych")
+
+containerDirVec <- c(system.file("shiny-examples", "BART", "unifPopVals.RDS",
+                                 package = "ShinyPsych"),
+                     system.file("shiny-examples", "BART", "normalPopVals.RDS",
+                                 package = "ShinyPsych"))
+newContainer1 <- createBartList(randomize = TRUE, fileName = containerDir,
+                                loadList = TRUE)
+
+newContainer2 <- createBartList(randomize = TRUE, fileName = containerDirVec,
+                                loadList = TRUE)
+```
+
+
+### Define List by Hand
+
+If you don't want values to be drawn from distributions but you already have a fixed set of pop values you want to use, you can create a file in the same form as the one returned by `createBartList()` and save it to an rds file. You can then load this file in the app again with `createBartList()` as shown above. The list you define should be in the following form:
+
+```{r}
+myBartList <- list("PopVals" = c(4, 10, 12, 15, 14, 1, 5, 9, 7),
+                   "balloonColors" = c("blue", "grey", "grey", "grey", "grey",
+                                       "grey", "blue", "blue", "blue", "blue"),
+                   "nBalloons" = 10,
+                   "max.pop" = c(10, 15),
+                   "balloonIds" = c(1, 2, 2, 2, 2, 2, 1, 1, 1, 1))
+```
+
+Again you could specify one single list with all balloon types or a separate list for every balloon. If you have several lists you want to read in you can just give a vector of names to the *fileName* argument of `createBartList()`.

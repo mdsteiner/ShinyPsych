@@ -2,7 +2,7 @@ id	text	page	type	choices	choiceNames	reverse	placeholder	min	max	disabled	check
 NA	"Thank you for your participation!"	1	h3	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"Here is your study completion code. In a real study you could write it down as a confirmation of your participation."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"completion.code"	1	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
-NA	"What was this research about?"	1	h3	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
-NA	"The purpose of this research is to try and understand how people make decisions (well actually it's to show you the app...)."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"What was this about?"	1	h3	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"The purpose of this little demo was to show you a working app built with ShinyPsych."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"If you have any questions about this package, you may contact us at markus.d.steiner@gmail.com or Nathaniel.D.Phillips.is@gmail.com."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"You may now close this window"	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
