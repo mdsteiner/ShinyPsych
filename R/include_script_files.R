@@ -33,12 +33,12 @@ includeScriptFiles <- function(fileList = "", globalScript = TRUE, nArms = 0,
   if (any(fileList == "bandit")){
 
     if (nArms >= 2 && nArms <= 4){
-      filBanditS <- system.file("css", "banditTwoToFourArms_Style.CSS",
+      filBanditS <- system.file("css", "banditTwoToFourArms_Style.css",
                          package = "ShinyPsych")
       returnList[["banditStyle"]] <- shiny::includeCSS(filBanditS)
 
     } else if (any(c(5, 6) == nArms)){
-      filBanditS <- system.file("css", "banditFiveToSixArms_Style.CSS",
+      filBanditS <- system.file("css", "banditFiveToSixArms_Style.css",
                          package = "ShinyPsych")
       returnList[["banditStyle"]] <- shiny::includeCSS(filBanditS)
 
@@ -62,12 +62,12 @@ includeScriptFiles <- function(fileList = "", globalScript = TRUE, nArms = 0,
   if (any(fileList == "dfe")){
 
     if (nOpts >= 2 && nOpts <= 4){
-      filDfeS <- system.file("css", "dfeTwoToFourOpts_Style.CSS",
+      filDfeS <- system.file("css", "dfeTwoToFourOpts_Style.css",
                          package = "ShinyPsych")
       returnList[["dfeStyle"]] <- shiny::includeCSS(filDfeS)
 
     } else if (any(c(5, 6) == nOpts)){
-      filDfeS <- system.file("css", "dfeFiveToSixOpts_Style.CSS",
+      filDfeS <- system.file("css", "dfeFiveToSixOpts_Style.css",
                          package = "ShinyPsych")
       returnList[["dfeStyle"]] <- shiny::includeCSS(filDfeS)
 
@@ -85,12 +85,12 @@ includeScriptFiles <- function(fileList = "", globalScript = TRUE, nArms = 0,
   if (any(fileList == "dfd")){
 
     if (nOpts >= 2 && nOpts <= 3){
-      filDfdS <- system.file("css", "dfdTwoToThreeOpts_Style.CSS",
+      filDfdS <- system.file("css", "dfdTwoToThreeOpts_Style.css",
                              package = "ShinyPsych")
       returnList[["dfdStyle"]] <- shiny::includeCSS(filDfdS)
 
     } else if (nOpts == 4){
-      filDfdS <- system.file("css", "dfdFourOpts_Style.CSS",
+      filDfdS <- system.file("css", "dfdFourOpts_Style.css",
                              package = "ShinyPsych")
       returnList[["dfdStyle"]] <- shiny::includeCSS(filDfdS)
 
@@ -105,7 +105,7 @@ includeScriptFiles <- function(fileList = "", globalScript = TRUE, nArms = 0,
   }
 
   if (any(fileList == "dd")){
-    filDdS <- system.file("css", "dd_Style.CSS",
+    filDdS <- system.file("css", "dd_Style.css",
                           package = "ShinyPsych")
     returnList[["ddStyle"]] <- shiny::includeCSS(filDdS)
     filDdJs <- system.file("javascript", "dd_FunctionsComp.js",
