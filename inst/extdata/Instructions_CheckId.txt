@@ -2,7 +2,7 @@ id	text	page	type	choices	choiceNames	reverse	placeholder	min	max	disabled	check
 NA	"Check Id"	1	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"This is a demo app to show an id check executed with the ShinyPsych package."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"Your responses will be anonymous and will not be published."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
-NA	"To see how it what happens if you enter an id that is already used and thus no longer allowed, enter one of \"id01\" to \"id05\". Enter anything other than that for an id not yet used."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"To see how it what happens if you enter an id that is already used and thus no longer allowed, enter one of id01 to id05. Enter anything other than that for an id not yet used."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 workerid	"Please enter an ID"	1	textInput	NA	NA	NA	"e.g.; id01"	NA	NA	1	nchar	500px	NA	NA	0
 NA	"Valid Id Entered"	2	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"You entered an id not yet stored in the database file."	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0

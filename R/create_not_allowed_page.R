@@ -24,7 +24,7 @@ createNotAllowedPage <- function(inputList, globId, idLabel = "WorkerID",
       shiny::br(), shiny::br(), shiny::br(),
       shiny::h2(paste0("You entered the ", idLabel, " ",
                        inputList[[paste0(globId, "_", idVar)]],".")),
-      shiny::p("Sorry but you are not eligible for this HIT because you completed a similar HIT in the past.",
+      shiny::p("Sorry but you are not eligible for this study because you completed a similar study in the past.",
                id = "notEligible"),
       shiny::p("You may now close this window.")
     )

@@ -1,0 +1,38 @@
+---
+title: "Create files for the DD task - a tutorial"
+author: "Markus Steiner, Nathaniel Phillips"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## About
+
+In the DD task it's convenient to create a txt file with the variables and load this file into the app with the functions provided by ShinyPsych. For this to work, the file must be in a specific form. This short tutorial shows you the form the files must have. If you'd like a template just check out the ShinyPsych app in your R library. It contains a folder called *extdata* which contains different lists we included as defaults or examples. *DDExample.txt* is the file you can use as template. This is also the file we're showing you here in this tutorial.
+
+## Creating a File
+
+Ok let's first read in the file. Note that you can also execute this code to read in the file in your R session, given that you have installed ShinyPsych.
+
+```{r}
+# load library
+library(ShinyPsych)
+
+# get path to file
+fil <- system.file("extdata", "DDExample.txt",
+                   package = "ShinyPsych")
+
+# read in the file
+dd.df <- read.table(fil, header = TRUE, sep = "\t",
+                    stringsAsFactors = FALSE)
+
+# display the file
+knitr::kable(dd.df, align = rep("c", ncol(dd.df)))
+```
+
+As you can see you only need five columns. The first indicates the trial number. This will be the identifier when the trial order is randomized in the task. The next four columns are the two outcomes *o1* and *o2* and the two time intervals *time1* and *time2*. You can use separators other than tabs, but you need to indicate this in `createDdList()` as the default is set to `sepFile = "\t"`. Also the file doesn't necessarily have to be a .txt file, it can be anything readable by `read.table()`.
+
+That's it. If you file has this form you can use it in your app...
