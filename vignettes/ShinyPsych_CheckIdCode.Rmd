@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-## What is this tutorial about
+## About
 
 This tutorial shows you how to implement an id check in a shiny app using the ShinyPsych package.
 

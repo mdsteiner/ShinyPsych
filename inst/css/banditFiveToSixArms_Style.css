@@ -69,11 +69,6 @@ goal info on the game page to a higher value */
 	font-size: 160%;
 }
 
-/* sets the color of the point counter to red */
-#pointCounter {
-	color: #FF6A6A;
-}
-
 #pEarned, #clicksText {
 	padding-left: 1em;
 }

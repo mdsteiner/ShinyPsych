@@ -7,7 +7,6 @@
 #' @param action string. Valid inputs are "run" or "show". Whether the app
 #'  should be run or the code shown.
 #' @importFrom shiny runApp
-#' @importFrom utils file.edit
 #'
 #' @return Run a shiny app or show it's code.
 #' @export
@@ -36,7 +35,7 @@ callApp <- function(appName, action){
   if (missing(appName) || !nzchar(appName) ||
       !appName %in% validExamples) {
     stop(
-      'Please run `runExample()` with a valid example app as an argument.n',
+      'Please run `runExample()` with a valid example app as an argument.\n',
       validExamplesMsg,
       call. = FALSE)
   }
@@ -52,7 +51,7 @@ callApp <- function(appName, action){
     appDir <- system.file("shiny-examples", appName, "app.R",
                           package = "ShinyPsych")
 
-    utils::file.edit(appDir)
+    file.edit(appDir)
 
   } else {
     stop(paste(action, "is no valid input for \"action\". Must be either \"run\" or \"show\"."))
