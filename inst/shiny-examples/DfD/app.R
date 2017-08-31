@@ -100,8 +100,6 @@ server <- function(input, output, session) {
                          nGambles = nrow(dfdContainer$gamble.df) - 1)
       )}
 
-    if (CurrentValues$page == "blankPage"){ return(p(""))}
-
     if (CurrentValues$page == "postPractice"){
       return(
             list(
@@ -148,7 +146,7 @@ server <- function(input, output, session) {
   observeEvent(input[["gameNr"]], {
     appendDfdValues(ctrlVals = CurrentValues, container = dfdContainer,
                     input = input, gameData = GameData, afterGamblePage = "game",
-                    afterLastGamblePage = "demographics", displayBlank = TRUE)
+                    afterLastGamblePage = "demographics")
   })
 
   observeEvent(input[["gt_game"]], {
