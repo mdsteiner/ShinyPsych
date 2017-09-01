@@ -1,7 +1,7 @@
 Package: ShinyPsych
 Type: Package
 Title: An easy way to program psychology experiments using Shiny
-Version: 0.1.3
+Version: 0.1.4
 Authors@R: c(person("Markus", "Steiner", role = "aut", email = "markus.d.steiner@gmail.com"),
              person("Nathaniel", "Phillips", role = c("aut", "cre"), email = "Nathaniel.D.Phillips.is@gmail.com"),
              person("Kevin", "Trutmann", role = "aut", email = "k.trutmann@unibas.ch"))
@@ -17,7 +17,8 @@ Imports: shiny,
     shinyjs,
     retimes,
     rdrop2,
-    digest
+    digest,
+    sendmailR
 RoxygenNote: 6.0.1
 Suggests: testthat,
     knitr,
