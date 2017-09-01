@@ -6,13 +6,15 @@
 \usage{
 saveData(data, location, partId, checkNull = TRUE, addNameList = NULL,
   suffix = "_s", outputDir = NULL, droptoken = "droptoken.rds",
-  asrds = FALSE, separator = ",")
+  asrds = FALSE, separator = ",", mailSender = NULL,
+  mailReceiver = NULL, mailSubject = "ShinyPsych Data",
+  mailBody = "Data attached...")
 }
 \arguments{
 \item{data}{list. Contains all the data that should be saved.}
 
 \item{location}{string. The location to which data should be saved. Valid
-inputs are "local" or "dropbox".}
+inputs are "local" , "mail" or "dropbox".}
 
 \item{partId}{string. The participant id. This will be pasted to the beginning
 of the filename. If no id should be part of the filename leave this, in this
@@ -42,6 +44,18 @@ file.}
 
 \item{separator}{string. Separator that should be used to write the file.
 Default is ",".}
+
+\item{mailSender}{string. Mail sender address. Passed to
+\code{\link[sendmailR]{sendmail}} from the sendmailR package.}
+
+\item{mailReceiver}{string. Mail receiver address. Passed to
+\code{\link[sendmailR]{sendmail}} from the sendmailR package.}
+
+\item{mailSubject}{string. The mail subject. Passed to
+\code{\link[sendmailR]{sendmail}} from the sendmailR package.}
+
+\item{mailBody}{string. The mail body. Passed to
+\code{\link[sendmailR]{sendmail}} from the sendmailR package.}
 }
 \value{
 incProcess for shiny to display a process bar. Data is written out.

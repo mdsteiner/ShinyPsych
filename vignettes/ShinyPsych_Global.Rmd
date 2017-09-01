@@ -36,7 +36,7 @@ If you want to use ShinyPsych to run experiments in the lab, we recommend runnin
 If you'd like to use ShinyPsych, download and load it via
 
 ```{r, eval=FALSE}
-devtools::install_github("ndphillips/ShinyPsych")
+devtools::install_github("ndphillips/ShinyPsych", build_vignettes = TRUE)
 library("ShinyPsych")
 ```
 
@@ -54,7 +54,9 @@ callApp("Survey", "run")
 ```
 
 
-## Saving Data to Dropbox
+## Saving Data
+
+### To Dropbox
 
 In all the surveys and tasks data is generated. You can save this data locally on your computer if you run the app locally. If you run it on a server an easy solution is to use dropbox to store your data. This is why we implemented the possibility the possibility to read and write data from and to dropbox in our functions. To do this we use the `rdrop2`package. To use this functionality you need to have dropbox access token saved in a file that you can give to our functions. Creating your access tokens is pretty easy, just follow this procedure:
 
@@ -63,6 +65,14 @@ install.packages("rdrop2")                 # install rdrop2 package
 droptoken <- rdrop2::drop_auth()           # Will open a browser and ask you to login
 saveRDS(droptoken, file = "droptoken.rds") # Save token as droptoken.rds
 ```
+
+### Locally
+
+You can save data locally to your computer by just giving the local path to the `saveData()` functoin.
+
+### E-Mail
+
+You can save data by sending an email to your adress. For this to work, you need to specify the *mail* arguments (arguments starting with "mail") of `saveData()`. Make sure that this works with your mail server! We've tried some and not all of them worked (gmail worked).
 
 
 ## Create HTML Pages in ShinyPsych
