@@ -267,8 +267,17 @@ Another way to go to another page is as in the last `observeEvent()` block, by s
                           "sex" = input$Demographics_sex) # stated sex
       
       # save Data
-      saveData(data.list, location = "dropbox", outputDir = outputDir,
-               partId = data.list$id, suffix = "_g")
+      if (!is.null(input$Instructions_mail) &&
+          nchar(input$Instructions_mail) > 4){
+        saveData(data.list, location = "mail", outputDir = outputDir,
+                 partId = data.list$id, suffix = "_g",
+                 mailSender = "shinypsych@gmail.com",
+                 mailReceiver = input$Instructions_mail,
+                 mailBody = "Your data sent by the ShinyPsych app demo.")
+      } else {
+        saveData(data.list, location = "dropbox", outputDir = outputDir,
+                 partId = data.list$id, suffix = "_g")
+      }
       
       CurrentValues$page <- "goodbye"
       
@@ -281,6 +290,7 @@ Another way to go to another page is as in the last `observeEvent()` block, by s
 
 The last `observeEvent()` block again tracks a continue button. Note that each page created with `createPage()` with the *continueButton* argument set to TRUE (default) has a continue button with the id *globId_next*, which is why here *Demographics_next* is observed. What this block then does is before it sets the current page variable to in this case *goodbye*, it prepares a data list containing all the data we want to be saved and then saving it by calling `saveData()`. Note that data list must either contain variables of length one, or of the same lengths, because in `saveData()` will call `as.data.frame(data.list)`. So if you have differing lengths it will throw an error. `saveData()` in this case writes the data to dropbox, which is why we need to give it the output directory for dropbox which we specified in Section A. The saved file will be of the form `paste0(partid, Sys.time(), digest::digest(data.list), suffix, ".csv")` to ensure no file will overwrite another one. Note that in order to save a file to dropbox you need to give your access tokens for dropbox to the function. You have to put them in an .rds file and give the name (if you have it in the *www* folder with the path so *www/droptoken.rds*) to the function. Default is `droptoken = "droptoken.rds"` which is also what my access token file is called, thus I didn't have to specify this here. You can, however, also save your files locally when you run the app on a local computer. Just use `location = "local"` and then specify where you want to have you file in *outputDir*. Note that the creation of the data list and the save data function are wrapped in `withProgress()` to which also `incProgress()` belongs. It displays a little panel indicating the progress to the user.
 
+In this app we provide the possibility to send the data to an email address. The user is asked for an email address in the beginning to which the data will then be sent to. If you want to use this feature in your app, please indicate your own addresses in *mailSender* and *mailReceiver*, it can be the same address in both fields. Note that this functionality may not work with some mail servers, depending on their filters. So please make sure to test this feature before using it in a study.
 
 ### Section H: Create App
 

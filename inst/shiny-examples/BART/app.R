@@ -109,7 +109,8 @@ server <- function(input, output, session) {
 
     if (CurrentValues$page == "gameend") {
 
-      return(list(h3("You finished the game!"),
+      return(list(tags$br(), tags$br(), tags$br(),
+        h3("You finished the game!"),
                   p(paste("You earned", CurrentValues$points, "points in the game.")),
                   p("Please click continue to complete a short survey"),
                   actionButton(inputId = "gt_demographics",
@@ -221,8 +222,17 @@ server <- function(input, output, session) {
                           "sex" = input$Demographics_sex)
 
       # save Data
-      saveData(data.list, location = "dropbox", outputDir = outputDir,
-               partId = data.list$id, suffix = "_g")
+      if (!is.null(input$Instructions_mail) &&
+          nchar(input$Instructions_mail) > 4){
+        saveData(data.list, location = "mail", outputDir = outputDir,
+                 partId = data.list$id, suffix = "_g",
+                 mailSender = "shinypsych@gmail.com",
+                 mailReceiver = input$Instructions_mail,
+                 mailBody = "Your data sent by the ShinyPsych app demo.")
+      } else {
+        saveData(data.list, location = "dropbox", outputDir = outputDir,
+                 partId = data.list$id, suffix = "_g")
+      }
 
       CurrentValues$page <- "goodbye"
 

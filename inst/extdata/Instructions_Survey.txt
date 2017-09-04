@@ -8,5 +8,8 @@ NA	"If you consent to participating in this study, please enter a unique ID that
 workerid	"Please enter a unique ID that no one else would use"	1	textInput	NA	NA	NA	"e.g.; Cat57Door"	NA	NA	1	nchar	500px	NA	NA	0
 NA	"The Survey"	2	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"You will be asked several questions. Please answer as truthfully as possible."	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Receive your data"	2	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"You can get your data via email if you'd like. Just enter your email address below and you will receive an email with your data attached, sent with the shiny app. Your email address will not be stored!"	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+mail	"Please enter your email address if you'd like to receive your data."	2	textInput	NA	NA	NA	"name@examplemail.com"	NA	NA	0	NA	500px	NA	NA	0
 NA	"If you want to proceed with the task please indicate your consent by clicking the checkbox below."	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 checkConsent	"I consent to participate."	2	checkboxInput	NA	NA	NA	NA	NA	NA	1	isTRUE	500px	NA	NA	0

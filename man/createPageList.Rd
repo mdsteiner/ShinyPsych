@@ -40,7 +40,7 @@ html page containing text and or various input format offered by shiny.
 }
 \details{
 Input files must have a very specific form described in detail at
-\url{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}
+\url{http://rpubs.com/msteiner/ShinyPsych_Guide}
 and can be read in from a local place or from dropbox. If dropbox is used
 you must specify tokens to access it (see \code{\link[rdrop2]{drop_read_csv}})
 in an rds file.
