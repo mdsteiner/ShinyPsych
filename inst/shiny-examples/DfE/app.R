@@ -201,8 +201,17 @@ server <- function(input, output, session) {
                           "sex" = input$Demographics_sex)
 
       # save Data
-      saveData(data.list, location = "dropbox", outputDir = outputDir,
-               partId = data.list$id, suffix = "_g")
+      if (!is.null(input$Instructions_mail) &&
+          nchar(input$Instructions_mail) > 4){
+        saveData(data.list, location = "mail", outputDir = outputDir,
+                 partId = data.list$id, suffix = "_g",
+                 mailSender = "shinypsych@gmail.com",
+                 mailReceiver = input$Instructions_mail,
+                 mailBody = "Your data sent by the ShinyPsych app demo.")
+      } else {
+        saveData(data.list, location = "dropbox", outputDir = outputDir,
+                 partId = data.list$id, suffix = "_g")
+      }
 
       CurrentValues$page <- "goodbye"
 

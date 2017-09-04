@@ -72,7 +72,7 @@ You can save data locally to your computer by just giving the local path to the 
 
 ### E-Mail
 
-You can save data by sending an email to your adress. For this to work, you need to specify the *mail* arguments (arguments starting with "mail") of `saveData()`. Make sure that this works with your mail server! We've tried some and not all of them worked (gmail worked).
+You can save data by sending an email to your adress. For this to work, you need to specify the *mail* arguments (arguments starting with "mail") of `saveData()`. Make sure that this works with your mail server! We've tried some and not all of them worked (gmail worked). Please note, that we didn't try this with a large number of mails, so we don't know yet how this works if you expect many mails to be sent in a short time.
 
 
 ## Create HTML Pages in ShinyPsych

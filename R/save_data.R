@@ -102,7 +102,8 @@ saveData <- function(data, location, partId, checkNull = TRUE,
         DatafilePath <- file.path(DatafileName)
       }
 
-      if (asrds == TRUE) {
+      if (isTRUE(asrds)) {
+        DatafilePath <- sub(".csv", ".rds", DatafilePath)
         saveRDS(data.df, DatafilePath)
       } else {
         write.csv(data.df, DatafilePath, row.names = FALSE, quote = TRUE,

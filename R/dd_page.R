@@ -81,7 +81,7 @@ ddPage <- function(ctrlVals, container, trialTitle = "Trial",
                       shiny::fixedRow(shiny::br()),
                       shiny::fixedRow(shiny::column(12, align = "left",
                                                     shiny::h2(paste(trialTitle,
-                                                                    dInd - 1,
+                                                                    dInd,
                                                                     "of", nTrials)))),
                       shiny::fixedRow(shiny::br()),
 
