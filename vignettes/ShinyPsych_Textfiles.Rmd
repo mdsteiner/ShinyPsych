@@ -1,6 +1,6 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Create Text Files for ShinyPsych apps"
+author: "Markus Steiner, Nathaniel Phillips"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -117,6 +117,7 @@ The possible input types are:
     + *selectInput*
     + *sliderInput*
     + *textInput*
+    + *textAreaInput*
 * Others:
     + *HTML*
     + *img*
@@ -232,15 +233,21 @@ temp.df <- tags.df[15,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
-**HTML**. Enter HTML code. Note that we cannot display it properly here, because it would render if we would give it real html code here, but the *text* variable will pass HTML code to the shiny `HTML()` function. If you don't care about style you can enter a big amount of html code in one line here (see the working app of this list [here](placeholder)).
+**textAreaInput**. Free user input but in a larger field. The value in the *placeholder* column will be displayed until the user clicks in the input field and starts typing.
 ```{r, echo=FALSE}
 temp.df <- tags.df[16,]
+knitr::kable(temp.df, row.names = FALSE)
+```
+
+**HTML**. Enter HTML code. Note that we cannot display it properly here, because it would render if we would give it real html code here, but the *text* variable will pass HTML code to the shiny `HTML()` function. If you don't care about style you can enter a big amount of html code in one line here (see the working app of this list [here](placeholder)).
+```{r, echo=FALSE}
+temp.df <- tags.df[17,]
 temp.df$text <- "put your html code here! We can't show it since it would render in the markdown (also xmp doesn't really help)."
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
 **img**. Display an image. Put the image in the *www* folder of your app and enter the name of the image with file ending in the *text* column. With *width* you specify the width of the image. If you don't specify a height, it will display it with the same height as width.
 ```{r, echo=FALSE}
-temp.df <- tags.df[17,]
+temp.df <- tags.df[18,]
 knitr::kable(temp.df, row.names = FALSE)
 ```

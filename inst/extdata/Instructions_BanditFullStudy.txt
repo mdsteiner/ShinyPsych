@@ -1,0 +1,33 @@
+id	text	page	type	choices	choiceNames	reverse	placeholder	min	max	disabled	checkType	width	height	inline	randomize
+NA	"Decision Making Task"	1	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"The purpose of this study is to understand how people learn and make decisions."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"This study will take place in two phases. In Phase 1, you will play a game called The Boxes Game. In the Boxes Game, you will learn about risky options and make decisions. In Phase 2, you will complete a few short questionnaires about the game and how you make decisions in general."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"At the end of the study, you will receive a base payment of $1. In addition, you have the opportunity to earn a bonus payment based on how many points you earn in The Boxes Game. Most participants should earn a bonus between $0.75 and $1.50 in addition to the base-payment of $1. However, it is possible that you will earn more, or not earn any bonus at all."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"There are no health risks or personal identifying information associated with your participation."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"This study is funded by the chair of the department of Economic Psychology at the University of Basel."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Your responses will be anonymous and your individual responses will not be published."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Your participation in this study is voluntary. You can quit the study at anytime without losing your base-reward of $1. However, your bonus payment can only be calculated and paid if you complete the entire study. In the event that you end the study before completion, please contact the experimenter at shinypsych@gmail.com to arrange for your payment."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+checkOnlyDemo	"I understand that this is just a demo and I will not actually receive any money."	1	checkboxInput	NA	NA	NA	NA	NA	NA	1	isTRUE	500px	NA	NA	0
+NA	"If you consent to participating in this study, please enter a unique ID that no one else would use and click Continue."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+workerid	"Please enter a unique ID that no one else would use"	1	textInput	NA	NA	NA	"e.g.; Cat57Door"	NA	NA	1	nchar	500px	NA	NA	0
+NA	"Please read the instructions carefully!"	2	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"In this study, you will play the Boxes Game and then answer a few brief questionnaires. In total, this experiment should take around 20 minutes to complete."	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"On the next page we explain how the Boxes game works. Please read the instructions carefully. The better you understand the instructions, the better you will do."	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"The Boxes Game"	3	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"The main part of this HIT is the Boxes Game. In each game, you will see two boxes."	3	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Each box contains a mixture of negative and positive point values ranging anywhere from a possible minimum of -100 to a possible maximum of +100. However, the distribution of values is different in each box. Some boxes have, on average, higher points than others, and some boxes have a wider range of point values than others. When you start a game, you won't know anything about each box. Over the course of the game, you can learn about boxes and earn (or lose) points by using a budget of 20 clicks"	3	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Using 20 clicks to learn about boxes and earn points"	3	h3	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"At the top of the screen you will always see three important pieces of information: The number of clicks you have remaining in the game, the total number of points you have earned so far in the game and the goal."	3	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Here is a screenshot of how the game will look:"	3	h3	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"<br>"	3	HTML	NA	NA	NA	NA	NA	NA	0	NA	NA	NA	NA	0
+NA	"screenshot.PNG"	3	img	NA	NA	NA	NA	NA	NA	0	NA	600px	NA	NA	0
+NA	"To use one of your 20 clicks, you can click on one of the boxes. When you click on a box, the computer will randomly select one of the box's point values. This point value will be displayed in the box. The drawn point value will then be added to your point total (or subtracted from it if the value is negative). The number of clicks you have remaining will then decrease by 1. When you have 0 clicks remaining, the game will end."	3	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"More points equals higher bonus!"	3	h3	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"You will earn a monetary bonus based on the number of points you earn in each game. For every 10 points you earn in a game, you will earn an additional 1 cent bonus."	3	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Points are returned to the boxes."	3	h3	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"<p>The computer will always draw a random point value from the box and will always return that point value back to the box. In other words, the distribution of point values in each box <strong>will not change over time as a result of your clicks. The distributions will also not change over games although the position of the boxes will randomly vary.</strong></p>"	3	HTML	NA	NA	NA	NA	NA	NA	0	NA	NA	NA	NA	0
+NA	"Play a Practice Game"	4	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Now you can play a practice game."	4	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"In the practice game, you will have 10 clicks to see how the interface works."	4	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"The points you earn in the practice game don't matter, and all the boxes in the practice game have the same point values, so feel free to play around and experiment."	4	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"When you finished a game, that is, once you arrive at trial 10, a button labeled 'Click to Continue to next Game' will appear. Click it to continue..."	4	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0

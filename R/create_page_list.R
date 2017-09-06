@@ -9,6 +9,13 @@
 #' and can be read in from a local place or from dropbox. If dropbox is used
 #' you must specify tokens to access it (see \code{\link[rdrop2]{drop_read_csv}})
 #' in an rds file.
+#' Available default files are "Demographics", "Goodbye",
+#' "Goodbye_BanditFullStudy", "Instructions_Bandit",
+#' "Instructions_BanditFullStudy", "Instructions_Bart", "Instructions_CheckId",
+#' "Instructions_Dd", "Instructions_Dfd", "Instructions_Dfe",
+#' "Instructions_Survey", "Instructions_TagsInput", "REI_Inventory",
+#' "Survey_BanditFullStudy", "Survey_Example" and "TagsInput_Example".
+#'
 #' @param defaulttxt logical. If TRUE (default) a default option is used.
 #' @param location string. The file location. Valid inputs are
 #'  "local" or "dropbox". Not needed if defaulttxt is TRUE.

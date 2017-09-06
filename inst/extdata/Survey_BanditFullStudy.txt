@@ -1,0 +1,29 @@
+id	text	page	type	choices	choiceNames	reverse	placeholder	min	max	disabled	checkType	width	height	inline	randomize
+NA	"Study Part 2"	1	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"You will now complete a few surveys about the game and how you make decisions in general."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Your answers to all future questions will not affect your bonus. However, please make sure to complete the rest of the survey for your work and bonus to be accepted."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Click on 'Continue' to  start with the second part of the study."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+whichHighEv	"You may have noticed that in each game, there was one option with a larger variability of outcomes, and one option with a smaller variability. Do you think one of these options had, on average, better points than the other?"	2	radioButtons	1,2,3	"I think the option with the higher point variability also had higher values on average.,I think the option with the lower point variability had higher values on average.,I think both options gave the same number of points on average."	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+gameDifficulty	"How difficult did you find the game? How difficult was it to earn points?"	2	radioButtons	1,2,3,4,5	"1 - Extremely easy,2 - Somewhat easy,3 - Neither easy nor difficult,4 - Somewhat difficult,5 - Extremely difficult"	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+NA	"<p><strong>What was your strategy in the game?</strong><br>Please be as descriptive as possible, we are very interested in how people play the game</p>"	2	HTML	NA	NA	NA	NA	NA	NA	0	NA	NA	NA	NA	0
+strategy	NA	2	textAreaInput	NA	NA	NA	"I tried to..."	NA	NA	1	nchar	NA	NA	NA	0
+NA	"<p><strong>Did you change your strategy over the games? If so, what did you do differently?</strong></p>"	2	HTML	NA	NA	NA	NA	NA	NA	0	NA	NA	NA	NA	0
+strategyChange	NA	2	textAreaInput	NA	NA	NA	NA	NA	NA	1	nchar	NA	NA	NA	0
+whichStrategy	"Which of the following two strategies best describes how you made selections in the game?"	2	radioButtons	1,2	"I always tried to select the box that gives the most points on average.,I first looked at how many clicks I had left and how many points I had. Then I selected one box or the other."	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+similarTask	"Have you played a similar task as this one before?"	2	radioButtons	1,2	"Yes I have played similar tasks.,No this was the first time."	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+NA	"<p><strong>If you have any additional comments about the game that you'd like to share with us, please describe them here:</strong><br>For example, did you think it was interesting or boring? Is there something we could do to improve the game?</p>"	2	HTML	NA	NA	NA	NA	NA	NA	0	NA	NA	NA	NA	0
+comments	NA	2	textAreaInput	NA	NA	NA	NA	NA	NA	0	NA	NA	NA	NA	0
+instructionsClear	"Were the instructions to the Boxes game clear?"	3	radioButtons	1,2	"Yes the instructions were clear and I think I understood how the game worked from the beginning.,No the instructions were not clear and I did not fully understand how the game worked before starting."	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+notUnderstood	"If there was anything in particular that you did not understand about the game, please describe it here:"	3	textAreaInput	NA	NA	NA	NA	NA	NA	0	NA	NA	NA	NA	0
+errorOrBugs	"Did you experience any computer errors or bugs while playing the Boxes game?"	3	radioButtons	1,2	"No I did not experience any computer errors or bugs in the game.,Yes I did experience an error or bug."	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+describeError	"If you noticed a computer error or bug, please describe it here:"	3	textAreaInput	NA	NA	NA	NA	NA	NA	0	NA	NA	NA	NA	0
+gaveUp	"Did you give up and stop caring about earning points at any time during the games?"	4	radioButtons	1,2,3	"Never. I never gave up trying to earn as many points as possible,Sometimes. During one or more games I gave up trying to earn points,Often. During many games I gave up trying to earn points"	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+tookNotes	"Did you take any notes while playing the games?"	4	radioButtons	1,2	"No I did not take any notes while playing the games,Yes I took notes while playing the games"	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+usedCalculator	"Did you use a calculator or an equivalent calculation device?"	4	radioButtons	1,2	"No I did not use a calculator or similar device,Yes I did use a calculator or similar device"	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+gotHelp	"Did you get any other help?"	4	radioButtons	1,2	"No I did not get any additional help,Yes I received some form of help"	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+sex	"What is your sex?"	5	radioButtons	1,2,3	"Male,Female,Other"	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+age	"What is your age?"	5	numericInput	18	NA	NA	NA	0	100	1	is.null	500px	NA	NA	0
+interesting	"How interesting did you find the Boxes Game?"	5	radioButtons	1,2,3,4,5	"1 - Not at all,2,3,4,5 - Very Much"	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+education	"What is the highest level of education you have completed?"	5	radioButtons	1,2,3,4,5,6	"No high school degree,High school degree,2-year post-high school degree (e.g.; Associates),Bachelor's degree (BA) or equivalent,Master's degree (MA) or equivalent,Doctoral degree (PhD) or equivalent"	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+NA	"<p><strong>Can we trust your data for scientific research? For example, if you did not pay attention during the game, cheated by using the JavaScript console or were intoxicated (etc.), please answer 'No'.</strong><br>Please answer honestly, you <i>WILL</i> receive full payment and bonus regardless of your answer!</p>"	5	HTML	NA	NA	NA	NA	NA	NA	0	NA	NA	NA	NA	0
+trustData	NA	5	radioButtons	1,2	"Yes you can trust my data for scientific research,No you may not want to trust my data for scientific research"	NA	NA	NA	NA	1	is.null	500px	NA	0	0

@@ -1,4 +1,4 @@
-# Example of a three armed bandit task using the ShinyPsych package
+# Example of a two armed bandit task using the ShinyPsych package
 #
 # Code sections:
 #   - Section 0: Load Libraries
@@ -24,40 +24,28 @@ library(ShinyPsych)
 outputDir <- "ShinyPsych/Bandit"
 
 # Vector with page ids used to later access objects
-idsVec <- c("Instructions", "Demographics", "Goodbye")
+idsVec <- c("Instructions", "Survey", "Goodbye")
 
 # create page lists for the instructions and the last page
-instructions.list <- createPageList(fileName = "Instructions_Bandit",
+instructions.list <- createPageList(fileName = "Instructions_BanditFullStudy",
                                     globId = "Instructions")
-demographics.list <- createPageList(fileName = "Demographics")
-goodbye.list <- createPageList(fileName = "Goodbye")
+survey.list <- createPageList(fileName = "Survey_BanditFullStudy",
+                              globId = "Survey")
+goodbye.list <- createPageList(fileName = "Goodbye_BanditFullStudy",
+                               globId = "Goodbye")
 
 # prepare a list with game parameters
-banditDistList <- list("nTrials" = c(5, rep(10, 3)),  # trials for practice trial and game trials
-                       "distributionType" = matrix(   # draw values from different distributions
-                         rep(c("unif", "normal", "exgauss"), 5),
-                         ncol = 3, byrow = TRUE),
-                       "mean" = matrix(c(NA, 6, NA, rep(c(NA, 4, NA), 3)), # arguments for normal dist
-                                       ncol = 3, byrow = TRUE),
-                       "sd" = matrix(c(NA, 2, NA, rep(c(NA, 3, NA), 3)), # arguments for normal dist
-                                     ncol = 3, byrow = TRUE),
-                       "min" = matrix(c(-1, NA, NA, rep(c(-3, NA, NA), 3)), # arguments for uniform dist
-                                      ncol = 3, byrow = TRUE),
-                       "max" = matrix(c(5, NA, NA, rep(c(6, NA, NA), 3)), # arguments for uniform dist
-                                     ncol = 3, byrow = TRUE),
-                       "mu" = matrix(c(NA, NA, 3, rep(c(NA, NA, 4.5), 3)), # arguments for exgauss dist
-                                         ncol = 3, byrow = TRUE),
-                       "sigma" = matrix(c(NA, NA, 4, rep(c(NA, NA, 5), 3)), # arguments for exgauss dist
-                                         ncol = 3, byrow = TRUE),
-                       "tau" = matrix(c(NA, NA, 0, rep(c(NA, NA, 2), 3)), # arguments for exgauss dist
-                                      ncol = 3, byrow = TRUE),
-                       "positive" = matrix(c(NA, NA, FALSE, rep(c(NA, NA, FALSE), 3)), # arguments for exgauss dist
-                                      ncol = 3, byrow = TRUE))
+banditDistList <- list("nTrials" = c(10, rep(20, 10)),  # trials for practice trial and game trials
+                       "distributionType" = "normal",
+                       "mean" = matrix(c(4, 4, rep(c(4, 2.5), 10)), # arguments for normal dist
+                                       ncol = 2, byrow = TRUE),
+                       "sd" = matrix(c(2, 2, rep(c(2.5, 11), 10)), # arguments for normal dist
+                                     ncol = 2, byrow = TRUE))
 
-# create the outcome lists for the bandit, rounded to 1 digit after the comma
-banditContainer <- createBanditList(nArms = 3, roundDigits = 1,
+# create the outcome lists for the bandit, rounded to whole numbers
+banditContainer <- createBanditList(nArms = 2, roundDigits = 0,
                                     distList = banditDistList,
-                                    differentDists = TRUE)
+                                    differentDists = FALSE)
 
 # Section B: Define overall layout =============================================
 
@@ -66,7 +54,7 @@ ui <- fixedPage(
   title = "ShinyBandit",      # App title
   uiOutput("MainAction"),
   useShinyjs(),# For Shinyjs functions
-  includeScriptFiles(fileList = "bandit", nArms = 3) # include appropriate css and js scripts
+  includeScriptFiles(fileList = "bandit", nArms = 2) # include appropriate css and js scripts
 
 )
 
@@ -108,12 +96,18 @@ server <- function(input, output, session) {
                    globId = "Instructions", ctrlVals = CurrentValues)
       )}
 
+    if (CurrentValues$page == "not allowed"){
+      return(
+        createNotAllowedPage(input, "Instructions")
+      )
+    }
+
     # display task page
     if (CurrentValues$page == "game") {
 
       return(
         # create html logic of task page and handle client side communications
-        multiArmedBanditPage(ctrlVals = CurrentValues, nArms = 3, distList = banditDistList,
+        multiArmedBanditPage(ctrlVals = CurrentValues, nArms = 2, distList = banditDistList,
                              session = session, container = banditContainer, roundDigits = 1,
                              nTrials = banditDistList$nTrials[CurrentValues$banditGame],
                              nGames = length(banditDistList$nTrials) - 1, withPracticeGame = TRUE)
@@ -131,7 +125,7 @@ server <- function(input, output, session) {
           p("On the next pages, you'll start playing the first of 3 real games!"),
           p("Here are a few additional notes and reminders about the game:"),
           tags$ul(
-            tags$li("You will play 3 games in total."),
+            tags$li("You will play 10 games in total. Your final bonus will be the sum of the bonuses you earn across all games. You will earn a bonus of 1 cent for every 10 points"),
             tags$li("The boxes are the same in each game. However, the",
                     strong("locations of the boxes will be randomly determined"),
                     "at the start of each game. The boxes might be in the same location, or different locations, in each game."),
@@ -172,20 +166,21 @@ server <- function(input, output, session) {
             h3("You finished all games!", class = "firstRow"),
             p(paste("You earned", GameData$points.cum[length(GameData$points.cum)],
                     "points in the game.")),
-            p("You have now finished playing all 3 games. The points you have earned across all 3 games have been recorded."),
-            p("You have earned", sum(GameData$outcome),
-              "points over all games."),
-            p("On the next page we ask you a couple of questions."),
+            p("You have now finished playing all 10 games. The points you have earned across all 10 games have been recorded."),
+            p("You have earned", CurrentValues$totalPoints,
+              "points over all games. Thus you earn a total monetary bonus of",
+              round(CurrentValues$totalPoints / 10, 0), "cents."),
+            p("Click 'Continue' to start with part 2 of the study."),
             tags$br(),
-            actionButton(inputId = "gt_demographics",
+            actionButton(inputId = "gt_survey",
                          label = "Continue", class = "continueButtons"))))
   }
 
-  if (CurrentValues$page == "demographics"){
+  if (CurrentValues$page == "survey"){
 
     return(
-      createPage(pageList = demographics.list, pageNumber = CurrentValues$Demographics.num,
-                 globId = "Demographics", ctrlVals = CurrentValues)
+      createPage(pageList = survey.list, pageNumber = CurrentValues$Survey.num,
+                 globId = "Survey", ctrlVals = CurrentValues)
     )}
 
 
@@ -207,7 +202,16 @@ server <- function(input, output, session) {
 
 observeEvent(input[["Instructions_next"]],{
   nextPage(pageId = "instructions", ctrlVals = CurrentValues, nextPageId = "game",
-          pageList = instructions.list, globId = "Instructions")
+          pageList = instructions.list, globId = "Instructions",
+          checkAllowed = TRUE, checkAllowedPage = 1,
+          checkIdVar = "workerid", checkLocation = "local",
+          checkSep = ",", checkHeader = TRUE, checkFileName = "Id_Database.txt",
+          checkNotAllowedId = "not allowed", inputList = input)
+})
+
+observeEvent(input[["Survey_next"]],{
+  nextPage(pageId = "survey", ctrlVals = CurrentValues, nextPageId = "goodbye",
+           pageList = survey.list, globId = "Survey")
 })
 
 observeEvent(input[["continueBandit"]], {
@@ -222,9 +226,7 @@ observeEvent(input[["gt_game"]], {
 observeEvent(input[["gt_games"]], {
   CurrentValues$page <- "game"
   })
-observeEvent(input[["gt_demographics"]], {
-  CurrentValues$page <- "demographics"
-})
+
 
 # Section F2: Event Control ----------------------
 
@@ -241,51 +243,79 @@ observeEvent(reactiveValuesToList(input),{
                 pageList = instructions.list, globId = "Instructions",
                 inputList = input, charNum = 4)
 
-  onInputEnable(pageId = "demographics", ctrlVals = CurrentValues,
-                pageList = demographics.list, globId = "Demographics",
-                inputList = input)
+  onInputEnable(pageId = "survey", ctrlVals = CurrentValues,
+                pageList = survey.list, globId = "Survey",
+                inputList = input, charNum = 2)
 
 })
 
 # Section G: Save data =========================================================
+observeEvent(input[["gt_survey"]], {
 
-observeEvent(input[["Demographics_next"]], {(
+  # Create progress message
+  withProgress(message = "Saving data...", value = 0, {
 
-# Create progress message
-withProgress(message = "Saving data...", value = 0, {
+    incProgress(.25)
 
-  incProgress(.25)
+    # Create a list to save data
+    data.list <- list(  "id" = input$Instructions_workerid,
+                        "trial" = GameData$trial,
+                        "time" = GameData$time,
+                        "selection" = GameData$selection,
+                        "outcomes" = GameData$outcome,
+                        "points.cum" = GameData$points.cum,
+                        "game" = GameData$game,
+                        "completion.code" = CurrentValues$completion.code,
+                        "option.order" = banditContainer$option.order)
 
-  # Create a list to save data
-  data.list <- list(  "id" = input$Instructions_workerid,
-                      "trial" = GameData$trial,
-                      "time" = GameData$time,
-                      "selection" = GameData$selection,
-                      "outcomes" = GameData$outcome,
-                      "points.cum" = GameData$points.cum,
-                      "game" = GameData$game,
-                      "completion.code" = CurrentValues$completion.code,
-                      "option.order" = banditContainer$option.order,
-                      "age" = input$Demographics_age,
-                      "sex" = input$Demographics_sex)
+    # save Data
+      saveData(data.list, location = "dropbox", outputDir = outputDir,
+               partId = data.list$id, suffix = "_g")
 
-  # save Data
-  if (!is.null(input$Instructions_mail) &&
-      nchar(input$Instructions_mail) > 4){
-    saveData(data.list, location = "mail", outputDir = outputDir,
-             partId = data.list$id, suffix = "_g",
-             mailSender = "shinypsych@gmail.com",
-             mailReceiver = input$Instructions_mail,
-             mailBody = "Your data sent by the ShinyPsych app demo.",
-             mailSubject = paste("ShinyPsych data for id", data.list$id))
-  } else {
-    saveData(data.list, location = "dropbox", outputDir = outputDir,
-             partId = data.list$id, suffix = "_g")
-  }
-
-  CurrentValues$page <- "goodbye"
+    CurrentValues$page <- "survey"
 
   })
+})
+
+observeEvent(input[["Survey_next"]], {(
+if (CurrentValues$Survey.num >= 5){
+  # Create progress message
+  withProgress(message = "Saving data...", value = 0, {
+
+    incProgress(.25)
+
+    # Create a list to save data
+    data.list <- list(  "id" = input$Instructions_workerid,
+                        "completion.code" = CurrentValues$completion.code,
+                        "whichHighEv" = input$Survey_whichHighEv,
+                        "gameDifficulty" = input$Survey_gameDifficulty,
+                        "strategy" = input$Survey_strategy,
+                        "strategyChange" = input$Survey_strategyChange,
+                        "whichStrategy" = input$Survey_whichStrategy,
+                        "similarTask" = input$Survey_similarTask,
+                        "comments" = input$Survey_comments,
+                        "instructionsClear" = input$Survey_instructionsClear,
+                        "notUnderstood" = input$Survey_notUnderstood,
+                        "errorOrBugs" = input$Survey_errorOrBugs,
+                        "describeError" = input$Survey_describeError,
+                        "gaveUp" = input$Survey_gaveUp,
+                        "tookNotes" = input$Survey_tookNotes,
+                        "usedCalculator" = input$Survey_usedCalculator,
+                        "gotHelp" = input$Survey_gotHelp,
+                        "age" = input$Survey_age,
+                        "sex" = input$Survey_sex,
+                        "interesting" = input$Survey_interesting,
+                        "education" = input$Survey_education,
+                        "trustData" = input$Survey_trustData)
+
+    # save Data
+      saveData(data.list, location = "dropbox", outputDir = outputDir,
+               partId = data.list$id, suffix = "_s")
+
+    CurrentValues$page <- "goodbye"
+
+    })
+}
 
 )})
 

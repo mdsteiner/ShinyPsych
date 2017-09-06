@@ -10,6 +10,7 @@ NA	"The Task"	2	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"Here's how the game works. You will always be presented with two outcome-time pairs. Imagine that you would receive an outcome after the indicated time interval. Your task is to indicate your preference for one of the options by clicking on the option. If for example you prefer 2$ today to 3$ in six weeks you would click on the field containing the 2$ today."	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"Receive your data"	2	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"You can get your data via email if you'd like. Just enter your email address below and you will receive an email with your data attached, sent with the shiny app. Your email address will not be stored!"	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Note that this may not work depending on the network, e.g. in our institution network this doesn't work. Also some mail server (e.g. again our institutions' mail server) may block these mails. Gmail and other providers we've tried worked fine."	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 mail	"Please enter your email address if you'd like to receive your data."	2	textInput	NA	NA	NA	"name@examplemail.com"	NA	NA	0	NA	500px	NA	NA	0
 NA	"You will first play a practice game before you start with the real games."	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"If you want to proceed with the task please indicate your consent by clicking the checkbox below."	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0

@@ -1,4 +1,4 @@
-# Example of the Delay Discounting Task using the ShinyPsych package
+# Example of the different Inputs and Tags using the ShinyPsych package
 #
 # Code sections:
 #   - Section 0: Load Libraries
@@ -63,7 +63,7 @@ server <- function(input, output, session) {
   CurrentValues <- createCtrlList(firstPage = "instructions", # id of the first page
                                   globIds = idsVec,           # ids of pages for createPage
                                   complCode = TRUE,           # create a completion code
-                                  complName = "EP-TagsInput")    # first element of completion code
+                                  complName = "EP-TagsInput") # first element of completion code
 
   # Section D: Page Layouts ====================================================
 
@@ -170,16 +170,18 @@ server <- function(input, output, session) {
                           "radioButton" = input$Survey_radioButton,
                           "selInput" = input$Survey_selInput,
                           "slidInput" = input$Survey_slidInput,
-                          "txtInput" = input$Survey_txtInput)
+                          "txtInput" = input$Survey_txtInput,
+                          "txtAreaInput" = input$Survey_txtAreaInput)
 
       # save Data
       if (!is.null(input$Instructions_mail) &&
           nchar(input$Instructions_mail) > 4){
         saveData(data.list, location = "mail", outputDir = outputDir,
-                 partId = data.list$id, suffix = "_g",
+                 partId = data.list$id, suffix = "_s",
                  mailSender = "shinypsych@gmail.com",
                  mailReceiver = input$Instructions_mail,
-                 mailBody = "Your data sent by the ShinyPsych app demo.")
+                 mailBody = "Your data sent by the ShinyPsych app demo.",
+                 mailSubject = paste("ShinyPsych data for id", data.list$id))
       } else {
         saveData(data.list, location = "dropbox", outputDir = outputDir,
                  partId = data.list$id, suffix = "_s")
