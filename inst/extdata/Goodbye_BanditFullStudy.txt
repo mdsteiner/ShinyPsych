@@ -1,0 +1,8 @@
+id	text	page	type	choices	choiceNames	reverse	placeholder	min	max	disabled	checkType	width	height	inline	randomize
+NA	"Thank you for your participation!"	1	h3	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Here is your study completion code. In a real study you could write it down as a confirmation of your participation."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"completion.code"	1	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"What is this research about?"	1	h3	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"The purpose of this research is to understand how people make risky decisions."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"If you have any questions about this study, please contact us at markus.d.steiner@gmail.com or Nathaniel.D.Phillips.is@gmail.com and we will be happy to answer them."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Once you have recorded your code, you may close this window."	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0

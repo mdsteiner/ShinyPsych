@@ -10,6 +10,7 @@ NA	"The Task"	2	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"In the task, several boxes will be displayed on the screen. When you click on a box, a point value will be drawn from that box, displayed to you and added to your point total. The value is then returned to the box, thus the distributions from which the values are drawn do not change over time. The boxes do not necessarily have the same charateristics and therefore one box might have higher returns or variability than others. Try to gain as many points as possible!"	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"Receive your data"	2	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"You can get your data via email if you'd like. Just enter your email address below and you will receive an email with your data attached, sent with the shiny app. Your email address will not be stored!"	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
+NA	"Note that this may not work depending on the network, e.g. in our institution network this doesn't work. Also some mail server (e.g. again our institutions' mail server) may block these mails. Gmail and other providers we've tried worked fine."	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 mail	"Please enter your email address if you'd like to receive your data."	2	textInput	NA	NA	NA	"name@examplemail.com"	NA	NA	0	NA	500px	NA	NA	0
 NA	"If you want to proceed with the task please indicate your consent by clicking the checkbox below."	2	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 checkConsent	"I consent to participate."	2	checkboxInput	NA	NA	NA	NA	NA	NA	1	isTRUE	500px	NA	NA	0

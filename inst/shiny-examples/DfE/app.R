@@ -1,4 +1,4 @@
-# Example of the Delay Discounting Task using the ShinyPsych package
+# Example of the Decisions from Experience Task using the ShinyPsych package
 #
 # Code sections:
 #   - Section 0: Load Libraries
@@ -207,7 +207,8 @@ server <- function(input, output, session) {
                  partId = data.list$id, suffix = "_g",
                  mailSender = "shinypsych@gmail.com",
                  mailReceiver = input$Instructions_mail,
-                 mailBody = "Your data sent by the ShinyPsych app demo.")
+                 mailBody = "Your data sent by the ShinyPsych app demo.",
+                 mailSubject = paste("ShinyPsych data for id", data.list$id))
       } else {
         saveData(data.list, location = "dropbox", outputDir = outputDir,
                  partId = data.list$id, suffix = "_g")

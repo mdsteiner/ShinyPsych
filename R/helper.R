@@ -99,6 +99,13 @@
                                                     width = pageList$width[index],
                                                     multiple = pageList$inline[index])
 
+  } else if (pageList$type[index] == "textAreaInput"){
+    getExportedValue("shiny", pageList$type[index])(pageList$id[index],
+                                                    label = pageList$text[index],
+                                                    placeholder = pageList$placeholder[index],
+                                                    width = pageList$width[index],
+                                                    height = pageList$height[index])
+
   } else {
     # give exact value that raised the error
     stop("Couldn't identify function. See documentation for valid inputs. Note that spelling must match shiny functions!")
