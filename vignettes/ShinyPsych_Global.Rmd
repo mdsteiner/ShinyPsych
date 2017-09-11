@@ -68,11 +68,33 @@ saveRDS(droptoken, file = "droptoken.rds") # Save token as droptoken.rds
 
 ### Locally
 
-You can save data locally to your computer by just giving the local path to the `saveData()` functoin.
+You can save data locally to your computer by just giving the local path to the `saveData()` function.
 
 ### E-Mail
 
 You can save data by sending an email to your adress. For this to work, you need to specify the *mail* arguments (arguments starting with "mail") of `saveData()`. Make sure that this works with your mail server! We've tried some and not all of them worked (gmail worked). Please note, that we didn't try this with a large number of mails, so we don't know yet how this works if you expect many mails to be sent in a short time.
+
+## Tutorial links
+
+| Vignette Link                                                                             | Description                                                                      |
+|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| [ShinyPsych - Survey](ShinyPsych_Survey.html "Survey App Tutorial")                       | A short guide on creating surveys and html pages from textfiles using ShinyPsych. |
+| [Implementing a survey - a tutorial](ShinyPsych_SurveyCode.html)                          | Full code tutorial on implementing a survey in ShinyPsych.                        |
+| [Check id tutorial](ShinyPsych_CheckIdCode.html "Id Check App")                           | Full code tutorial on implementing an id check in a shiny app.                   |
+| [Create Textfiles for ShinyPsych apps](ShinyPsych_Textfiles.html "Create Files Tutorial") | A guide on creating the textfiles to then build the survey and text pages with.  |
+| [ShinyPsych - BART](ShinyPsych_Bart.html "BART")                                          | A short guide on implementing the BART using ShinyPsych.                         |
+| [Implementing the BART - a tutorial](ShinyPsych_BartCode.html "BART")                    | Full code tutorial on implementing the BART using ShinyPsych.                   |
+| [Create files with BART distribution info](ShinyPsych_BartLists.html "Bart List Tutorial") | Code tutorial on how to create the lists to control the BART.               |
+| [ShinyPsych - Bandit](ShinyPsych_Bandit.html "Bandit")                                    | A short guide on implementing the Bandit using ShinyPsych.                         |
+| [Implementing the bandit task - a tutorial](ShinyPsych_BanditCode.html "Bandit")            | Full code tutorial on implementing the Bandit task using ShinyPsych.             |
+| [ShinyPsych - Delay Discounting](ShinyPsych_DD.html "Delay Discounting")                   | A short guide on implementing the Delay Discounting task using ShinyPsych.       |
+| [Implementing the Delay Discounting task - a tutorial](ShinyPsych_DDCode.html "Delay Discounting") | Full code tutorial on implementing the Delay Discounting task using ShinyPsych.           |
+| [Create files with DD trial info](ShinyPsych_DDLists.html "DD List Tutorial")              | Code tutorial on how to create the lists to control the Delay Discounting task. |
+| [ShinyPsych - Decisions from Description](ShinyPsych_DfD.html "Decisions from Description") | A short guide on implementing the DfD task using ShinyPsych.           |
+| [Implementing the Decisions from Description task - a tutorial](ShinyPsych_DfDCode.html "Decisions from Description") | Full code tutorial on implementing the DfD task using ShinyPsych.  |
+| [Create gamble files](ShinyPsych_GambleFiles.html "Gamble List Tutorial")              | Tutorial on how to create the gamble lists for the DfD and DfE tasks. |
+| [ShinyPsych - Decisions from Experience](ShinyPsych_DfE.html "Decisions from Description") | A short guide on implementing the DfE task using ShinyPsych.           |
+| [Implementing the Decisions from Experience task - a tutorial](ShinyPsych_DfECode.html "Decisions from Description") | Full code tutorial on implementing the DfE task using ShinyPsych.  |
 
 
 ## Create HTML Pages in ShinyPsych
