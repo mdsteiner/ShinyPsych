@@ -26,8 +26,6 @@
 #' @return If id is also contained in database cntrlVals$page will be changed to
 #'  notAllowedId. Does not have to be reassigned since it's a reactive value.
 #' @export
-#'
-#' @examples
 checkId <- function(id, cntrlVals, location = "local", fileSep = ",",
                     fileHeader = TRUE, dropDir = NULL, fileName = NULL,
                     droptoken = NULL, idsVec = NULL,

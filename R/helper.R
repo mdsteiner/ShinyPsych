@@ -106,6 +106,14 @@
                                                     width = pageList$width[index],
                                                     height = pageList$height[index])
 
+  } else if (pageList$type[index] == "dateInput"){
+    getExportedValue("shiny", pageList$type[index])(pageList$id[index],
+                                                    label = pageList$text[index],
+                                                    value = pageList$placeholder[index],
+                                                    width = pageList$width[index],
+                                                    min = pageList$min[index],
+                                                    max = pageList$max[index])
+
   } else {
     # give exact value that raised the error
     stop("Couldn't identify function. See documentation for valid inputs. Note that spelling must match shiny functions!")

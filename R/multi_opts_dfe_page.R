@@ -19,8 +19,6 @@
 #' @return An html page that can be displayed by the shiny app. Also information
 #'  will be sent to javascript to animate the page.
 #' @export
-#'
-#' @examples
 multiOptsDfePage <- function(ctrlVals, session, container, signalColors, ...) {
 
   if (container$nOpts >= 2 && container$nOpts <= 6){

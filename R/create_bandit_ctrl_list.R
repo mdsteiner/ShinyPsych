@@ -10,8 +10,6 @@
 #'
 #' @return A list of reactive values.
 #' @export
-#'
-#' @examples
 createBanditCtrlList <- function(oVar = NULL, oVarVals = NULL){
 
   GameData <- shiny::reactiveValues(trial = c(),

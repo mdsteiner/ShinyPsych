@@ -14,8 +14,6 @@
 #'
 #' @return An html page that can be displayed by the shiny app.
 #' @export
-#'
-#' @examples
 createPage <- function(pageList, pageNumber, globId, ctrlVals,
                        continueButton = TRUE){
   # create pagelayout with all elements from a given page number of pageList

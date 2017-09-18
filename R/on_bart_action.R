@@ -18,8 +18,6 @@
 #' @return Updated ctrlVals and bartCtrlList. Doesn't need to be assigned, since
 #'  both are reactive values.
 #' @export
-#'
-#' @examples
 onBartAction <- function(id, ctrlVals, inputList, bartCtrlList,
                          balloonList, nextPageId = NULL){
 

@@ -26,8 +26,6 @@
 #' @return gameData list of reactive values and change current page
 #' value (note: does not have to be assigned when function is called).
 #' @export
-#'
-#' @examples
 appendDfeValues <- function(ctrlVals, input, gameData, container,
                             withPracticeGamble = TRUE,
                             afterPracticePage = "postPractice",

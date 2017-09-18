@@ -14,8 +14,6 @@
 #'
 #' @return A list containing the user inputs to the questionnaire.
 #' @export
-#'
-#' @examples
 getValues <- function(pageList, nmrc, inputList){
 
   if (isTRUE(nmrc)){

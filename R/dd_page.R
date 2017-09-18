@@ -20,8 +20,6 @@
 #'
 #' @return An html page that can be displayed by the shiny app.
 #' @export
-#'
-#' @examples
 ddPage <- function(ctrlVals, container, trialTitle = "Trial",
                    trialTitlePractice = "Practice Trial",
                    withPracticeTrial = FALSE, displayTitle = TRUE,

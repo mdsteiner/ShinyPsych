@@ -20,8 +20,6 @@
 #' @return An html page that can be displayed by the shiny app. Also information
 #'  is sent to javascript to animate the page.
 #' @export
-#'
-#' @examples
 multiArmedBanditPage <- function(ctrlVals, nArms, distList, container,
                                  roundDigits, session, ...) {
 

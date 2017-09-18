@@ -25,8 +25,6 @@
 #'
 #' @return An html page that can be displayed by a shiny app.
 #' @export
-#'
-#' @examples
 twoOptDfdPage <- function(ctrlValsList, containerOb,
                           gambleTitle = "Gamble",
                           gambleTitlePractice = "Practice Gamble",

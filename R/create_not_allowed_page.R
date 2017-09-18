@@ -16,8 +16,6 @@
 #'
 #' @return An html page that can be displayed by shiny.
 #' @export
-#'
-#' @examples
 createNotAllowedPage <- function(inputList, globId, idLabel = "WorkerID",
                                  idVar = "workerid"){
     list(

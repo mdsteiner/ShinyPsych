@@ -18,8 +18,6 @@
 #'  the number of digits the total point value displayed should be rounded to.
 #'
 #' @return An html page then displayed by the shiny app.
-#'
-#' @examples
 .banditCustomMessage <- function(Arms, contrlVals, distribList, sess, containerOb,
                                 rDigits){
 

@@ -13,8 +13,6 @@
 #'
 #' @return An html page that can be displayed by the shiny app.
 #' @export
-#'
-#' @examples
 multiOptsDfdPage <- function(ctrlVals, container, ...) {
 
   if (container$nOpts >= 2 && container$nOpts <= 4){

@@ -50,8 +50,6 @@
 #' @return Updated ctrlVals. Doesn't need to be assigned, since it is a reactive
 #'  value.
 #' @export
-#'
-#' @examples
 nextPage <- function(pageId, ctrlVals, nextPageId, pageList, globId,
                      checkAllowed = FALSE, checkAllowedPage = 1,
                      checkIdVar = "workerid", checkLocation = "local",

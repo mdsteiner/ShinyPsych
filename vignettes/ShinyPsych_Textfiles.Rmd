@@ -111,6 +111,7 @@ The possible input types are:
 * Get Input:
     + *checkboxInput*
     + *checkboxGroupInput*
+    + *dateInput*
     + *numericInput*
     + *passwordInput*
     + *radioButtons*
@@ -196,6 +197,17 @@ knitr::kable(temp.df, row.names = FALSE)
 temp.df <- tags.df[9,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
+
+**dateInput**. Date input. Opens a little date panel when clicked, from which the date can be selected. Note that dateInput can lead to some strange interactions that cause the numberSlider, if used, to be displayed incorrectly.
+```{r, echo=FALSE}
+temp.df <- tags.df[10,]
+temp.df$id <- "datInput"
+temp.df$text <- "This is an example of Date input: dateInput"
+temp.df$type <- "dateInput"
+temp.df[, 5:10] <- NA
+knitr::kable(temp.df, row.names = FALSE)
+```
+
 
 **numericInput**. Numeric iput with arrows to change the number. But number can also be changed by direct entering numbers. Note the *18* in the *choices* column. In numericInput the value specified for *choices* is the default value displayed.
 ```{r, echo=FALSE}
