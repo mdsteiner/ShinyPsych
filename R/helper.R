@@ -107,12 +107,15 @@
                                                     height = pageList$height[index])
 
   } else if (pageList$type[index] == "dateInput"){
+    val_temp <- if(is.na(pageList$placeholder[index])) NULL else pageList$placeholder[index]
+    min_temp <- if(is.na(pageList$min[index])) NULL else pageList$min[index]
+    max_temp <- if(is.na(pageList$max[index])) NULL else pageList$max[index]
     getExportedValue("shiny", pageList$type[index])(pageList$id[index],
                                                     label = pageList$text[index],
-                                                    value = pageList$placeholder[index],
+                                                    value = val_temp,
                                                     width = pageList$width[index],
-                                                    min = pageList$min[index],
-                                                    max = pageList$max[index])
+                                                    min = min_temp,
+                                                    max = max_temp)
 
   } else {
     # give exact value that raised the error

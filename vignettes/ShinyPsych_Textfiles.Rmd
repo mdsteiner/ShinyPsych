@@ -198,68 +198,64 @@ temp.df <- tags.df[9,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
-**dateInput**. Date input. Opens a little date panel when clicked, from which the date can be selected. Note that dateInput can lead to some strange interactions that cause the numberSlider, if used, to be displayed incorrectly.
+**dateInput**. Date input. Opens a little date panel when clicked, from which the date can be selected. Min and Max values can be set. A default value can be set in the placeholder variable
 ```{r, echo=FALSE}
 temp.df <- tags.df[10,]
-temp.df$id <- "datInput"
-temp.df$text <- "This is an example of Date input: dateInput"
-temp.df$type <- "dateInput"
-temp.df[, 5:10] <- NA
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
 
 **numericInput**. Numeric iput with arrows to change the number. But number can also be changed by direct entering numbers. Note the *18* in the *choices* column. In numericInput the value specified for *choices* is the default value displayed.
 ```{r, echo=FALSE}
-temp.df <- tags.df[10,]
+temp.df <- tags.df[11,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
 **passwordInput**. Same as text input, but entered symbols are not shown.
 ```{r, echo=FALSE}
-temp.df <- tags.df[11,]
+temp.df <- tags.df[12,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
 **radioButtons**. Radio buttons ensure that only one possibility can be chosen (as opposed to multiple checkboxes). Note the 0 in *inline*. If you set this to 1, the choice options are displayed horizontally.
 ```{r, echo=FALSE}
-temp.df <- tags.df[12,]
+temp.df <- tags.df[13,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
 **selectInput**. A dropdown button to get input. Note the 0 in *inline*. This is (after transformation, 0 = FALSE, 1 = TRUE) given to the selectInput *multiple* argument.
 ```{r, echo=FALSE}
-temp.df <- tags.df[13,]
+temp.df <- tags.df[14,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
 **sliderInput**. A number slider with minimum and maximum values. As in *numericInput*, the value in the *choices* column is the default position of the slider.
 ```{r, echo=FALSE}
-temp.df <- tags.df[14,]
+temp.df <- tags.df[15,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
 **textInput**. Free user input. The value in the *placeholder* column will be displayed until the user clicks in the input field and starts typing.
 ```{r, echo=FALSE}
-temp.df <- tags.df[15,]
+temp.df <- tags.df[16,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
 **textAreaInput**. Free user input but in a larger field. The value in the *placeholder* column will be displayed until the user clicks in the input field and starts typing.
 ```{r, echo=FALSE}
-temp.df <- tags.df[16,]
+temp.df <- tags.df[17,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
 **HTML**. Enter HTML code. Note that we cannot display it properly here, because it would render if we would give it real html code here, but the *text* variable will pass HTML code to the shiny `HTML()` function. If you don't care about style you can enter a big amount of html code in one line here (see the working app of this list [here](placeholder)).
 ```{r, echo=FALSE}
-temp.df <- tags.df[17,]
+temp.df <- tags.df[18,]
 temp.df$text <- "put your html code here! We can't show it since it would render in the markdown (also xmp doesn't really help)."
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
 **img**. Display an image. Put the image in the *www* folder of your app and enter the name of the image with file ending in the *text* column. With *width* you specify the width of the image. If you don't specify a height, it will display it with the same height as width.
 ```{r, echo=FALSE}
-temp.df <- tags.df[18,]
+temp.df <- tags.df[19,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
