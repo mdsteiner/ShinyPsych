@@ -8,6 +8,7 @@ NA	"Smallest Heading: h6"	1	h6	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 NA	"Paragraph: p"	1	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 checkBox	"Single checkbox: checkboxInput"	2	checkboxInput	NA	NA	NA	NA	NA	NA	1	isTRUE	500px	NA	NA	0
 checkBoxGroup	"These are multiple checkboxes: checkboxGroupInput"	2	checkboxGroupInput	1,2,3,4	"First Box","Second Box","Third Box","Fourth Box"	NA	NA	NA	NA	1	is.null	500px	NA	0	0
+datInput	"Date inputs: dateInput"	2	dateInput	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
 nmrcInput	"Numeric Input: numericInput"	2	numericInput	18	NA	NA	NA	0	100	1	is.null	500px	NA	NA	0
 passInput	"Password input: passwordInput"	2	passwordInput	NA	NA	NA	"Enter Password (just enter anything longer than 4 characters)"	NA	NA	1	nchar	500px	NA	NA	0
 radioButton	"These are radio buttons: checkboxGroupInput"	2	radioButtons	1,2,3,4,5	"First Choice","Second Choice","Third Choice","Fourth Choice","Fifth Choice"	NA	NA	NA	NA	1	is.null	500px	NA	0	0

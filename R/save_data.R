@@ -71,17 +71,17 @@ saveData <- function(data, location, partId, checkNull = TRUE,
     if (missing(partId)) {
       parId <- paste0(sample(c(1:9, letters), 9), collapse = "")
     }
-    # Create a unique file name for data
-    DatafileName <- paste0(partId,
-                           as.integer(Sys.time()),
-                           digest::digest(data.df),
-                           suffix,
-                           ".csv")
+
 
     shiny::incProgress(.5)
 
     if(location == "dropbox") {
-
+      # Create a unique file name for data
+      DatafileName <- paste0(partId,
+                             as.integer(Sys.time()),
+                             digest::digest(data.df),
+                             suffix,
+                             ".csv")
       DatafilePath <- file.path(tempdir(), DatafileName)
       write.csv(data.df, DatafilePath, row.names = FALSE, quote = TRUE)
 
@@ -94,17 +94,47 @@ saveData <- function(data, location, partId, checkNull = TRUE,
 
     } else if (location == "local"){
 
-      if (!is.null(outputDir)){
-        DatafilePath <- file.path(outputDir, DatafileName)
-      } else {
-        DatafilePath <- file.path(DatafileName)
-      }
-
       if (isTRUE(asrds)) {
-        DatafilePath <- sub(".csv", ".rds", DatafilePath)
+
+        # Create a unique file name for data
+        DatafileName <- paste0(partId,
+                               as.integer(Sys.time()),
+                               digest::digest(data.df),
+                               suffix,
+                               ".rds")
+
+        if (!is.null(outputDir)){
+          DatafilePath <- file.path(outputDir, DatafileName)
+        } else {
+          DatafilePath <- file.path(DatafileName)
+        }
         saveRDS(data.df, DatafilePath)
+
       } else {
-        write.csv(data.df, DatafilePath, row.names = FALSE, quote = TRUE,
+
+        if (any(c(",", ";") == separator)){
+        # Create a unique file name for data
+        DatafileName <- paste0(partId,
+                               as.integer(Sys.time()),
+                               digest::digest(data.df),
+                               suffix,
+                               ".csv")
+        } else {
+          # Create a unique file name for data
+          DatafileName <- paste0(partId,
+                                 as.integer(Sys.time()),
+                                 digest::digest(data.df),
+                                 suffix,
+                                 ".txt")
+        }
+
+        if (!is.null(outputDir)){
+          DatafilePath <- file.path(outputDir, DatafileName)
+        } else {
+          DatafilePath <- file.path(DatafileName)
+        }
+
+        write.table(data.df, DatafilePath, row.names = FALSE, quote = TRUE,
                   sep = separator)
       }
 
