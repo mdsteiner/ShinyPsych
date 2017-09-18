@@ -22,8 +22,6 @@
 #' @return An updated version of ctrlVals. Does not have to be assigned, since
 #'  it is a reactive value.
 #' @export
-#'
-#' @examples
 nextBanditPage <- function(ctrlVals, distList, gameData,
                            withPracticeGame = TRUE,
                            afterPracticePage = "postPractice",

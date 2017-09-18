@@ -45,8 +45,6 @@
 #'
 #' @return incProcess for shiny to display a process bar. Data is written out.
 #' @export
-#'
-#' @examples
 saveData <- function(data, location, partId, checkNull = TRUE,
                      addNameList = NULL, suffix = "_s",
                      outputDir = NULL, droptoken = "droptoken.rds",

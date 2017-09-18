@@ -18,8 +18,6 @@
 #'
 #' @return Updated state of the specified button.
 #' @export
-#'
-#' @examples
 onInputEnable <- function(pageId, ctrlVals, pageList, globId,
                           inputList, charNum = NULL){
 

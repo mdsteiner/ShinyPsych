@@ -25,8 +25,6 @@
 #'
 #' @return An html page that can be displayed by the shiny app.
 #' @export
-#'
-#' @examples
 twoArmedBanditPage <- function(ctrlValsList, gameTitle = "Game ",
                                nTrials = NULL, clickCounter = "Clicks Remaining",
                                gameTitlePractice = "Practice Game",

@@ -15,8 +15,6 @@
 #'  that all outcomes are displayed in black.
 #'
 #' @return Sends information to javascript where it is processed.
-#'
-#' @examples
 .dfeCustomMessage <- function(Opts, contrlVals, sess, containerOb, signCols){
 
   if (Opts == 2){

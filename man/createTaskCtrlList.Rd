@@ -29,4 +29,5 @@ for task control. Additional variables can be specified.
 \examples{
 GameData <- createTaskCtrlList(task = "dfd")
 print(shiny::isolate(shiny::reactiveValuesToList(GameData)))
+rm(GameData)
 }

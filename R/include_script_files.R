@@ -17,8 +17,6 @@
 #'
 #' @return Loaded css and javascript scripts.
 #' @export
-#'
-#' @examples
 includeScriptFiles <- function(fileList = "", globalScript = TRUE, nArms = 0,
                                nOpts = 0){
 

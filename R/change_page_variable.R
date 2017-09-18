@@ -11,8 +11,6 @@
 #'
 #' @return The given pageList with the updated value.
 #' @export
-#'
-#' @examples
 changePageVariable <- function(pageList, variable, oldLabel, newLabel){
 
   pageList[[variable]][pageList[[variable]] == oldLabel] <- newLabel

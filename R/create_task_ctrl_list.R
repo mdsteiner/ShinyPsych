@@ -18,6 +18,7 @@
 #' @examples
 #' GameData <- createTaskCtrlList(task = "dfd")
 #' print(shiny::isolate(shiny::reactiveValuesToList(GameData)))
+#' rm(GameData)
 createTaskCtrlList <- function(task, oVar = NULL, oVarVals = NULL){
 
   if (task == "bandit"){

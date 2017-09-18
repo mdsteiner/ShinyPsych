@@ -7,5 +7,6 @@
 ShinyPsych_Guide()
 }
 \description{
-Open the ShinyPsych Guide
+Open the ShinyPsych global vignette that also contains link to the different
+tutorial vignettes.
 }

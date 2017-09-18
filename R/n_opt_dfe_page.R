@@ -24,8 +24,6 @@
 #'
 #' @return An html page that can be displayed by a shiny appl
 #' @export
-#'
-#' @examples
 twoOptDfePage <- function(ctrlValsList, gambleTitle = "Gamble",
                           gambleTitlePractice = "Practice Gamble",
                           withPracticeGamble = TRUE, displayTitle = TRUE,

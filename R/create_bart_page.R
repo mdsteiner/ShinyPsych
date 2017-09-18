@@ -17,8 +17,6 @@
 #'
 #' @return An html page displayed in the shiny app.
 #' @export
-#'
-#' @examples
 createBartPage <- function(ctrlVals, session, balloonList, RDrawBoundary = TRUE){
 
   # maximum value the balloon can take (used to draw the outer boundary)
