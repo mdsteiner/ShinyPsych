@@ -1,2 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^ShinyPsych_BanditCode\.R$
+^ShinyPsych_BartCode\.R$
+^ShinyPsych_BartLists\.R$
+^ShinyPsych_DDCode\.R$
+^ShinyPsych_DDFiles\.R$
+^ShinyPsych_DfDCode\.R$
+^ShinyPsych_DfECode\.R$
+^ShinyPsych_SurveyCode\.R$
