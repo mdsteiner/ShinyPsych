@@ -1,7 +1,7 @@
 Package: ShinyPsych
 Type: Package
 Title: An easy way to program psychology experiments using Shiny
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: c(person("Markus", "Steiner", role = "aut", email = "markus.d.steiner@gmail.com"),
              person("Nathaniel", "Phillips", role = c("aut", "cre"), email = "Nathaniel.D.Phillips.is@gmail.com"),
              person("Kevin", "Trutmann", role = "aut", email = "k.trutmann@unibas.ch"))
