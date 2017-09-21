@@ -38,7 +38,7 @@
 #' @param mailBody string. The mail body. Passed to
 #'  \code{\link[sendmailR]{sendmail}} from the sendmailR package.
 #'
-#' @importFrom utils write.csv
+#' @importFrom utils write.csv write.table
 #' @importFrom sendmailR mime_part sendmail
 #' @importFrom rdrop2 drop_upload
 #' @importFrom digest digest
@@ -58,6 +58,8 @@ saveData <- function(data, location, partId, checkNull = TRUE,
     if (checkNull){
       # get rid of NULLs by replacing them with NAs
       data.new <- lapply(data, .convertNull)
+      print(data)
+      print(data.new)
     }
 
     # create data frame
