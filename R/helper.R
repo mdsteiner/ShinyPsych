@@ -3,6 +3,8 @@
 .convertNull <- function(x){
   if (is.null(x)){
     val <- NA
+  } else if (length(x) == 0){
+    val <- NA
   } else {
     val <- x
   }
@@ -110,12 +112,19 @@
     val_temp <- if(is.na(pageList$placeholder[index])) NULL else pageList$placeholder[index]
     min_temp <- if(is.na(pageList$min[index])) NULL else pageList$min[index]
     max_temp <- if(is.na(pageList$max[index])) NULL else pageList$max[index]
+    time_int <- c("month", "year", "decade")
+    startview_temp <- if(is.na(pageList$choices[index])){
+      "month"
+    } else {
+      time_int[pageList$choices[[index]]]
+    }
     getExportedValue("shiny", pageList$type[index])(pageList$id[index],
                                                     label = pageList$text[index],
                                                     value = val_temp,
                                                     width = pageList$width[index],
                                                     min = min_temp,
-                                                    max = max_temp)
+                                                    max = max_temp,
+                                                    startview = startview_temp)
 
   } else {
     # give exact value that raised the error

@@ -64,7 +64,7 @@ createPageList <- function(defaulttxt = TRUE, location = "local",
                                         sep = "\t", stringsAsFactors = FALSE)
 
   } else {
-    stop(paste(location), "is no valid location. If defaulttxt is FALSE location must either be \"local\" or \"dropbox\".")
+    stop(paste(location, "is no valid location. If defaulttxt is FALSE location must either be \"local\" or \"dropbox\"."))
   }
 
   choicesList <- df$choices

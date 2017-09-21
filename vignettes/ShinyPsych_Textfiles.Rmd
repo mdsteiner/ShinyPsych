@@ -198,7 +198,7 @@ temp.df <- tags.df[9,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
-**dateInput**. Date input. Opens a little date panel when clicked, from which the date can be selected. Min and Max values can be set. A default value can be set in the placeholder variable
+**dateInput**. Date input. Opens a little date panel when clicked, from which the date can be selected. Min and Max values can be set. A default date can be set in the placeholder variable. Additionally the startview argument of the shiny dateInput function can be controlled with the choice variable. NA or 1 will produce `startview = "month"`, 2 will produce `startview = "year"` and 3 will produce `startview = "decade"`.
 ```{r, echo=FALSE}
 temp.df <- tags.df[10,]
 knitr::kable(temp.df, row.names = FALSE)
