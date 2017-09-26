@@ -58,8 +58,6 @@ saveData <- function(data, location, partId, checkNull = TRUE,
     if (checkNull){
       # get rid of NULLs by replacing them with NAs
       data.new <- lapply(data, .convertNull)
-      print(data)
-      print(data.new)
     }
 
     # create data frame
