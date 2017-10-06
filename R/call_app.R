@@ -5,10 +5,10 @@
 #' @param appName string. The name of the example app. Must be one of "Bandit",
 #'  "BART", "CheckId", "DD", "DfD", "DfE", "Survey" or "TagsInput".
 #' @param action string. Valid inputs are "run" or "show". Whether the app
-#'  should be run or the code shown.
+#'  should be run or the code shown. The default action is to run the app.
 #' @importFrom shiny runApp
 #'
-#' @return Run a shiny app or show it's code.
+#' @return Run a shiny app or show its code.
 #' @export
 #'
 #' @examples
@@ -19,7 +19,7 @@
 #' # show code of the survey app example
 #' callApp("Survey", "show")
 #' }
-callApp <- function(appName, action){
+callApp <- function(appName, action="run"){
 
   # locate all the shiny app examples that exist
   validExamples <- list.files(system.file("shiny-examples",
