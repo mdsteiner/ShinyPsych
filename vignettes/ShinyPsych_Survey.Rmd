@@ -19,14 +19,14 @@ knitr::include_graphics("../inst/pictures/screenshot_survey.png")
 
 ## Default Example
 
-* Run ShinyBandit: `callApp("Survey", "run")`
+* Run Survey: `callApp("Survey", "run")`
 * Show App Code: `callApp("Survey", "show")`
 
 ## Description
 
 ShinyPsych - Survey, is an implementation of a survey, here three questions one must answer to cross the bridge of death [Monty Python and the Holy Grail](https://en.wikipedia.org/wiki/Monty_Python_and_the_Holy_Grail), created with the ShinyPsych package [more on bridges of death, there also called probability bridges, in @field2016adventure]. 
 
-Surveys are one of the most important methods of gathering informations in studies. ShinyPsych provides a way of including surveys and instructions in an app by simply giving it a text file with the survey.
+Surveys are one of the most important methods of gathering information in studies. ShinyPsych provides a way of including surveys and instructions in an app by simply giving it a text file with the survey.
 
 ## Common Extensions
 
