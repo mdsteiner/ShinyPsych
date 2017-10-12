@@ -4,7 +4,7 @@ Title: An easy way to program psychology experiments using Shiny
 Version: 0.2.3
 Authors@R: c(person("Markus", "Steiner", role = "aut", email = "markus.d.steiner@gmail.com"),
              person("Nathaniel", "Phillips", role = c("aut", "cre"), email = "Nathaniel.D.Phillips.is@gmail.com"),
-             person("Kevin", "Trutmann", role = "aut", email = "k.trutmann@unibas.ch"))
+             person("Kevin", "Trutmann", role = "aut", email = "k.trutmann@gmail.com"))
 Author: Markus D. Steiner [aut],
         Nathaniel D. Phillips [aut, cre],
         Kevin Trutmann [aut]
@@ -16,9 +16,10 @@ LazyData: true
 Imports: shiny,
     shinyjs,
     retimes,
-    rdrop2,
+    rdrop2 (>= 0.8.1),
     digest,
-    sendmailR
+    sendmailR,
+    openssl 
 RoxygenNote: 6.0.1
 Suggests: testthat,
     knitr,
