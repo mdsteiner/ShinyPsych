@@ -30,12 +30,12 @@ includeScriptFiles <- function(fileList = "", globalScript = TRUE, nArms = 0,
 
   if (any(fileList == "bandit")){
 
-    if (nArms >= 2 && nArms <= 4){
+    if (any(2:4 == nArms)){
       filBanditS <- system.file("css", "banditTwoToFourArms_Style.css",
                          package = "ShinyPsych")
       returnList[["banditStyle"]] <- shiny::includeCSS(filBanditS)
 
-    } else if (any(c(5, 6) == nArms)){
+    } else if (any(5:6 == nArms)){
       filBanditS <- system.file("css", "banditFiveToSixArms_Style.css",
                          package = "ShinyPsych")
       returnList[["banditStyle"]] <- shiny::includeCSS(filBanditS)
@@ -59,12 +59,12 @@ includeScriptFiles <- function(fileList = "", globalScript = TRUE, nArms = 0,
 
   if (any(fileList == "dfe")){
 
-    if (nOpts >= 2 && nOpts <= 4){
+    if (any(2:4 == nOpts)){
       filDfeS <- system.file("css", "dfeTwoToFourOpts_Style.css",
                          package = "ShinyPsych")
       returnList[["dfeStyle"]] <- shiny::includeCSS(filDfeS)
 
-    } else if (any(c(5, 6) == nOpts)){
+    } else if (any(5:6 == nOpts)){
       filDfeS <- system.file("css", "dfeFiveToSixOpts_Style.css",
                          package = "ShinyPsych")
       returnList[["dfeStyle"]] <- shiny::includeCSS(filDfeS)
@@ -82,7 +82,7 @@ includeScriptFiles <- function(fileList = "", globalScript = TRUE, nArms = 0,
 
   if (any(fileList == "dfd")){
 
-    if (nOpts >= 2 && nOpts <= 3){
+    if (any(2:3 == nOpts)){
       filDfdS <- system.file("css", "dfdTwoToThreeOpts_Style.css",
                              package = "ShinyPsych")
       returnList[["dfdStyle"]] <- shiny::includeCSS(filDfdS)
