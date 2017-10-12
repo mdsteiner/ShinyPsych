@@ -1,6 +1,6 @@
 ---
 title: "Create Text Files for ShinyPsych apps"
-author: "Markus Steiner, Nathaniel Phillips"
+author: "Markus Steiner, Nathaniel Phillips, Kevin Trutmann"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -11,11 +11,11 @@ vignette: >
 
 ## About
 
-To display text and questionnaires you can simply have a text file containing the text and info on how to set things up and load this into the app with the functions provided by ShinyPsych. For this to work, the file must be in a specific form. This tutorial shows you the form the files must have. If you'd like a template just check out the ShinyPsych app in your R library. It contains a folder called *extdata* which contains different lists we included as defaults or examples. The *Instructions_Survey*, *Survey_Example* or *Demographics* are some of the files you can use as template. The first two are also the files we're showing you here in this tutorial. We show you to examples to have the chance to show you different input possibilities, such as radio buttons, checkboxes and textinput. At the end of this page, in section *Input Formats* you'll find a list of all possible input formats and what is necessary to create them, each with a code line to give you a template on how to use it.
+To display text and questionnaires you can simply create a text file containing the text and info on how to set things up and load this into the app with the functions provided by ShinyPsych. For this to work, the file must be in a specific form. This tutorial shows you the form the files must have. If you'd like a template just check out the ShinyPsych app in your R library. It contains a folder called *extdata* which contains different lists we included as defaults or examples. The *Instructions_Survey*, *Survey_Example* or *Demographics* are some of the files you can use as template. The first two are also the files we're showing you here in this tutorial. We will discuss two examples to have the chance to show you different input possibilities, such as radio buttons, checkboxes and textinput. At the end of this page, in section *Input Formats* you'll find a list of all possible input formats and what is necessary to create them, each with a code line to give you a template on how to use it.
 
 ## Creating a File
 
-Ok let's read in the first file. Note that you can also execute this code to read in the file in your R session, given that you have installed ShinyPsych. [Here's the app in which these two lists are used](https://econpsychbasel.shinyapps.io/shinypsych_survey/ "Survey Example").
+Ok, let's read in the first file. Note that you can also execute this code to read in the file in your R session, given that you have installed ShinyPsych. [Here's the app in which these two lists are used](https://econpsychbasel.shinyapps.io/shinypsych_survey/ "Survey Example").
 
 ```{r}
 # load library
@@ -50,9 +50,9 @@ survey.df <- read.table(fil, header = TRUE, sep = "\t",
 knitr::kable(survey.df, align = rep("c", ncol(survey.df)), caption = "Survey List")
 ```
 
-We had to scale down the font size to fit the table on one page, sorry for that. Hopefully you can still read it. We'll anyway go thrgough each of the variables.
+We had to scale down the font size to fit the table on one page, sorry for that. Hopefully you can still read it. We'll go thrgough each of the variables anyway.
 
-**id**. The first variable is *id*. It must only be specified, if the function you want to call is an input function, such as the one in row seven with the id *workerid*. These id variables will later be the identifier in shiny. You know that every input object in shiny must have a unique id in order to observe it and save its input. When you create the page in your app by calling `createPageList()`, the global id together with an underscore will be pasted in front of the id as specified in this file. For example if you have the global id *Instructions*, the *textInput* for *workerid* will be *Instructions_workerid*. This procedure ensures unique ids if you have, e.g., two lists of questionnaires that each contain the ids *qu1* and *qu2* for the first two questions. Let's assume these questionnaires were named *quest1* and *quest2*, the ids of the first questions would then be *quest1_qu1* and *quest2_qu1*, so there's no problem of identifying the input. Note that you *can* also give ids to text variables in order to then select and manipulate them with css. If you don't know any css just let us tell you that it is fairly easy (at least to do things like changing a font color). A full css tutorial is beyond the scope of this article but we'll give you a very short example: Let's assume you have a paragraph which you want to be displayed in a bold font. To do this, simply give it an id, e.g., *boldP*. If this paragraph is in the list you name *Instructions* the final id of the to be changed paragraph will be *Instructions_boldP*. Now you open a file in a text editor (e.g. notepad++ or RStudio also works), and enter the following css code and save it under yourStyleSheet.css:
+**id**. The first variable is *id*. It must only be specified if the function you want to call is an input function, such as the one in row seven whith the id *workerid*. These id variables will later be the identifier in shiny. As you know, every input object in shiny must have a unique id in order to observe it and save its content. When you create the page in your app by calling `createPageList()`, the global id together with an underscore will be pasted in front of the id as specified in this file. For example if you have the global id *Instructions*, the *textInput* for *workerid* will be *Instructions_workerid*. This procedure ensures unique ids if you have, e.g., two lists of questionnaires that each contain the ids *qu1* and *qu2* for the first two questions. Let's assume these questionnaires were named *quest1* and *quest2*, the ids of the first questions would then be *quest1_qu1* and *quest2_qu1*, so there's no problem of identifying the input. Note that you *can* also give ids to text variables in order to then select and manipulate them with css. If you don't know any css just let us tell you that it is fairly easy (at least to do things like changing a font color). A full css tutorial is beyond the scope of this article but we'll give you a very short example: Let's assume you have a paragraph which you want to be displayed in a bold font. To do this, simply give it an id, e.g., *boldP*. If this paragraph is in the list you name *Instructions* the final id of the paragraph to be changed will be *Instructions_boldP*. Now you open a file in a text editor (e.g. notepad++ or RStudio also works), enter the following css code and save it under yourStyleSheet.css:
 
 ```{rcpp, eval=FALSE}
 #boldP {
@@ -62,7 +62,7 @@ We had to scale down the font size to fit the table on one page, sorry for that.
 
 With the octothorpe you select an element by its id. So this selects the specified element and set's its font to bold. For a nice tutorial and reference sheet [click here](https://www.w3schools.com/css/default.asp "w3 Schools Tutorial").
 
-**text**. The *text* variable takes the text to be displayed by an html tag or as, e.g. question or instruction to be displayed above a set of radio buttons. If you load an image, this specifies the image name (for details see section *Input Format*)
+**text**. The *text* variable takes the text to be displayed by an html tag or e.g. as question or instruction to be displayed above a set of radio buttons. If you load an image, this specifies the image name (for details see section *Input Format*)
 
 **page**. On which page the element should be displayed. Enter integers starting at 1. All elements with *page* set to 1 will be displayed on the first page in the order you've put them in the file (except when you randomize the order but more on that below). If you have an element that should be displayed on every page, such as an instruction, just enter 0 (zero) as page number. This will display it on every page created with the respective list (for an example, see the second row of *Survey List Table*).
 
@@ -72,7 +72,7 @@ With the octothorpe you select an element by its id. So this selects the specifi
 
 **choiceNames**. Defines the labels shown instead of the values defined at *choices*. Not mandatory. If you set it to NA but call, e.g., *radioButtons* the integers defined at *choices* will be displayed. If you specify labels, you must specify the same number of labels as choices. If you only want, say, the first and the last option to have a label other than *choices*, just specify the same values as in *choices*. For example if we have a *radioButtons* element with 5 possible answers and *choices* set to *1,2,3,4,5* And you only want the first and last to be changed, you could enter *"1 - Disagree",2,3,4,"5 - Agree"* to *choiceNames*. If you don't need this (e.g. when you only display text) set this to NA.
 
-**reverse**. Whether a question contains an item for which the scale has to be reversed. If so set it to 1. You can then, at the end of the app, call `getValues()` to receive a sum score in which the elements with reversed set to 1 are reversed before aggregating. If input items should not be reversed but you have others in the list that should, set this to 0, else set it to NA.
+**reverse**. Whether a question contains an item for which the scale has to be reversed. If so set it to 1. You can then, at the end of the app, call `getValues()` to receive a sum score in which the elements with *reversed* set to 1 are reversed before aggregating. If input items should not be reversed but you have others in the list that should, set this to 0, else set it to NA.
 
 **placeholder**. Defines what is to be displayed in a text input element as placeholder that will vanish once the user gives some input. If not needed (as in most of the elements), set this to NA.
 
@@ -90,7 +90,7 @@ With the octothorpe you select an element by its id. So this selects the specifi
 
 **inline**. logical. Needed for radio buttons and multiple checkboxes. If TRUE, the buttons and checkboxes are displayed in one horizontal line. If FALSE they are displayed in a list one under the other. If not needed, set this to NA.
 
-**randomize**. 0 or 1. The position of elements with 1 is randomized (see *Survey List Table*, rows 3 to 5). Elements with 0 have a fixed order.
+**randomize**. 0 or 1. The position of all elements set to 1 is randomized (see *Survey List Table*, rows 3 to 5). Elements set to 0 have a fixed order.
 
 ## Input Formats
 
@@ -247,14 +247,14 @@ temp.df <- tags.df[17,]
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
-**HTML**. Enter HTML code. Note that we cannot display it properly here, because it would render if we would give it real html code here, but the *text* variable will pass HTML code to the shiny `HTML()` function. If you don't care about style you can enter a big amount of html code in one line here (see the working app of this list [here](placeholder)).
+**HTML**. Enter HTML code. Note that we cannot display it properly here, because it would render if we would put real html code here. The *text* variable will pass HTML code to the shiny `HTML()` function. If you don't care about style you can enter a big amount of html code in one line here (see the working app of this list [here](placeholder)).
 ```{r, echo=FALSE}
 temp.df <- tags.df[18,]
 temp.df$text <- "put your html code here! We can't show it since it would render in the markdown (also xmp doesn't really help)."
 knitr::kable(temp.df, row.names = FALSE)
 ```
 
-**img**. Display an image. Put the image in the *www* folder of your app and enter the name of the image with file ending in the *text* column. With *width* you specify the width of the image. If you don't specify a height, it will display it with the same height as width.
+**img**. Display an image. Put the image in the *www* folder of your app and enter the name of the image with file ending in the *text* column. With *width* you specify the width of the image. If you don't specify a height, it will be displayed with the same height as width.
 ```{r, echo=FALSE}
 temp.df <- tags.df[19,]
 knitr::kable(temp.df, row.names = FALSE)

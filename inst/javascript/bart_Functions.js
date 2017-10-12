@@ -3,6 +3,8 @@ Bart Experiment. When running the experiment just
 compile this code on http://closure-compiler.appspot.com
 to make it less readable */
 
+console.log("VALUABLE RESEARCH NEEDS VALUABLE DATA. PLEASE DON'T CHEAT! \nIf you do please answer in the questionnaire honestly that you did so\nthat we can make sure to not use your data.\nThank you!");
+
 var pumps = 0;
 var maxPumps;
 var popMax;
@@ -18,7 +20,7 @@ Shiny.addCustomMessageHandler("maxPopHandler",
 );
 
 //Receives the new max-pump values for this balloon
-Shiny.addCustomMessageHandler("maxPumpHandler", 
+Shiny.addCustomMessageHandler("maxPumpHandler",
   function(newMaxPumps) {
     maxPumps = newMaxPumps;
   }
@@ -54,7 +56,7 @@ function jsNewBalloon(){
 
 
 function jsRedrawBalloon(balloonColor) {
-  balloonSize = pumps/popMax * 95 + 5
+  balloonSize = pumps/popMax * 95 + 5;
   ctx.clearRect(0, 0, jsCanvas.width, jsCanvas.height);
   ctx.beginPath();
   ctx.arc(250, 160, balloonSize, 0, 2 * Math.PI);
@@ -78,13 +80,13 @@ function jsRedrawBalloon(balloonColor) {
     ctx.beginPath();
     ctx.arc(250, 160, 100, 0, 2 * Math.PI);
     ctx.stroke();
-           
+
   }
 }
 
 
 // Wait a second before showing the nextballoon button to avoid misclicks
-function jsDelayButton() { 
+function jsDelayButton() {
    document.getElementById("nextballoon").style.visibility = 'hidden';
    setTimeout(function(){
    document.getElementById("nextballoon").style.visibility = 'visible';
