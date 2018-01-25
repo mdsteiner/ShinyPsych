@@ -121,6 +121,8 @@ Note that all tutorials will explain the whole app without relying on other tuto
 
 ### Balloon Analogue Risk Task (BART)
 
+#### Task Tutorial
+
 The bart is a behavioral measure of risk taking developped by @lejuez2002evaluation. In the bart, participants are presented a balloon they have to pump up. With each pump it becomes more likely that the balloon will explode. The more bigger the balloon is pumped, the more money you win given that it does not explode by the last pump. You could either use a single balloon, i.e. you can still have multiple trials but only one balloon type with a specific underlying distribution, or multiple balloons with different underlying distributions. [Click here for more information on the BART in ShinyPsych](ShinyPsych_Bart.html "BART").
 
 If all participants should see the same balloons, or if you have prespecified pop values you want to use, you can create your own list of pop values and load them in, [as explained in this tutorial](ShinyPsych_BartLists.html "Bart List Tutorial").
