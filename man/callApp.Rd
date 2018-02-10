@@ -4,17 +4,17 @@
 \alias{callApp}
 \title{Run example app or open example app code}
 \usage{
-callApp(appName, action)
+callApp(appName, action = "run")
 }
 \arguments{
 \item{appName}{string. The name of the example app. Must be one of "Bandit",
 "BART", "CheckId", "DD", "DfD", "DfE", "Survey" or "TagsInput".}
 
 \item{action}{string. Valid inputs are "run" or "show". Whether the app
-should be run or the code shown.}
+should be run or the code shown. The default action is to run the app.}
 }
 \value{
-Run a shiny app or show it's code.
+Run a shiny app or show its code.
 }
 \description{
 Run the specified example app locally in the browser or open the code file

@@ -89,7 +89,7 @@ saveData <- function(data, location, partId, checkNull = TRUE,
 
       # Upload data to dropbox using
       rdrop2::drop_upload(DatafilePath,
-                          dest = outputDir,     # File directory in dropbox
+                          path = outputDir,  # File directory in dropbox
                           dtoken = dtoken)   # Unique dropbox token
 
     } else if (location == "local"){
