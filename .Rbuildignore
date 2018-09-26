@@ -8,3 +8,4 @@
 ^ShinyPsych_DfDCode\.R$
 ^ShinyPsych_DfECode\.R$
 ^ShinyPsych_SurveyCode\.R$
+^README\.md$

@@ -28,7 +28,6 @@
 #' @return A list of reactive values to control the experiment.
 #' @export
 #'
-#' @examples
 createCtrlList <- function(firstPage, globIds, complCode = FALSE, complName = NULL,
                            oVars = NULL, oVarVals = NULL, task = NULL){
 
