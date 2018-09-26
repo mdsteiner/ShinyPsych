@@ -17,9 +17,9 @@ vignette: >
 
 ShinyPsych is an R package designed to help implementing experiments in shiny apps. If you don't know about shiny yet, we recommend checking out the [shiny webpage](https://shiny.rstudio.com/) which contains many great tutorials and explanations on what shiny is and how to build apps. Shiny apps are, in their usual form, not suitable to implement experiments and surveys because they are designed to dynamically display information on one page, possibly with some page navigation by using different panels. In an experiment or survey, however, one typically wants to display items on different pages to which the participant can not switch back and forth but has to follow a predefined order of pages. These tutorials show you how to do this and how to use different functions implemented in ShinyPsych, designed to facilitate programming an experiment. Although we tried to simplify programming the app, you still need to now how to work with R. If you have no experience of using R you best go through some tutorials (e.g. with [YaRrr! The Pirate's Guide to R](https://bookdown.org/ndphillips/YaRrr/), a free E-book, written by Nathaniel Phillips or the [the RStudio online tutorial](https://www.rstudio.com/online-learning/#R)).
 
-Note that we're still developing ShinyPsych and currently have the first package version. Therefore it is well possible that you will find some bugs in the code or typos in the default lists. If so feel free to write us or to open an issue on the [ShinyPsych Github page](https://github.com/ndphillips/ShinyPsych). Before using ShinyPsych e.g. for a study, make sure to check that everything is displayed and saved the way you want it to be.
+Note that we're still developing ShinyPsych and currently have the first package version. Therefore it is well possible that you will find some bugs in the code or typos in the default lists. If so feel free to write us or to open an issue on the [ShinyPsych Github page](https://github.com/mdsteiner/ShinyPsych). Before using ShinyPsych e.g. for a study, make sure to check that everything is displayed and saved the way you want it to be.
 
-If you have questions about ShinyPsych you can write us at markus.d.steiner@gmail.com or Nathaniel.D.Phillips.is@gmail.com.
+If you have questions about ShinyPsych you can write us at markus.d.steiner@gmail.com. or Nathaniel.D.Phillips.is@gmail.com.
 
 ### Structure
 
@@ -36,7 +36,7 @@ If you want to use ShinyPsych to run experiments in the lab, we recommend runnin
 If you'd like to use ShinyPsych, download and load it via
 
 ```{r, eval=FALSE}
-devtools::install_github("ndphillips/ShinyPsych", build_vignettes = TRUE)
+devtools::install_github("mdsteiner/ShinyPsych", build_vignettes = TRUE)
 library("ShinyPsych")
 ```
 

@@ -4,8 +4,8 @@
 #' \url{https://shiny.rstudio.com/reference/shiny/latest/reactiveValues.html})
 #' with important variables needed to go through an experiment. Additional
 #' variables can be specified.
-#' @param firstPage sting. The id of the first page to be displayed
-#' @param globIds sting. A vector containing the ids of the
+#' @param firstPage string. The id of the first page to be displayed
+#' @param globIds string. A vector containing the ids of the
 #'  different pages to be displayed (such as instructions or questionnaires but
 #'  not tasks). Only pages that have a list either created by
 #'  \code{\link{createPageList}} or are in the same form have to be indicated

@@ -8,9 +8,9 @@ createCtrlList(firstPage, globIds, complCode = FALSE, complName = NULL,
   oVars = NULL, oVarVals = NULL, task = NULL)
 }
 \arguments{
-\item{firstPage}{sting. The id of the first page to be displayed}
+\item{firstPage}{string. The id of the first page to be displayed}
 
-\item{globIds}{sting. A vector containing the ids of the
+\item{globIds}{string. A vector containing the ids of the
 different pages to be displayed (such as instructions or questionnaires but
 not tasks). Only pages that have a list either created by
 \code{\link{createPageList}} or are in the same form have to be indicated
