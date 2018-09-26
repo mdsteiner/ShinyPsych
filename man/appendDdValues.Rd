@@ -4,9 +4,9 @@
 \alias{appendDdValues}
 \title{Append Input from Delay Discounting Task to Task Control List}
 \usage{
-appendDdValues(ctrlVals, input, gameData, container, withPracticeTrial = TRUE,
-  afterPracticePage = "postPractice", afterTrialPage = "endGame",
-  afterLastTrialPage = "lastEndGame")
+appendDdValues(ctrlVals, input, gameData, container,
+  withPracticeTrial = TRUE, afterPracticePage = "postPractice",
+  afterTrialPage = "endGame", afterLastTrialPage = "lastEndGame")
 }
 \arguments{
 \item{ctrlVals}{list of reactive values. Controls the flow through the

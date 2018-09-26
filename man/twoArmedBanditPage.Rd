@@ -9,28 +9,33 @@
 \title{Create an HTML Page to Display and Play a 2 to 6 Armed Bandit}
 \usage{
 twoArmedBanditPage(ctrlValsList, gameTitle = "Game ", nTrials = NULL,
-  clickCounter = "Clicks Remaining", gameTitlePractice = "Practice Game",
-  withPracticeGame = TRUE, pointTitle = "Points Earned", nGames = 10,
+  clickCounter = "Clicks Remaining",
+  gameTitlePractice = "Practice Game", withPracticeGame = TRUE,
+  pointTitle = "Points Earned", nGames = 10,
   buttonLabel = "Click to Continue to next Game")
 
 threeArmedBanditPage(ctrlValsList, gameTitle = "Game ", nTrials = NULL,
-  clickCounter = "Clicks Remaining", gameTitlePractice = "Practice Game",
-  withPracticeGame = TRUE, pointTitle = "Points Earned", nGames = 10,
+  clickCounter = "Clicks Remaining",
+  gameTitlePractice = "Practice Game", withPracticeGame = TRUE,
+  pointTitle = "Points Earned", nGames = 10,
   buttonLabel = "Click to Continue to next Game")
 
 fourArmedBanditPage(ctrlValsList, gameTitle = "Game ", nTrials = NULL,
-  clickCounter = "Clicks Remaining", gameTitlePractice = "Practice Game",
-  withPracticeGame = TRUE, pointTitle = "Points Earned", nGames = 10,
+  clickCounter = "Clicks Remaining",
+  gameTitlePractice = "Practice Game", withPracticeGame = TRUE,
+  pointTitle = "Points Earned", nGames = 10,
   buttonLabel = "Click to Continue to next Game")
 
 fiveArmedBanditPage(ctrlValsList, gameTitle = "Game ", nTrials = NULL,
-  clickCounter = "Clicks Remaining", gameTitlePractice = "Practice Game",
-  withPracticeGame = TRUE, pointTitle = "Points Earned", nGames = 10,
+  clickCounter = "Clicks Remaining",
+  gameTitlePractice = "Practice Game", withPracticeGame = TRUE,
+  pointTitle = "Points Earned", nGames = 10,
   buttonLabel = "Click to Continue to next Game")
 
 sixArmedBanditPage(ctrlValsList, gameTitle = "Game ", nTrials = NULL,
-  clickCounter = "Clicks Remaining", gameTitlePractice = "Practice Game",
-  withPracticeGame = TRUE, pointTitle = "Points Earned", nGames = 10,
+  clickCounter = "Clicks Remaining",
+  gameTitlePractice = "Practice Game", withPracticeGame = TRUE,
+  pointTitle = "Points Earned", nGames = 10,
   buttonLabel = "Click to Continue to next Game")
 }
 \arguments{
