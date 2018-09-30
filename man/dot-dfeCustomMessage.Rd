@@ -15,7 +15,7 @@ Experiment. Can be created with \code{\link{createCtrlList}}.}
 \item{sess}{The session object from the shiny app.}
 
 \item{containerOb}{list. Containing the outcomes. Can be created by calling
-\code{\link{createDfePage}}.}
+\code{\link{createDfeList}}.}
 
 \item{signCols}{numeric. Controls the color of the outcome values
 displayed. There are two options: 1 means negative values will be displayed
@@ -27,6 +27,6 @@ Sends information to javascript where it is processed.
 }
 \description{
 Sends outcome values for the decisions from experience task, usually created
-with \code{\link{createDfePage}}, to the browser where they are then
+with \code{\link{createDfeList}}, to the browser where they are then
 processed and displayed by using java script.
 }
