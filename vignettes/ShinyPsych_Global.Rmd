@@ -19,7 +19,7 @@ ShinyPsych is an R package designed to help implementing experiments in shiny ap
 
 Note that we're still developing ShinyPsych and currently have the first package version. Therefore it is well possible that you will find some bugs in the code or typos in the default lists. If so feel free to write us or to open an issue on the [ShinyPsych Github page](https://github.com/mdsteiner/ShinyPsych). Before using ShinyPsych e.g. for a study, make sure to check that everything is displayed and saved the way you want it to be.
 
-If you have questions about ShinyPsych you can write us at markus.d.steiner@gmail.com. or Nathaniel.D.Phillips.is@gmail.com.
+If you have questions about ShinyPsych you can write us at markus.d.steiner@gmail.com. or k.trutmann@gmail.com.
 
 ### Structure
 

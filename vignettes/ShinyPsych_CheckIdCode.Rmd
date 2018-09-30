@@ -158,7 +158,7 @@ This function sets up the list of reactive values (again, if that's not a famili
 
 This section is again subdivided in two subsections, one of which is controlling the navigation through the app (F1) and the other is controlling some events, such as enabling the continue buttons (F2).
 
-#### Section F1: Page Navigation Button
+### Section F1: Page Navigation Button
 
 ```{r, eval=FALSE}
   observeEvent(input[["Instructions_next"]],{
