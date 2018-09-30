@@ -11,11 +11,13 @@
 #'  Experiment. Can be created with \code{\link{createCtrlList}}.
 #' @param continueButton logical. If TRUE (default) a continue button is added
 #'  at the bottom of the page.
+#' @param continueButtonLabel string. Label to be shown in the continue button.
+#'  Default is "Continue".
 #'
 #' @return An html page that can be displayed by the shiny app.
 #' @export
 createPage <- function(pageList, pageNumber, globId, ctrlVals,
-                       continueButton = TRUE){
+                       continueButton = TRUE, continueButtonLabel = "Continue"){
   # create pagelayout with all elements from a given page number of pageList
 
   index <- which(.subset2(pageList, "page") %in% c(0, pageNumber))
@@ -27,11 +29,12 @@ createPage <- function(pageList, pageNumber, globId, ctrlVals,
       thisPage <- list(shiny::br(), shiny::br(), shiny::br(), thisPage,
                        shiny::br(), shinyjs::disabled(
                          shiny::actionButton(inputId = paste0(globId, "_next"),
-                                             label = "Continue")))
+                                             label = continueButtonLabel)))
     } else {
       thisPage <- list(shiny::br(), shiny::br(), shiny::br(), thisPage,
                        shiny::br(), shiny::actionButton(
-                         inputId = paste0(globId, "_next"), label = "Continue"))
+                         inputId = paste0(globId, "_next"),
+                         label = continueButtonLabel))
     }
   } else {
     thisPage <- list(shiny::br(), shiny::br(), shiny::br(), thisPage)

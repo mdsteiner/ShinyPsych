@@ -4,7 +4,8 @@
 \alias{createPage}
 \title{Create HTML Logic for a Page Prepared with \code{\link{createPageList}}}
 \usage{
-createPage(pageList, pageNumber, globId, ctrlVals, continueButton = TRUE)
+createPage(pageList, pageNumber, globId, ctrlVals, continueButton = TRUE,
+  continueButtonLabel = "Continue")
 }
 \arguments{
 \item{pageList}{list. Either returned by \code{\link{createPageList}} or of
@@ -21,6 +22,9 @@ Experiment. Can be created with \code{\link{createCtrlList}}.}
 
 \item{continueButton}{logical. If TRUE (default) a continue button is added
 at the bottom of the page.}
+
+\item{continueButtonLabel}{string. Label to be shown in the continue button.
+Default is "Continue".}
 }
 \value{
 An html page that can be displayed by the shiny app.
