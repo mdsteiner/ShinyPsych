@@ -13,3 +13,16 @@ whithout creating a feature branch first.
 As Shiny can be somewhat unstable at times, we try to use every trick in the book to make R run as efficiently as possible.
 However, the code should be understandable and be thoroughly commented where something might be unclear.
 Variable and function names should be chosen such that they are as self-explanatory as possible, while remaining reasonably short.
+
+Future code should adhere to the [advanced R styleguide](http://adv-r.had.co.nz/Style.html) by Hadley Wickham with the following
+exceptions:
+- Functions should start with a lower case and take on the form `functionName()`.
+- Sections of code within one file can be created by four comment signs (e.g. `#### New Section ####`),
+as R-Studio will then allow to fold in the sections.
+
+Existing code may not adhere to the styleguide yet, but we will give our best to refractor and change it.
+
+## Vignettes, Tutorials and Documentation
+### Language
+- We should differentiate between **pages** and **page lists**. The former are allways nested within the latter.
+If a page list is only composed of one page it should be referred to as a *"single-page page list"* for clarity.
