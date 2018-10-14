@@ -1,17 +1,12 @@
-#' Create HTML Page for Users who entered the wrong password
+#' Create HTML page for users who entered the wrong password
 #'
 #' If you call \code{\link{checkPassword}} to make sure a user is acutally allowed to
-#' participate but they enter a wrong password and therefore not allowed
-#' to participate, you can then send him to this page. It includes a back button
+#' participate but they enter a wrong password and are therefore not allowed
+#' to participate, you can then send them to this page. It includes a back button
 #' to try entering the password again in case of a typo.
-#' @param inputList The input object from a shiny app.
-#' @param globId string. The global id given to the page on which the password
-#'  was entered.
-#'
-#' @return An html page that can be displayed by shiny.
+#' @return A HTML page that can be displayed by shiny.
 #' @export
-createNotAllowedPage <- function(inputList, globId, idLabel = "WorkerID",
-                                 idVar = "workerid"){
+createWrongPasswordPage <- function(){
     list(
       shiny::br(), shiny::br(), shiny::br(),
       shiny::h2(paste0("You entered a wrong password.")),

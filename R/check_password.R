@@ -7,9 +7,6 @@
 #' of "local", "dropbox" or "vector". "local" will load a txt or rds file.
 #' "dropbox" will load a csv file from the indicated dropbox account and "vector"
 #' assumes that you gave a vector of hashed passwords as input to PwVec.
-#' @param fileSep string. Passed to the \code{\link{read.table}} sep argument.
-#'  Must match the separator used in the database file.
-#' @param fileHeader logical. Passed to the read.table header argument.
 #' @param dropDir string. The directory in the dropbox from which to read in the
 #' database. Must only be specified if location is set to "dropbox".
 #' @param fileName string. The database file-name, including path. Must be
@@ -39,8 +36,8 @@ checkPassword <- function(password, cntrlVals, location = "local", dropDir = NUL
     if (length(grep(".rds", fileName)) > 0){
       pw.df <- readRDS(file.path("www", fileName))
     } else {
-      pw.df <- read.table(file.path("www", fileName), header = fileHeader,
-                           sep = fileSep, stringsAsFactors = FALSE)
+      pw.df <- read.table(file.path("www", fileName), header = FALSE,
+                          stringsAsFactors = FALSE)
     }
 
   } else if (location == "dropbox"){
@@ -49,7 +46,7 @@ checkPassword <- function(password, cntrlVals, location = "local", dropDir = NUL
     dtoken <- readRDS(droptoken)
     dropFilePath <- file.path(dropDir, fileName)
     pw.df <- rdrop2::drop_read_csv(dropFilePath, dtoken = dtoken,
-                                    sep = fileSep, stringsAsFactors = FALSE) # read file from dropbox
+                                   stringsAsFactors = FALSE) # read file from dropbox
 
 
   } else if (location == "vector"){
@@ -62,7 +59,7 @@ checkPassword <- function(password, cntrlVals, location = "local", dropDir = NUL
   }
 
   # check password
-  if (!sha512(password) %in% pw.df[, 1]){
+  if (!openssl::sha512(password) %in% pw.df[, 1]){
     cntrlVals$page <- notAllowedId
     cntrlVals$proceed <- 0
   }

@@ -7,8 +7,6 @@
 #   - Section C: Define reactive values
 #   - Section D: Page layouts
 #   - Section F: Event (e.g. button) actions
-#       - Section F1: Page navigation button
-#       - Section F2: Event Control
 #   - Section G: Save Data
 
 # Section 0: Load Libraries ====================================================
@@ -55,38 +53,32 @@ server <- function(input, output, session) {
   # Section C: Define Reactive Values ==========================================
 
   # CurrentValues controls page setting such as which page to display
-  CurrentValues <- createCtrlList(firstPage = "instructions", # id of the first page
+  CurrentValues <- createCtrlList(firstPage = "Instructions", # id of the first page
                                   globIds = idsVec,           # ids of pages for createPage
                                   complCode = TRUE,           # create a completion code
-                                  complName = "EP-CheckId")   # first element of completion code
-
+                                  complName = "EP-CheckPassword") # first element of completion code
   # Section D: Page Layouts ====================================================
 
   PageLayouts <- reactive({
 
     # insert created completion code so it can later be displayed
-    goodbye.list <- changePageVariable(pageList = goodbye.list, variable = "text",
+    goodbye.list <- changePageVariable(pageList = goodbye.list,
+                                       variable = "text",
                                        oldLabel = "completion.code",
                                        newLabel = CurrentValues$completion.code)
 
     # display instructions page
-    if (CurrentValues$page == "instructions") {
+    if (CurrentValues$page == "Instructions") {
 
       return(
         # create html logic of instructions page
         createPage(pageList = instructions.list,
                    pageNumber = CurrentValues$Instructions.num,
-                   globId = "Instructions", ctrlVals = CurrentValues)
+                   globId = "Instructions",
+                   ctrlVals = CurrentValues)
       )}
 
-    if (CurrentValues$page == "wrong password"){
-      return(
-        createWrongPasswordPage(input, "Instructions") #TO: change arguments
-      )
-    }
-
-
-    # P5) Goodbye
+    # Goodbye page
     if (CurrentValues$page == "goodbye") {
 
       return(
@@ -94,37 +86,31 @@ server <- function(input, output, session) {
                    globId = "Goodbye", ctrlVals = CurrentValues, continueButton = FALSE)
       )}
 
+    # If the wrong password has been entered
+    if (CurrentValues$page == "wrong password"){
+      return(
+        createWrongPasswordPage()
+      )
+    }
   })
 
 
   # Section F: Event (e.g.; button) actions ======================================
 
-  # Section F1: Page Navigation Buttons ----------------------
-
-
   observeEvent(input[["Instructions_next"]],{
-    nextPage(pageId = "instructions", ctrlVals = CurrentValues, nextPageId = "goodbye",
+    nextPage(pageId = "Instructions", ctrlVals = CurrentValues, nextPageId = "goodbye",
              pageList = instructions.list, globId = "Instructions",
              checkAllowed = "password", checkAllowedPage = 1,
-             checkIdVar = "workerid", checkLocation = "local",
-             checkSep = ",", checkFileName = "PW_Database.txt",
-             checkNotAllowedId = "wrong password", inputList = input)
+             checkIdVar = "pwInput", checkLocation = "local",
+             checkFileName = "Password_Database.txt", checkNotAllowedId = "wrong password",
+             inputList = input)
   })
 
-
-  # Section F2: Event Control ----------------------
-
-
-  # Make sure answers are selected
-  observeEvent(reactiveValuesToList(input),{
-
-    onInputEnable(pageId = "instructions", ctrlVals = CurrentValues,
-                  pageList = instructions.list, globId = "Instructions",
-                  inputList = input, charNum = 4)
-
+  observeEvent(input[["wrongPWBack"]],{
+    CurrentValues$Instructions.num <- 1
+    CurrentValues$page = "Instructions"
   })
-
-}
+} # End of server function
 
 # Create app!
 shinyApp(ui = ui, server = server)
