@@ -17,8 +17,8 @@ Variable and function names should be chosen such that they are as self-explanat
 Future code should adhere to the [advanced R styleguide](http://adv-r.had.co.nz/Style.html) by Hadley Wickham with the following
 exceptions:
 - Functions should start with a lower case and take on the form `functionName()`.
-- Sections of code within one file can be created by four comment signs (e.g. `#### New Section ####`),
-as R-Studio will then allow to fold in the sections.
+- Sections of code within one file can be created by trailing a comment with at least four equal signs (`# Section 1 ====`).
+- Subsections can be created by trailing a comment with at least four dashes (`# Subsection 1a ----`)
 
 Existing code may not adhere to the styleguide yet, but we will give our best to refractor and change it.
 
