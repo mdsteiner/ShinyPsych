@@ -80,7 +80,7 @@ You can save data by sending an email to your adress. For this to work, you need
 |-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 | [ShinyPsych - Survey](ShinyPsych_Survey.html "Survey App Tutorial")                       | A short guide on creating surveys and html pages from textfiles using ShinyPsych. |
 | [Implementing a survey - a tutorial](ShinyPsych_SurveyCode.html)                          | Full code tutorial on implementing a survey in ShinyPsych.                        |
-| [Check id tutorial](ShinyPsych_CheckIdCode.html "Id Check App")                           | Full code tutorial on implementing an id check in a shiny app.                   |
+| [Check id tutorial](ShinyPsych_CheckIdCode.html "Id Check App") / [Check password tutorial](ShinyPsych_CheckPassword.html "Password Check App")                           | Full code tutorial on implementing an id or password check in a shiny app.                   |
 | [Create Textfiles for ShinyPsych apps](ShinyPsych_Textfiles.html "Create Files Tutorial") | A guide on creating the textfiles to then build the survey and text pages with.  |
 | [ShinyPsych - BART](ShinyPsych_Bart.html "BART")                                          | A short guide on implementing the BART using ShinyPsych.                         |
 | [Implementing the BART - a tutorial](ShinyPsych_BartCode.html "BART")                    | Full code tutorial on implementing the BART using ShinyPsych.                   |
