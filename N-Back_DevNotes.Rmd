@@ -1,0 +1,10 @@
+---
+title: "N-Back DevNotes"
+output: html_document
+---
+
+# Done
+- Registered the n-back JS in include_script_files.R (But no CSS so far)
+- Created Nback Vignette, JS file and "create_nback_page.R". All copied from Bart so far.
+
+# Todo

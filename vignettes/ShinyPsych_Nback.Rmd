@@ -1,0 +1,70 @@
+---
+title: "ShinyPsych - BART"
+author: "Kevin Trutmann, Markus Steiner"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+bibliography: "ShinyPsych_References.bib"
+csl: "apa.csl"
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE, out.width="600px", fig.cap="Screenshot of the BART - default example."}
+knitr::include_graphics("../inst/pictures/screenshot_bart.png")
+```
+
+
+## Default Example
+
+* Run ShinyBandit: `callApp("BART", "run")`
+* Show App Code: `callApp("BART", "show")`
+
+## Description
+
+ShinyPsych - BART, is an implementation of the Balloon Analogue Risk Task [@lejuez2002evaluation], created with the ShinyPsych package. 
+
+In the BART, the participant is presented with a balloon he has to pump up. With each pump it becomes more likely that the balloon will explode. The more larger the balloon is pumped, the more money the participant wins, given that it does not explode by the last pump. You could either use a single balloon, i.e. you can still have multiple trials but only one balloon type with a specific underlying distribution, or multiple balloons with different underlying distributions.
+
+The BART has been used in decision making and clinical research to investigate risk taking [e.g. @lejuez2003evaluation; @lejuez2003balloon].
+
+With ShinyPsych you can draw balloon pop values from distributions or read in your own file containing prespecified pop values.
+
+## Common Extensions
+
+For a full description of the layout of the code underlying ShinyPsych - BART, click here [ShinyPsych - BART Code Description](ShinyPsych_BartCode.html). Here is a brief description of some ways you can easily extend ShinyPsych - BART:
+
+### Define specific pop value distributions
+
+To specify pop value distributions, you have to create a list, in which you specify the options' distribution type(s) and then give it to `createBartList()`. To do this, you can use the following template:
+
+```{r, eval=FALSE}
+# prepare a list with game parameters
+bartDistList <- list("diffBalloons" = 2,
+                     "balloonIds" = c(1, 2),
+                     "distributionType" = c("unif", "normal"),
+                     "min" = c(1, NA),
+                     "max" = c(10, NA),
+                     "mean" = c(NA, 12),
+                     "sd" = c(NA, 3),
+                     "nBalloons" = c(5, 5),
+                     "balloonColor" = c("blue", "grey"),
+                     "max.pop" = c(10, 15),
+                     "min.pop" = c(2, 2))
+
+```
+
+You simply specify the number of different balloons, i.e., balloons with different underlying distributions, their ids, distribution type(s) (possible distributions are "normal" - uses rnorm, "unif" - uses runif, "beta" - uses rbeta, "exp" - uses rbeta and "exgauss" - uses rexgauss from the retimes package), the distribution arguments, the number of balloons to be played per balloon type, the color of each balloon type, and the maximum and minimum pop values (any pop values drawn, larger or smaller than these, will be set to the maximum or minimum value, respectively). The distribution arguments have to match the arguments needed for the respective distribution (e.g. *mean* and *sd* for `rnorm()`).
+
+To use the same pop values for all participants, you can generate the outcome list once and save it as rds and then load this file both via `createBartList()`. For an extensive tutorial with code examples on how to create your own bart lists, [click here](ShinyPsych_BartLists.html).
+
+### Change number of balloons
+
+To change the number of balloon types or trials per balloon type you simply have to change the numbers in *bartDistList* shown above. No need to change anything else in the app code.
+
+### Adjust game display
+
+To prevent the maximum balloon size to be drawn, set `RDrawBoundary = FALSE` in `createBartPage()`.
+
+## References

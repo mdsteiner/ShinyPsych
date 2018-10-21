@@ -5,7 +5,7 @@
 #' appropriate scripts.
 #' @param fileList string. Vector with names to specify the tasks for which
 #'  the files should be loaded. Valid inputs are "bandit", "dfd", "dfe", "dd",
-#'  "bart" or any combination of these.
+#'  "bart", "nback" or any combination of these.
 #' @param globalScript logical. If TRUE (default) the global style
 #'  script (not just used for the tasks) is loaded. Script does not need to be
 #'  named in fileList.
@@ -109,6 +109,13 @@ includeScriptFiles <- function(fileList = "", globalScript = TRUE, nArms = 0,
     filDdJs <- system.file("javascript", "dd_FunctionsComp.js",
                            package = "ShinyPsych")
     returnList[["ddFunctions"]] <- shiny::includeScript(filDdJs)
+
+  }
+
+  if (any(fileList == "nback")){
+    filDdJs <- system.file("javascript", "nback_FunctionsComp.js",
+                           package = "ShinyPsych")
+    returnList[["nbackFunctions"]] <- shiny::includeScript(filDdJs)
 
   }
   returnList
