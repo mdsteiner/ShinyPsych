@@ -15,7 +15,7 @@ This tutorial shows you how to implement an id check in a shiny app using the Sh
 
 Sometimes when running a study, it is helpfull to be able to check whether a participant has already participated in this (or another) study earlier. We've used this feature for a study we ran in several batches on Amazon MTurk. To make sure that a participant couldn't participate in two batches, we checked the id at the beginning of the experiment and, if she was not allowed to participate, displayed a page with this information from which she couldn't proceed in the experiment.
 
-In this tutorial, we will show you how to implement such an id check. Piece by piece we will go through the whole app code, with comments and explanations between the pieces. To see the app working, click [here](https://econpsychbasel.shinyapps.io/shinypsych_checkid/ "Survey App"). In this app we will use a local database containing the ids already in use. This database is stored in the app directory. You could also load a database from dropbox, but the larger your database gets, the more you may want to have it in a local directory to minimize loading time.
+In this tutorial, we will show you how to implement such an id check. Piece by piece we will go through the whole app code, with comments and explanations between the pieces. To see the app working, click [here](https://econpsychbasel.shinyapps.io/shinypsych_checkid/ "Survey App"). In this app we will use a local database containing the ids already in use. This database is stored in the app directory. For this reason you should make sure that the working directory is set to the app directory. You can achieve this with the `setwd('folder/name')` command. You could also load a database from dropbox, but the larger your database gets, the more you may want to have it in a local directory to minimize loading time.
 
 If you have any questions about the package, just email us at markus.d.steiner@gmail.com or Nathaniel.D.Phillips.is@gmail.com. Ok let's get started with the app...
 
@@ -158,7 +158,7 @@ This function sets up the list of reactive values (again, if that's not a famili
 
 This section is again subdivided in two subsections, one of which is controlling the navigation through the app (F1) and the other is controlling some events, such as enabling the continue buttons (F2).
 
-#### Section F1: Page Navigation Button
+### Section F1: Page Navigation Button
 
 ```{r, eval=FALSE}
   observeEvent(input[["Instructions_next"]],{
