@@ -20,7 +20,7 @@ Else it has to be the file name inclusive full path in either dropbox or the
 local system.}
 
 \item{randomize}{logical. If TRUE (default) the page variable of
-the items that have a 1 in the randomize variable should be randomly ordered.}
+the items that have a 1 in the randomize variable will be randomly ordered.}
 
 \item{globId}{string. Vector containing the names of the page or questionnaire
 variables.}

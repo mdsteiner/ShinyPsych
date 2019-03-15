@@ -46,6 +46,9 @@
 #'  page that should be displayed in case the given id is occurring in the
 #'  database. Only needed if checkAllowed is TRUE.
 #' @param inputList The input object of the shiny app.
+#' @param pageListName String. Name of the page list as provided to the pageList
+#'  argument of this function. Only has to be provided if conditional questions
+#'  are used.
 #'
 #' @return Updated ctrlVals. Doesn't need to be assigned, since it is a reactive
 #'  value.
@@ -56,12 +59,12 @@ nextPage <- function(pageId, ctrlVals, nextPageId, pageList, globId,
                      checkSep = ",", checkHeader = TRUE, checkDropDir = NULL,
                      checkFileName = NULL, checkDroptoken = NULL,
                      checkIdsVec = NULL, checkNotAllowedId = "not allowed",
-                     inputList = NULL){
+                     inputList = NULL, pageListName = NULL){
 
   if(ctrlVals$page == pageId) {
 
     # create index for page number
-    tempIndex <- paste0(globId, ".num")
+    tempIndex <- paste0(pageList$globId, ".num")
 
     if (isTRUE(checkAllowed) && checkAllowedPage == ctrlVals[[tempIndex]]){
 
@@ -79,6 +82,39 @@ nextPage <- function(pageId, ctrlVals, nextPageId, pageList, globId,
 
     # add 1 to the pagenumber
     ctrlVals[[tempIndex]] <- ctrlVals[[tempIndex]] + ctrlVals$proceed
+
+    # increase pagenumber if dependency is not met
+    while (any(!is.na(pageList$depends[pageList$page == ctrlVals[[tempIndex]]])) &&
+        any(pageList$show_if[pageList$page == 2] !=
+        inputList[[pageList$depends[pageList$page == ctrlVals[[tempIndex]]][
+          !is.na(pageList$depends[pageList$page == ctrlVals[[tempIndex]]])]]])){
+
+      if (sum(!is.na(pageList$depends[pageList$page == ctrlVals[[tempIndex]]]),
+              na.rm = TRUE) == 1) {
+
+        # add 1 to the pagenumber
+        ctrlVals[[tempIndex]] <- ctrlVals[[tempIndex]] + ctrlVals$proceed
+
+      } else {
+
+        if (is.null(pageListName)) {
+          stop("To use conditional questions the argument 'pageListName' has to be provided.")
+        }
+
+        temp_ind <- which(pageList$show_if[pageList$page == ctrlVals[[tempIndex]]] !=
+                            inputList[[pageList$depends[pageList$page == ctrlVals[[tempIndex]]][
+                              !is.na(pageList$depends[pageList$page == ctrlVals[[tempIndex]]])]]])
+        # pageList$type[5] <- "noShow"
+        #
+        # get(pageListName)[["type"]][5] <- "noShow"
+        # assign(paste0(pageListName, "$type"))
+
+        assign(pageListName, within(get(pageListName), type[temp_ind] <- "noShow"),
+               envir = .GlobalEnv)
+
+      }
+
+    }
 
     # set proceed value to 0 so that multiple clicking doesn't lead to
     # skip pages

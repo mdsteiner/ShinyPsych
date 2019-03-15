@@ -9,7 +9,8 @@ nextPage(pageId, ctrlVals, nextPageId, pageList, globId,
   checkIdVar = "workerid", checkLocation = "local", checkSep = ",",
   checkHeader = TRUE, checkDropDir = NULL, checkFileName = NULL,
   checkDroptoken = NULL, checkIdsVec = NULL,
-  checkNotAllowedId = "not allowed", inputList = NULL)
+  checkNotAllowedId = "not allowed", inputList = NULL,
+  pageListName = NULL)
 }
 \arguments{
 \item{pageId}{string. Current page id.}
@@ -70,6 +71,10 @@ page that should be displayed in case the given id is occurring in the
 database. Only needed if checkAllowed is TRUE.}
 
 \item{inputList}{The input object of the shiny app.}
+
+\item{pageListName}{String. Name of the page list as provided to the pageList
+argument of this function. Only has to be provided if conditional questions
+are used.}
 }
 \value{
 Updated ctrlVals. Doesn't need to be assigned, since it is a reactive

@@ -26,6 +26,14 @@
   textList <- c("passwordInput", "textInput")
   nusliList <- c("sliderInput", "numericInput")
 
+  # if a conditional check evaluated to false (i.e. the item should not be shown)
+  if (pageList$type[index] == "noShow") {
+
+    return(shiny::HTML(""))
+
+  }
+
+
   # check which function is matched to ensure correct use of arguments
   if (any(tagList == pageList$type[index])){
     if (substr(pageList$id[index], nchar(pageList$id[index]) - 1,
@@ -463,4 +471,55 @@
                           dd.df[rInd, paste0("time", optInd)], "</td></tr>")
 
   printedGamble
+}
+
+
+# randomize items such that items that depend on other items are shown after
+# the item they depend on
+
+.randomize_items <- function(dat) {
+
+  if (all(which(dat$randomize == 1) %in% which(is.na(dat$depends)))) {
+    # easiest way if no dependencies are around
+    dat$page[dat$randomize == 1] <- sample(dat$page[dat$randomize == 1])
+    return(dat$page)
+  } else {
+    # for items with dependencies the order is important
+    dat$page[dat$randomize == 1] <- sample(dat$page[dat$randomize == 1])
+
+    # control whether after randomization the item which another item depends on
+    # is displayed on an earlier page
+    order_ok <- all(purrr::map_lgl(unique(dat$depends)[!is.na(unique(dat$depends))],
+                                   function(dpnds, dt){
+      all(dt$page[which(dt$id == dpnds)] <
+            dt$page[which(dt$id == dt$id[which(dt$depend == dpnds)])])
+    }, dt = dat))
+
+    it <- 1
+
+    while(!order_ok | it >= 1000) {
+
+      dat$page[dat$randomize == 1] <- sample(dat$page[dat$randomize == 1])
+
+      # control whether after randomization the item which another item depends on
+      # is displayed on an earlier page
+      order_ok <- all(purrr::map_lgl(unique(dat$depends)[!is.na(unique(dat$depends))],
+                                     function(dpnds, dt){
+        all(dt$page[which(dt$id == dpnds)] <
+              dt$page[which(dt$id == dt$id[which(dt$depend == dpnds)])])
+        }, dt = dat))
+
+      it <- it + 1
+    }
+
+    # this is to ensure that if there is no possible solution the code will break
+    # at some point and doesn't iterate forever
+    if (isFALSE(order_ok)){
+      stop("Randomization of conditional items was unsuccessfull.")
+    }
+
+    return(dat$page)
+
+  }
+
 }

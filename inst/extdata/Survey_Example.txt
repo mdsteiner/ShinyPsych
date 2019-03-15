@@ -1,8 +1,7 @@
-id	text	page	type	choices	choiceNames	reverse	placeholder	min	max	disabled	checkType	width	height	inline	randomize
-NA	"Please answer the following questions truthfully!"	1	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
-NA	"To answer, please click on the scale."	0	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0
-qu1	"What is your favorite color?"	1	radioButtons	1,2,3,4,5	"Red,Blue ... No...,Green,Yellow,Blue!"	NA	NA	NA	NA	1	is.null	500px	NA	1	1
-qu2	"What is the capital of Assyria?"	2	radioButtons	1,2,3	"I don't know that...",Assur,Nineveh	NA	NA	NA	NA	1	is.null	500px	NA	0	1
-qu3	"What is the airspeed velocity of an unladen swallow?"	2	radioButtons	1,2,3	"10 meters per second,An african or european swallow?,Don't know; I am more into plants..."	NA	NA	NA	NA	1	is.null	500px	NA	0	1
-qu4	"How much did you like this survey?"	3	radioButtons	1,2,3,4,5	NA	0	NA	NA	NA	1	is.null	500px	NA	1	0
-
+id	text	page	type	choices	choiceNames	reverse	placeholder	min	max	disabled	checkType	width	height	inline	randomize	depends	show_if
+NA	"Please answer the following questions truthfully!"	1	h2	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0	NA	NA
+NA	"To answer, please click on the scale."	0	p	NA	NA	NA	NA	NA	NA	0	NA	500px	NA	NA	0	NA	NA
+qu1	"What is your favorite color?"	1	radioButtons	1,2,3,4,5	"Red,Blue ... No...,Green,Yellow,Blue!"	NA	NA	NA	NA	1	is.null	500px	NA	1	1	NA	NA
+qu2	"What is the capital of Assyria?"	2	radioButtons	1,2,3	"I don't know that...",Assur,Nineveh	NA	NA	NA	NA	1	is.null	500px	NA	0	1	NA	NA
+qu3	"What is the airspeed velocity of an unladen swallow?"	2	radioButtons	1,2,3	"10 meters per second,An african or european swallow?,Don't know; I am more into plants..."	NA	NA	NA	NA	1	is.null	500px	NA	0	1	NA	NA
+qu4	"How much did you like this survey?"	3	radioButtons	1,2,3,4,5	NA	0	NA	NA	NA	1	is.null	500px	NA	1	0	NA	NA

@@ -24,7 +24,7 @@
 #'  Else it has to be the file name inclusive full path in either dropbox or the
 #'  local system.
 #' @param randomize logical. If TRUE (default) the page variable of
-#'  the items that have a 1 in the randomize variable should be randomly ordered.
+#'  the items that have a 1 in the randomize variable will be randomly ordered.
 #' @param globId string. Vector containing the names of the page or questionnaire
 #'  variables.
 #' @param droptoken string. The name of the file in which the access tokens for
@@ -96,13 +96,24 @@ createPageList <- function(defaulttxt = TRUE, location = "local",
   df$inline[df$inline != 1] <- FALSE
   df$inline[df$inline == 1] <- TRUE
 
+  # add variables that may be missing in the df because they were only added
+  # in later ShinyPsych versions
+  if (any(!c("depends", "show_if") %in% names(df))){
+    df$depends <- NA
+    df$show_if <- NA
+  }
+
+  # randomize but make sure items that depend on answers of other items are
+  # presented after the item they depend on
   if (isTRUE(randomize)){
-    df$page[df$randomize == 1] <- sample(df$page[df$randomize == 1])
+    df$page <- .randomize_items(df)
 
   }
 
-  id.order <- df$id[order(df$page)]
-  id.order <- paste(id.order[!is.na(id.order)], collapse = ";")
+  id_order <- df$id[order(df$page)]
+  id_order <- paste(id_order[!is.na(id_order)], collapse = ";")
+
+  df$depends[!is.na(df$depends)] <- paste0(globId, "_", df$depends[!is.na(df$depends)])
 
   textOrQuestionnaireList <- list(
     "text" = df$text,
@@ -121,7 +132,9 @@ createPageList <- function(defaulttxt = TRUE, location = "local",
     "inline" = df$inline,
     "checkType" = df$checkType,
     "defaultList" = defaulttxt,
-    "id.order" = id.order
+    "id.order" = id_order,
+    "depends" = df$depends,
+    "show_if" = df$show_if
   )
 
   ind <- substr(textOrQuestionnaireList$id,

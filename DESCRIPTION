@@ -19,7 +19,8 @@ Imports: shiny,
     rdrop2 (>= 0.8.1),
     digest,
     sendmailR,
-    openssl 
+    openssl ,
+    purrr
 RoxygenNote: 6.1.0
 Suggests: testthat,
     knitr,
