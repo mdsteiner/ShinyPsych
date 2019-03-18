@@ -1,5 +1,7 @@
 # ShinyPsych - an R package to program and run experiments
 
+ShinyPsych is an R package designed to help implement experiments in shiny apps.
+
 To install `ShinyPsych` run the following code:
 
 ```
