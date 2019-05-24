@@ -6,7 +6,7 @@ output: rmarkdown::html_vignette
 bibliography: "ShinyPsych_References.bib"
 csl: "apa.csl"
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{ShinyPsych - DfE Task}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

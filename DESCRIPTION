@@ -20,7 +20,7 @@ Imports: shiny,
     digest,
     sendmailR,
     openssl 
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: testthat,
     knitr,
     rmarkdown

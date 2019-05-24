@@ -1,14 +1,14 @@
 #' Send Information from R Session to Browser
 #'
-#' Sends outcome values for the decisions from experience task, usually created
-#' with \code{\link{createDfePage}}, to the browser where they are then
+#' Sends outcome values for the decisions from experience task, to the browser
+#' where they are then
 #' processed and displayed by using java script.
 #' @param Opts integer. The number of options to choose from.
 #' @param contrlVals list of reactive values. Controls the flow through the
 #'  Experiment. Can be created with \code{\link{createCtrlList}}.
 #' @param sess The session object from the shiny app.
 #' @param containerOb list. Containing the outcomes. Can be created by calling
-#'  \code{\link{createDfePage}}.
+#'  \code{\link{createDfeList}}.
 #' @param signCols numeric. Controls the color of the outcome values
 #'  displayed. There are two options: 1 means negative values will be displayed
 #'  in red zeros in gray and positive values in green. A value other than 1 means
