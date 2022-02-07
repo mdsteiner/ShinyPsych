@@ -5,12 +5,21 @@
 \title{Create a List of Prepared Values to Display Later in a Decisions from Description
 Task}
 \usage{
-createDfdList(nOpts = NULL, nOutcs = NULL, loadFile = TRUE,
-  fileName = "TwoOptExample", gambleList = NULL, sepFile = "\\t",
-  defaultGambles = FALSE, randomizeHorizontal = TRUE,
-  randomizeVertical = TRUE, practiceTrial = NULL,
-  withPracticeTrial = FALSE, practiceFileName = NULL,
-  outcomeCurrency = "")
+createDfdList(
+  nOpts = NULL,
+  nOutcs = NULL,
+  loadFile = TRUE,
+  fileName = "TwoOptExample",
+  gambleList = NULL,
+  sepFile = "\\t",
+  defaultGambles = FALSE,
+  randomizeHorizontal = TRUE,
+  randomizeVertical = TRUE,
+  practiceTrial = NULL,
+  withPracticeTrial = FALSE,
+  practiceFileName = NULL,
+  outcomeCurrency = ""
+)
 }
 \arguments{
 \item{nOpts}{integer. The number of gambles to be presented in each trial.

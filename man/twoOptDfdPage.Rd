@@ -6,17 +6,35 @@
 \alias{fourOptDfdPage}
 \title{Create an HTML Page to Display and Play a Decisions From Description Task}
 \usage{
-twoOptDfdPage(ctrlValsList, containerOb, gambleTitle = "Gamble",
-  gambleTitlePractice = "Practice Gamble", withPracticeGamble = TRUE,
-  displayTitle = TRUE, nGambles = 10)
+twoOptDfdPage(
+  ctrlValsList,
+  containerOb,
+  gambleTitle = "Gamble",
+  gambleTitlePractice = "Practice Gamble",
+  withPracticeGamble = TRUE,
+  displayTitle = TRUE,
+  nGambles = 10
+)
 
-threeOptDfdPage(ctrlValsList, containerOb, gambleTitle = "Gamble",
-  gambleTitlePractice = "Practice Gamble", withPracticeGamble = TRUE,
-  displayTitle = TRUE, nGambles = 10)
+threeOptDfdPage(
+  ctrlValsList,
+  containerOb,
+  gambleTitle = "Gamble",
+  gambleTitlePractice = "Practice Gamble",
+  withPracticeGamble = TRUE,
+  displayTitle = TRUE,
+  nGambles = 10
+)
 
-fourOptDfdPage(ctrlValsList, containerOb, gambleTitle = "Gamble",
-  gambleTitlePractice = "Practice Gamble", withPracticeGamble = TRUE,
-  displayTitle = TRUE, nGambles = 10)
+fourOptDfdPage(
+  ctrlValsList,
+  containerOb,
+  gambleTitle = "Gamble",
+  gambleTitlePractice = "Practice Gamble",
+  withPracticeGamble = TRUE,
+  displayTitle = TRUE,
+  nGambles = 10
+)
 }
 \arguments{
 \item{ctrlValsList}{list of reactive values. Controls the flow through the

@@ -208,12 +208,23 @@
 
 # sample values from ex-gaussian distributions
 .getExgaussVals2 <- function(colIndex, rowIndex, parList, roundDigits){
-  round(retimes::rexgauss(parList$nTrials[rowIndex],
-                          mu = parList$mu[rowIndex, colIndex],
-                          sigma = parList$sigma[rowIndex, colIndex],
-                          tau = parList$tau[rowIndex, colIndex],
-                          positive = parList$positive[rowIndex, colIndex]),
-        roundDigits)
+  if (isTRUE(parList$positive[rowIndex, colIndex])){
+
+    round(abs(gamlss.dist::rexGAUS(parList$nTrials[rowIndex],
+                                   mu = parList$mu[rowIndex, colIndex],
+                                   sigma = parList$sigma[rowIndex, colIndex],
+                                   nu = parList$tau[rowIndex, colIndex])),
+          roundDigits)
+
+  } else {
+
+    round(gamlss.dist::rexGAUS(parList$nTrials[rowIndex],
+                               mu = parList$mu[rowIndex, colIndex],
+                               sigma = parList$sigma[rowIndex, colIndex],
+                               nu = parList$tau[rowIndex, colIndex]),
+          roundDigits)
+
+  }
 }
 
 .getExgaussVals1 <- function(gameIndex, distributionList, Arms, nDigits){
@@ -247,12 +258,24 @@
 
   } else if (parList$distributionType[rowIndex, colIndex] == "exgauss"){
 
-    round(retimes::rexgauss(parList$nTrials[rowIndex],
-                            mu = parList$mu[rowIndex, colIndex],
-                            sigma = parList$sigma[rowIndex, colIndex],
-                            tau = parList$tau[rowIndex, colIndex],
-                            positive = parList$positive[rowIndex, colIndex]),
-          roundDigits)
+    if (isTRUE(parList$positive[rowIndex, colIndex])){
+
+      round(abs(gamlss.dist::rexGAUS(parList$nTrials[rowIndex],
+                                 mu = parList$mu[rowIndex, colIndex],
+                                 sigma = parList$sigma[rowIndex, colIndex],
+                                 nu = parList$tau[rowIndex, colIndex])),
+            roundDigits)
+
+    } else {
+
+      round(gamlss.dist::rexGAUS(parList$nTrials[rowIndex],
+                                 mu = parList$mu[rowIndex, colIndex],
+                                 sigma = parList$sigma[rowIndex, colIndex],
+                                 nu = parList$tau[rowIndex, colIndex]),
+            roundDigits)
+
+    }
+
 
   } else {
     stop(paste(parList$distributionType[rowIndex, colIndex], "is no valid distribution type for this function. Must be one of \"normal\", \"exp\", \"unif\", \"beta\" or \"exgauss\""))
@@ -342,11 +365,21 @@
 
   } else if (distributionList$distributionType[index] == "exgauss"){
 
-    tempVals <- round(retimes::rexgauss(distributionList$nBalloons[index],
-                            mu = distributionList$mu[index],
-                            sigma = distributionList$sigma[index],
-                            tau = distributionList$tau[index],
-                            positive = distributionList$positive[index]))
+    if (isTRUE(distributionList$positive[index])){
+
+      tempVals <- round(abs(gamlss.dist::rexGAUS(distributionList$nBalloons[index],
+                                     mu = distributionList$mu[index],
+                                     sigma = distributionList$sigma[index],
+                                     nu = distributionList$tau[index])))
+
+    } else {
+
+      tempVals <- round(gamlss.dist::rexGAUS(distributionList$nBalloons[index],
+                                 mu = distributionList$mu[index],
+                                 sigma = distributionList$sigma[index],
+                                 nu = distributionList$tau[index]))
+
+    }
 
     tempVals[tempVals > distributionList$max.pop[index]] <- distributionList$max.pop[index]
     tempVals[tempVals < distributionList$min.pop[index]] <- distributionList$min.pop[index]

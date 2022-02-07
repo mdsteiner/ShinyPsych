@@ -132,7 +132,7 @@ createBartList <- function(distList, randomize, loadList = FALSE,
     PopVals <- unlist(lapply(seq_len(distList$diffBalloons), .getPopVals,
                       distributionList = distList))
 
-    if (any(distList$balloonColor == "red" || distList$balloonColor == "green")) {
+    if (any(distList$balloonColor == "red" | distList$balloonColor == "green")) {
       warning("Your distList$balloonColor contained \"red\" or \"green\". These colors will already be used when the balloons are   saved or pop. Thus you might want to change your color values.")
     }
 

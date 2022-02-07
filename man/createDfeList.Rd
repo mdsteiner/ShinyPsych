@@ -5,11 +5,21 @@
 \title{Create a List of Prepared Values to Display Later in a Decisions from Experience
 Task}
 \usage{
-createDfeList(nOpts = NULL, nOutcs = NULL, loadFile = TRUE,
-  fileName = "TwoOptExample", gambleList = NULL, sepFile = "\\t",
-  defaultGambles = FALSE, nDraws = 100, randomizeHorizontal = TRUE,
-  randomizeVertical = TRUE, practiceTrial = NULL,
-  withPracticeTrial = FALSE, practiceFileName = NULL)
+createDfeList(
+  nOpts = NULL,
+  nOutcs = NULL,
+  loadFile = TRUE,
+  fileName = "TwoOptExample",
+  gambleList = NULL,
+  sepFile = "\\t",
+  defaultGambles = FALSE,
+  nDraws = 100,
+  randomizeHorizontal = TRUE,
+  randomizeVertical = TRUE,
+  practiceTrial = NULL,
+  withPracticeTrial = FALSE,
+  practiceFileName = NULL
+)
 }
 \arguments{
 \item{nOpts}{integer. The number of gambles to be presented in each trial.

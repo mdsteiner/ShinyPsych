@@ -4,10 +4,18 @@
 \alias{createDdList}
 \title{Create a List of Prepared Values to Display Later in a Delay Discounting Task}
 \usage{
-createDdList(loadFile = TRUE, fileName = "DDExample", ddList = NULL,
-  sepFile = "\\t", defaultList = FALSE, randomizeVertical = TRUE,
-  practiceTrial = NULL, withPracticeTrial = FALSE,
-  practiceFileName = NULL, outcomeCurrency = "")
+createDdList(
+  loadFile = TRUE,
+  fileName = "DDExample",
+  ddList = NULL,
+  sepFile = "\\t",
+  defaultList = FALSE,
+  randomizeVertical = TRUE,
+  practiceTrial = NULL,
+  withPracticeTrial = FALSE,
+  practiceFileName = NULL,
+  outcomeCurrency = ""
+)
 }
 \arguments{
 \item{loadFile}{logical. If TRUE (default) the list specifying

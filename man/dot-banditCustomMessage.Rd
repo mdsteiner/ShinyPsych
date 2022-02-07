@@ -4,8 +4,7 @@
 \alias{.banditCustomMessage}
 \title{Send Custom Message for Bandit Task from R to Javascript in Browser}
 \usage{
-.banditCustomMessage(Arms, contrlVals, distribList, sess, containerOb,
-  rDigits)
+.banditCustomMessage(Arms, contrlVals, distribList, sess, containerOb, rDigits)
 }
 \arguments{
 \item{Arms}{integer. The number of arms of the bandit. Has to be between 2

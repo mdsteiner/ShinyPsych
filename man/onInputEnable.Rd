@@ -4,8 +4,7 @@
 \alias{onInputEnable}
 \title{Enable a Continue Button if a Specified Criterium is Reached}
 \usage{
-onInputEnable(pageId, ctrlVals, pageList, globId, inputList,
-  charNum = NULL)
+onInputEnable(pageId, ctrlVals, pageList, globId, inputList, charNum = NULL)
 }
 \arguments{
 \item{pageId}{string. The current page id.}

@@ -4,8 +4,15 @@
 \alias{createCtrlList}
 \title{Create a List to Control the Flow through Experiment}
 \usage{
-createCtrlList(firstPage, globIds, complCode = FALSE, complName = NULL,
-  oVars = NULL, oVarVals = NULL, task = NULL)
+createCtrlList(
+  firstPage,
+  globIds,
+  complCode = FALSE,
+  complName = NULL,
+  oVars = NULL,
+  oVarVals = NULL,
+  task = NULL
+)
 }
 \arguments{
 \item{firstPage}{string. The id of the first page to be displayed}

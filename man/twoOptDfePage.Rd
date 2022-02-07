@@ -8,25 +8,55 @@
 \alias{sixOptDfePage}
 \title{Create an HTML Page to Display and Play a Decisions From Experience Task}
 \usage{
-twoOptDfePage(ctrlValsList, gambleTitle = "Gamble",
-  gambleTitlePractice = "Practice Gamble", withPracticeGamble = TRUE,
-  displayTitle = TRUE, nGambles = 10, buttonLabel = "Make Decision")
+twoOptDfePage(
+  ctrlValsList,
+  gambleTitle = "Gamble",
+  gambleTitlePractice = "Practice Gamble",
+  withPracticeGamble = TRUE,
+  displayTitle = TRUE,
+  nGambles = 10,
+  buttonLabel = "Make Decision"
+)
 
-threeOptDfePage(ctrlValsList, gambleTitle = "Gamble",
-  gambleTitlePractice = "Practice Gamble", withPracticeGamble = TRUE,
-  displayTitle = TRUE, nGambles = 10, buttonLabel = "Make Decision")
+threeOptDfePage(
+  ctrlValsList,
+  gambleTitle = "Gamble",
+  gambleTitlePractice = "Practice Gamble",
+  withPracticeGamble = TRUE,
+  displayTitle = TRUE,
+  nGambles = 10,
+  buttonLabel = "Make Decision"
+)
 
-fourOptDfePage(ctrlValsList, gambleTitle = "Gamble",
-  gambleTitlePractice = "Practice Gamble", withPracticeGamble = TRUE,
-  displayTitle = TRUE, nGambles = 10, buttonLabel = "Make Decision")
+fourOptDfePage(
+  ctrlValsList,
+  gambleTitle = "Gamble",
+  gambleTitlePractice = "Practice Gamble",
+  withPracticeGamble = TRUE,
+  displayTitle = TRUE,
+  nGambles = 10,
+  buttonLabel = "Make Decision"
+)
 
-fiveOptDfePage(ctrlValsList, gambleTitle = "Gamble",
-  gambleTitlePractice = "Practice Gamble", withPracticeGamble = TRUE,
-  displayTitle = TRUE, nGambles = 10, buttonLabel = "Make Decision")
+fiveOptDfePage(
+  ctrlValsList,
+  gambleTitle = "Gamble",
+  gambleTitlePractice = "Practice Gamble",
+  withPracticeGamble = TRUE,
+  displayTitle = TRUE,
+  nGambles = 10,
+  buttonLabel = "Make Decision"
+)
 
-sixOptDfePage(ctrlValsList, gambleTitle = "Gamble",
-  gambleTitlePractice = "Practice Gamble", withPracticeGamble = TRUE,
-  displayTitle = TRUE, nGambles = 10, buttonLabel = "Make Decision")
+sixOptDfePage(
+  ctrlValsList,
+  gambleTitle = "Gamble",
+  gambleTitlePractice = "Practice Gamble",
+  withPracticeGamble = TRUE,
+  displayTitle = TRUE,
+  nGambles = 10,
+  buttonLabel = "Make Decision"
+)
 }
 \arguments{
 \item{ctrlValsList}{list of reactive values. Controls the flow through the

@@ -4,9 +4,18 @@
 \alias{checkId}
 \title{Check if a User is Allowed to Participate Given his Id}
 \usage{
-checkId(id, cntrlVals, location = "local", fileSep = ",",
-  fileHeader = TRUE, dropDir = NULL, fileName = NULL,
-  droptoken = NULL, idsVec = NULL, notAllowedId = "not allowed")
+checkId(
+  id,
+  cntrlVals,
+  location = "local",
+  fileSep = ",",
+  fileHeader = TRUE,
+  dropDir = NULL,
+  fileName = NULL,
+  droptoken = NULL,
+  idsVec = NULL,
+  notAllowedId = "not allowed"
+)
 }
 \arguments{
 \item{id}{string or numeric. The user id to check.}

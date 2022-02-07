@@ -4,9 +4,16 @@
 \alias{appendDfdValues}
 \title{Append Input from Decisions from Description Task to Task Control List}
 \usage{
-appendDfdValues(ctrlVals, input, gameData, container,
-  withPracticeGamble = TRUE, afterPracticePage = "postPractice",
-  afterGamblePage = "endGame", afterLastGamblePage = "lastEndGame")
+appendDfdValues(
+  ctrlVals,
+  input,
+  gameData,
+  container,
+  withPracticeGamble = TRUE,
+  afterPracticePage = "postPractice",
+  afterGamblePage = "endGame",
+  afterLastGamblePage = "lastEndGame"
+)
 }
 \arguments{
 \item{ctrlVals}{list of reactive values. Controls the flow through the

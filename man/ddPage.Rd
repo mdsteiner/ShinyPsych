@@ -4,9 +4,15 @@
 \alias{ddPage}
 \title{Set up HTML Logic for the Delay Discounting Task}
 \usage{
-ddPage(ctrlVals, container, trialTitle = "Trial",
-  trialTitlePractice = "Practice Trial", withPracticeTrial = FALSE,
-  displayTitle = TRUE, nTrials = 10)
+ddPage(
+  ctrlVals,
+  container,
+  trialTitle = "Trial",
+  trialTitlePractice = "Practice Trial",
+  withPracticeTrial = FALSE,
+  displayTitle = TRUE,
+  nTrials = 10
+)
 }
 \arguments{
 \item{ctrlVals}{list of reactive values. Controls the flow through the

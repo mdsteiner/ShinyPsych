@@ -4,8 +4,14 @@
 \alias{onBartAction}
 \title{Controls What Happens After a Bart Trial}
 \usage{
-onBartAction(id, ctrlVals, inputList, bartCtrlList, balloonList,
-  nextPageId = NULL)
+onBartAction(
+  id,
+  ctrlVals,
+  inputList,
+  bartCtrlList,
+  balloonList,
+  nextPageId = NULL
+)
 }
 \arguments{
 \item{id}{string. Controls what action should be executed (e.g. append values

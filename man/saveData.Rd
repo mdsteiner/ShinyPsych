@@ -4,11 +4,22 @@
 \alias{saveData}
 \title{Write Data to a Local Location or to Dropbox}
 \usage{
-saveData(data, location, partId, checkNull = TRUE, addNameList = NULL,
-  suffix = "_s", outputDir = NULL, droptoken = "droptoken.rds",
-  asrds = FALSE, separator = ",", mailSender = NULL,
-  mailReceiver = NULL, mailSubject = "ShinyPsych Data",
-  mailBody = "Data attached...")
+saveData(
+  data,
+  location,
+  partId,
+  checkNull = TRUE,
+  addNameList = NULL,
+  suffix = "_s",
+  outputDir = NULL,
+  droptoken = "droptoken.rds",
+  asrds = FALSE,
+  separator = ",",
+  mailSender = NULL,
+  mailReceiver = NULL,
+  mailSubject = "ShinyPsych Data",
+  mailBody = "Data attached..."
+)
 }
 \arguments{
 \item{data}{list. Contains all the data that should be saved.}

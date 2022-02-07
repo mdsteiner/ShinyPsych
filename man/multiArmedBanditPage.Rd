@@ -4,8 +4,15 @@
 \alias{multiArmedBanditPage}
 \title{Call Appropriate Create Bandit Page Function and Send Data to Browser}
 \usage{
-multiArmedBanditPage(ctrlVals, nArms, distList, container, roundDigits,
-  session, ...)
+multiArmedBanditPage(
+  ctrlVals,
+  nArms,
+  distList,
+  container,
+  roundDigits,
+  session,
+  ...
+)
 }
 \arguments{
 \item{ctrlVals}{list of reactive values. Controls the flow through the

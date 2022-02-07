@@ -4,9 +4,15 @@
 \alias{nextBanditPage}
 \title{Go to Next Page After a Game of the Bandit Task}
 \usage{
-nextBanditPage(ctrlVals, distList, gameData, withPracticeGame = TRUE,
-  afterPracticePage = "postPractice", afterGamePage = "endGame",
-  afterLastGamePage = "lastEndGame")
+nextBanditPage(
+  ctrlVals,
+  distList,
+  gameData,
+  withPracticeGame = TRUE,
+  afterPracticePage = "postPractice",
+  afterGamePage = "endGame",
+  afterLastGamePage = "lastEndGame"
+)
 }
 \arguments{
 \item{ctrlVals}{list of reactive values. Controls the flow through the

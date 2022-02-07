@@ -4,9 +4,14 @@
 \alias{createPageList}
 \title{Read in Information on What to Display on a Page and Prepare it for Later Use.}
 \usage{
-createPageList(defaulttxt = TRUE, location = "local",
-  fileName = "Example", randomize = TRUE, globId = fileName,
-  droptoken = "droptoken.rds")
+createPageList(
+  defaulttxt = TRUE,
+  location = "local",
+  fileName = "Example",
+  randomize = TRUE,
+  globId = fileName,
+  droptoken = "droptoken.rds"
+)
 }
 \arguments{
 \item{defaulttxt}{logical. If TRUE (default) a default option is used.}

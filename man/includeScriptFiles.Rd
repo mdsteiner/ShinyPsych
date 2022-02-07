@@ -4,8 +4,7 @@
 \alias{includeScriptFiles}
 \title{Load Javascript and CSS Files}
 \usage{
-includeScriptFiles(fileList = "", globalScript = TRUE, nArms = 0,
-  nOpts = 0)
+includeScriptFiles(fileList = "", globalScript = TRUE, nArms = 0, nOpts = 0)
 }
 \arguments{
 \item{fileList}{string. Vector with names to specify the tasks for which

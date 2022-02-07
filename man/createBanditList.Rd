@@ -4,9 +4,15 @@
 \alias{createBanditList}
 \title{Create a List of Outcome Values to Use in the Bandit Task}
 \usage{
-createBanditList(nArms = 2, roundDigits = 0, loadList = FALSE,
-  distList = NULL, differentDists = FALSE, fileName = NULL,
-  randomize = TRUE)
+createBanditList(
+  nArms = 2,
+  roundDigits = 0,
+  loadList = FALSE,
+  distList = NULL,
+  differentDists = FALSE,
+  fileName = NULL,
+  randomize = TRUE
+)
 }
 \arguments{
 \item{nArms}{integer. The number of arms (i.e. options) the bandit task

@@ -4,12 +4,25 @@
 \alias{nextPage}
 \title{Go to Next Page}
 \usage{
-nextPage(pageId, ctrlVals, nextPageId, pageList, globId,
-  checkAllowed = FALSE, checkAllowedPage = 1,
-  checkIdVar = "workerid", checkLocation = "local", checkSep = ",",
-  checkHeader = TRUE, checkDropDir = NULL, checkFileName = NULL,
-  checkDroptoken = NULL, checkIdsVec = NULL,
-  checkNotAllowedId = "not allowed", inputList = NULL)
+nextPage(
+  pageId,
+  ctrlVals,
+  nextPageId,
+  pageList,
+  globId,
+  checkAllowed = FALSE,
+  checkAllowedPage = 1,
+  checkIdVar = "workerid",
+  checkLocation = "local",
+  checkSep = ",",
+  checkHeader = TRUE,
+  checkDropDir = NULL,
+  checkFileName = NULL,
+  checkDroptoken = NULL,
+  checkIdsVec = NULL,
+  checkNotAllowedId = "not allowed",
+  inputList = NULL
+)
 }
 \arguments{
 \item{pageId}{string. Current page id.}

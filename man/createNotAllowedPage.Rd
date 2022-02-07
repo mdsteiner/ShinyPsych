@@ -4,8 +4,12 @@
 \alias{createNotAllowedPage}
 \title{Create HTML Page for Users not Allowed to Participate}
 \usage{
-createNotAllowedPage(inputList, globId, idLabel = "WorkerID",
-  idVar = "workerid")
+createNotAllowedPage(
+  inputList,
+  globId,
+  idLabel = "WorkerID",
+  idVar = "workerid"
+)
 }
 \arguments{
 \item{inputList}{The input object from a shiny app.}
