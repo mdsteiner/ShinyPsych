@@ -11,7 +11,8 @@ if (!require(devtools)) install.packages("devtools")
 # Install ShinyPsych from GitHub
 devtools::install_github("mdsteiner/ShinyPsych", 
                          build = TRUE, 
-                         build_opts = c("--no-resave-data", "--no-manual"))
+                         build_opts = c("--no-resave-data", "--no-manual"),
+                         build_vignettes = TRUE)
 
 # Open the main vignette
 ShinyPsych_Guide()       
